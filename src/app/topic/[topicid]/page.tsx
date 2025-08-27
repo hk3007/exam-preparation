@@ -1,8 +1,19 @@
+// src/app/topic/[topicid]/page.tsx
 import TopicPage from "@/components/TopicPage";
 import { topics } from "@/data/topics";
 
-export default async function TopicRoute({ params }: { params: Promise<{ topicid: string }> }) {
-  const { topicid } = await params;
+export async function generateStaticParams() {
+  return Object.keys(topics).map((topicid) => ({
+    topicid,
+  }));
+}
+
+export default async function TopicRoute({
+  params,
+}: {
+  params: Promise<{ topicid: string }>;
+}) {
+  const { topicid } = await params; // ✅ await params
   const topic = topics[topicid];
 
   if (!topic) {
@@ -11,3 +22,4 @@ export default async function TopicRoute({ params }: { params: Promise<{ topicid
 
   return <TopicPage topic={topic} />;
 }
+  

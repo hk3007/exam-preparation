@@ -1,4 +1,4 @@
-// data/exams.ts
+// src/data/exams.ts
 
 export interface ExamData {
   name: string;
@@ -8,7 +8,8 @@ export interface ExamData {
   description: string;
 }
 
-export const exams: Record<string, ExamData> = {
+// Use Record with a union type for keys so TypeScript knows valid exam IDs
+export const exams: Record<"JEE" | "UPSC" | "NEET", ExamData> = {
   JEE: {
     name: "JEE",
     upcomingDate: "April 6, 2025",
@@ -39,3 +40,5 @@ export const exams: Record<string, ExamData> = {
       "National Eligibility cum Entrance Test (NEET) is the entrance exam for admission to MBBS, BDS, and other medical courses across India.",
   },
 };
+
+export type ExamId = keyof typeof exams; // "JEE" | "UPSC" | "NEET"
