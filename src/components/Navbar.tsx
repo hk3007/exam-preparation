@@ -1,8 +1,32 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useRef } from "react";
 import Link from "next/link";
-import { Menu, X, ChevronDown, ChevronRight } from "lucide-react";
+import { usePathname } from "next/navigation";
+import {
+  Menu,
+  Shield,
+  User,
+  ChevronDown,
+  ChevronRight,
+  X,
+} from "lucide-react";
+import { Button } from "@/components/ui/button";
+import {
+  Sheet,
+  SheetContent,
+  SheetTrigger,
+  SheetClose,
+} from "@/components/ui/sheet";
+import { Badge } from "@/components/ui/badge";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
+import { ThemeToggle } from "@/components/theme-toggle";
 
 type ExamName = "UPSC" | "JEE" | "NEET";
 
@@ -10,243 +34,282 @@ interface ExamStructure {
   subjects: string[];
 }
 
-export default function Navbar() {
-  const [mobileOpen, setMobileOpen] = useState(false);
+const exams: Record<ExamName, ExamStructure> = {
+  UPSC: {
+    subjects: ["Polity", "History", "Geography"],
+  },
+  JEE: {
+    subjects: ["Physics", "Chemistry", "Mathematics"],
+  },
+  NEET: {
+    subjects: ["Biology", "Physics", "Chemistry"],
+  },
+};
+
+const navigation = [
+  { name: "Home", href: "/" },
+  { name: "Latest News", href: "/news" },
+];
+
+export function Navbar() {
+  const pathname = usePathname();
+  const [isOpen, setIsOpen] = useState(false);
   const [openExam, setOpenExam] = useState<ExamName | null>(null);
   const [openSubject, setOpenSubject] = useState<string | null>(null);
-const [hoverTimeout, setHoverTimeout] = useState<NodeJS.Timeout | null>(null);
-  const [submenuDirection, setSubmenuDirection] = useState<"left" | "right">(
-    "right"
-  );
 
-  const exams: Record<ExamName, ExamStructure> = {
-    UPSC: {
-      subjects: ["Polity", "History", "Geography"],
-    },
-    JEE: {
-      subjects: ["Physics", "Chemistry", "Mathematics"],
-    },
-    NEET: {
-      subjects: ["Biology", "Physics", "Chemistry"],
-    },
+  const hoverTimeoutRef = useRef<NodeJS.Timeout | null>(null);
+
+  const handleMouseEnterExam = (examKey: ExamName) => {
+    if (hoverTimeoutRef.current) {
+      clearTimeout(hoverTimeoutRef.current);
+    }
+    setOpenExam(examKey);
   };
 
-  // ✅ Detect if submenu would overflow on the right, then flip
-  const handleSubmenuPosition = (e: React.MouseEvent<HTMLDivElement>) => {
-    const rect = e.currentTarget.getBoundingClientRect();
-    const screenWidth = window.innerWidth;
+  const handleMouseLeaveExam = () => {
+    hoverTimeoutRef.current = setTimeout(() => {
+      setOpenExam(null);
+      setOpenSubject(null);
+    }, 150);
+  };
 
-    if (rect.right + 240 > screenWidth) {
-      setSubmenuDirection("left");
-    } else {
-      setSubmenuDirection("right");
+  const handleMouseEnterSubject = (subject: string) => {
+    if (hoverTimeoutRef.current) {
+      clearTimeout(hoverTimeoutRef.current);
     }
+    setOpenSubject(subject);
   };
 
   return (
-    <nav className="bg-white text-gray-800 shadow-md sticky top-0 z-50">
-      <div className="max-w-7xl mx-auto px-4 py-3 flex justify-between items-center">
-        {/* Logo */}
-        <Link href="/" className="text-2xl font-bold text-blue-600">
-          ExamPrep
-        </Link>
+    <nav className="fixed top-0 w-full z-50 backdrop-blur-sm bg-background/70 border-b border-border/50">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="flex justify-between h-16">
+          <div className="flex items-center">
+            {/* Logo */}
+            <Link href="/" className="flex items-center space-x-2">
+              <Shield className="h-8 w-8 text-blue-600" />
+              <span className="font-bold text-xl bg-gradient-to-r from-blue-500 to-blue-700 bg-clip-text text-transparent">
+                ExamPrep
+              </span>
+            </Link>
+          </div>
 
-        {/* Desktop Menu */}
-        <div className="hidden md:flex gap-6 items-center">
-          <Link href="/" className="hover:text-blue-600 transition">
-            Home
-          </Link>
-
-          {Object.keys(exams).map((exam) => {
-            const examKey = exam as ExamName;
-
-            return (
-              <div
-                key={exam}
-                className="relative group"
-                onMouseEnter={() => {
-                  if (hoverTimeout) clearTimeout(hoverTimeout);
-                  setOpenExam(examKey);
-                }}
-                onMouseLeave={() => {
-                  const timeout = setTimeout(() => {
-                    setOpenExam(null);
-                    setOpenSubject(null);
-                  }, 150);
-                  setHoverTimeout(timeout);
-                }}
+          {/* Desktop Navigation */}
+          <div className="hidden md:flex items-center space-x-8">
+            {navigation.map((item) => (
+              <Link
+                key={item.name}
+                href={item.href}
+                className={`px-3 py-2 rounded-md text-sm font-bold transition-colors ${
+                  pathname === item.href
+                    ? "text-blue-600 bg-blue-600/10"
+                    : "text-muted-foreground hover:text-foreground hover:bg-accent"
+                }`}
               >
-                <button className="flex items-center gap-1 hover:text-blue-600 transition">
-                  {exam} <ChevronDown size={16} />
-                </button>
+                {item.name}
+              </Link>
+            ))}
 
-                {/* Subjects Dropdown */}
-                {openExam === examKey && (
-                  <div className="absolute left-0 top-full mt-2 bg-white border border-gray-200 text-gray-800 rounded-lg shadow-lg w-52 z-50 animate-fadeIn">
-                    {exams[examKey].subjects.map((subject) => (
-                      <div
-                        key={subject}
-                        className="relative"
-                        onMouseEnter={(e) => {
-                          if (hoverTimeout) clearTimeout(hoverTimeout);
-                          setOpenSubject(subject);
-                          handleSubmenuPosition(e);
-                        }}
-                        onMouseLeave={() => {
-                          const timeout = setTimeout(() => {
-                            setOpenSubject(null);
-                          }, 200);
-                          setHoverTimeout(timeout);
-                        }}
-                      >
-                        <button className="flex w-full items-center justify-between px-4 py-2 hover:bg-blue-50 rounded-md transition">
-                          {subject}
-                          <ChevronRight size={14} />
-                        </button>
+            {/* Desktop Exams Dropdown */}
+            {Object.keys(exams).map((exam) => {
+              const examKey = exam as ExamName;
 
-                        {/* ✅ Level 2 Dropdown */}
-                        {openSubject === subject && (
-                          <div
-                            className={`absolute top-0 ${
-                              submenuDirection === "right"
-                                ? "left-full ml-1"
-                                : "right-full mr-1"
-                            } bg-white border border-gray-200 text-gray-800 rounded-lg shadow-lg min-w-[220px] z-50 animate-fadeIn`}
-                          >
-                            <Link
-                              href={`/exams/${examKey}/${subject}/chapters`}
-                              className="block px-4 py-2 hover:bg-blue-50 rounded-md transition"
-                            >
-                              Chapters
-                            </Link>
-                            <Link
-                              href={`/exams/${examKey}/${subject}/previous-year`}
-                              className="block px-4 py-2 hover:bg-blue-50 rounded-md transition"
-                            >
-                              Previous Year Questions
-                            </Link>
-                            <Link
-                              href={`/exams/${examKey}/${subject}/info`}
-                              className="block px-4 py-2 hover:bg-blue-50 rounded-md transition"
-                            >
-                              Information
-                            </Link>
-                          </div>
-                        )}
-                      </div>
-                    ))}
-                  </div>
-                )}
-              </div>
-            );
-          })}
-
-          <Link href="/news" className="hover:text-blue-600 transition">
-            Latest News
-          </Link>
-        </div>
-
-        {/* Mobile Menu Button */}
-        <button
-          className="md:hidden text-gray-700"
-          onClick={() => setMobileOpen(!mobileOpen)}
-        >
-          {mobileOpen ? <X size={28} /> : <Menu size={28} />}
-        </button>
-      </div>
-
-      {/* Mobile Dropdown Menu */}
-      {mobileOpen && (
-        <div className="md:hidden bg-gray-50 text-gray-800 px-4 py-2 space-y-2 border-t border-gray-200 animate-fadeIn">
-          <Link href="/" className="block py-2 hover:text-blue-600 transition">
-            Home
-          </Link>
-
-          {Object.keys(exams).map((exam) => {
-            const examKey = exam as ExamName;
-            const isExamOpen = openExam === examKey;
-
-            return (
-              <div key={exam}>
-                <button
-                  className="flex justify-between items-center w-full py-2 hover:text-blue-600 transition"
-                  onClick={() => {
-                    setOpenExam(isExamOpen ? null : examKey);
-                    setOpenSubject(null);
-                  }}
+              return (
+                <div
+                  key={exam}
+                  className="relative h-full"
+                  onMouseEnter={() => handleMouseEnterExam(examKey)}
+                  onMouseLeave={handleMouseLeaveExam}
                 >
-                  {exam}
-                  <ChevronDown
-                    size={16}
-                    className={`transform transition-transform ${
-                      isExamOpen ? "rotate-180" : ""
-                    }`}
-                  />
-                </button>
+                  <Button
+                    variant="ghost"
+                    className="flex items-center gap-1 rounded-md text-sm font-bold transition-colors h-full"
+                  >
+                    {exam} <ChevronDown size={16} />
+                  </Button>
 
-                {/* Subjects */}
-                {isExamOpen && (
-                  <div className="pl-4 space-y-1">
-                    {exams[examKey].subjects.map((subject) => {
-                      const isSubjectOpen = openSubject === subject;
-
-                      return (
-                        <div key={subject}>
-                          <button
-                            className="flex justify-between items-center w-full py-2 hover:text-blue-600 transition"
-                            onClick={() =>
-                              setOpenSubject(isSubjectOpen ? null : subject)
-                            }
+                  {openExam === examKey && (
+                    <div className="absolute left-0 top-full mt-2 bg-popover text-popover-foreground border rounded-md shadow-lg w-52 z-50 animate-fadeIn">
+                      {exams[examKey].subjects.map((subject) => (
+                        <div
+                          key={subject}
+                          className="relative"
+                          onMouseEnter={() => handleMouseEnterSubject(subject)}
+                        >
+                          <Link
+                            href={`/exams/${examKey}/${subject}`}
+                            className="flex w-full items-center justify-between px-4 py-2 hover:bg-accent rounded-md transition"
                           >
                             {subject}
-                            <ChevronRight
-                              size={14}
-                              className={`transform transition-transform ${
-                                isSubjectOpen ? "rotate-90" : ""
-                              }`}
-                            />
-                          </button>
+                            <ChevronRight size={14} />
+                          </Link>
 
-                          {/* ✅ Level 2 Dropdown in Mobile */}
-                          {isSubjectOpen && (
-                            <div className="pl-4 space-y-1">
+                          {openSubject === subject && (
+                            <div className="absolute top-0 left-full ml-1 bg-popover text-popover-foreground border rounded-md shadow-lg min-w-[220px] z-50 animate-fadeIn">
                               <Link
                                 href={`/exams/${examKey}/${subject}/chapters`}
-                                className="block py-1 hover:text-blue-600 transition"
+                                className="block px-4 py-2 hover:bg-accent rounded-md transition"
                               >
                                 Chapters
                               </Link>
                               <Link
                                 href={`/exams/${examKey}/${subject}/previous-year`}
-                                className="block py-1 hover:text-blue-600 transition"
+                                className="block px-4 py-2 hover:bg-accent rounded-md transition"
                               >
                                 Previous Year Questions
                               </Link>
                               <Link
                                 href={`/exams/${examKey}/${subject}/info`}
-                                className="block py-1 hover:text-blue-600 transition"
+                                className="block px-4 py-2 hover:bg-accent rounded-md transition"
                               >
                                 Information
                               </Link>
                             </div>
                           )}
                         </div>
+                      ))}
+                    </div>
+                  )}
+                </div>
+              );
+            })}
+          </div>
+
+          {/* Desktop Actions */}
+          <div className="hidden md:flex items-center space-x-4">
+            <ThemeToggle />
+          </div>
+
+          {/* Mobile Menu & Actions */}
+          <div className="md:hidden flex items-center space-x-2">
+            <ThemeToggle />
+            <Sheet open={isOpen} onOpenChange={setIsOpen}>
+              <SheetTrigger asChild>
+                <Button variant="ghost" size="icon">
+                  <Menu className="h-6 w-6" />
+                </Button>
+              </SheetTrigger>
+              <SheetContent side="right" className="w-[300px] sm:w-[400px]">
+                <SheetClose asChild>
+                  <Button variant="ghost" size="icon" className="absolute top-4 right-4">
+                    <X className="h-6 w-6" />
+                  </Button>
+                </SheetClose>
+                <div className="flex flex-col space-y-4 mt-8">
+                  {navigation.map((item) => (
+                    <SheetClose key={item.name} asChild>
+                      <Link
+                        href={item.href}
+                        className={`px-3 py-2 rounded-md text-sm font-medium transition-colors ${
+                          pathname === item.href
+                            ? "text-blue-600 bg-blue-600/10"
+                            : "text-muted-foreground hover:text-foreground hover:bg-accent"
+                        }`}
+                      >
+                        {item.name}
+                      </Link>
+                    </SheetClose>
+                  ))}
+
+                  <div className="border-t pt-4 space-y-2">
+                    <p className="text-sm font-bold text-foreground">Exams</p>
+                    {Object.keys(exams).map((exam) => {
+                      const examKey = exam as ExamName;
+                      const isExamOpen = openExam === examKey;
+
+                      return (
+                        <div key={exam}>
+                          <button
+                            className="flex justify-between items-center w-full px-3 py-2 text-sm font-medium text-muted-foreground hover:text-foreground hover:bg-accent rounded-md transition"
+                            onClick={() => {
+                              setOpenExam(isExamOpen ? null : examKey);
+                              setOpenSubject(null);
+                            }}
+                          >
+                            {exam}
+                            <ChevronDown
+                              size={16}
+                              className={`transform transition-transform ${
+                                isExamOpen ? "rotate-180" : ""
+                              }`}
+                            />
+                          </button>
+
+                          {isExamOpen && (
+                            <div className="pl-4 space-y-1">
+                              {exams[examKey].subjects.map((subject) => {
+                                const isSubjectOpen = openSubject === subject;
+
+                                return (
+                                  <div key={subject}>
+                                    <button
+                                      className="flex justify-between items-center w-full py-2 px-3 text-sm text-muted-foreground hover:text-foreground hover:bg-accent rounded-md transition"
+                                      onClick={() =>
+                                        setOpenSubject(isSubjectOpen ? null : subject)
+                                      }
+                                    >
+                                      {subject}
+                                      <ChevronRight
+                                        size={14}
+                                        className={`transform transition-transform ${
+                                          isSubjectOpen ? "rotate-90" : ""
+                                        }`}
+                                      />
+                                    </button>
+                                    {isSubjectOpen && (
+                                      <div className="pl-4 space-y-1">
+                                        <SheetClose asChild>
+                                          <Link
+                                            href={`/exams/${examKey}/${subject}/chapters`}
+                                            className="block px-3 py-1 text-sm text-muted-foreground hover:text-foreground hover:bg-accent rounded-md transition"
+                                          >
+                                            Chapters
+                                          </Link>
+                                        </SheetClose>
+                                        <SheetClose asChild>
+                                          <Link
+                                            href={`/exams/${examKey}/${subject}/previous-year`}
+                                            className="block px-3 py-1 text-sm text-muted-foreground hover:text-foreground hover:bg-accent rounded-md transition"
+                                          >
+                                            Previous Year Questions
+                                          </Link>
+                                        </SheetClose>
+                                        <SheetClose asChild>
+                                          <Link
+                                            href={`/exams/${examKey}/${subject}/info`}
+                                            className="block px-3 py-1 text-sm text-muted-foreground hover:text-foreground hover:bg-accent rounded-md transition"
+                                          >
+                                            Information
+                                          </Link>
+                                        </SheetClose>
+                                      </div>
+                                    )}
+                                  </div>
+                                );
+                              })}
+                            </div>
+                          )}
+                        </div>
                       );
                     })}
                   </div>
-                )}
-              </div>
-            );
-          })}
 
-          <Link
-            href="/news"
-            className="block py-2 hover:text-blue-600 transition"
-          >
-            Latest News
-          </Link>
+                  <div className="border-t pt-4 space-y-2">
+                    <SheetClose asChild>
+                      <Link
+                        href="/settings"
+                        className="flex items-center px-3 py-2 rounded-md text-sm font-medium text-muted-foreground hover:text-foreground hover:bg-accent"
+                      >
+                        Settings
+                      </Link>
+                    </SheetClose>
+                  </div>
+                </div>
+              </SheetContent>
+            </Sheet>
+          </div>
         </div>
-      )}
+      </div>
     </nav>
   );
 }
