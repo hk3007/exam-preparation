@@ -14,7 +14,7 @@ export default function Navbar() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [openExam, setOpenExam] = useState<ExamName | null>(null);
   const [openSubject, setOpenSubject] = useState<string | null>(null);
-  const [hoverTimeout, setHoverTimeout] = useState<any>(null);
+const [hoverTimeout, setHoverTimeout] = useState<NodeJS.Timeout | null>(null);
   const [submenuDirection, setSubmenuDirection] = useState<"left" | "right">(
     "right"
   );

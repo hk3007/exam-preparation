@@ -2,12 +2,13 @@
   "name": "exam-preparation",
   "version": "0.1.0",
   "private": true,
-  "scripts": {
-    "dev": "next dev --turbopack",
-    "build": "next build --turbopack",
-    "start": "next start",
-    "lint": "eslint"
-  },
+ "scripts": {
+  "dev": "next dev --turbopack",
+  "build": "next build --turbopack",
+  "export": "next export",
+  "start": "next start",
+  "predeploy": "npm run build && npm run export"
+},
   "dependencies": {
     "@radix-ui/react-progress": "^1.1.7",
     "@radix-ui/react-slot": "^1.2.3",

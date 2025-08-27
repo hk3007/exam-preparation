@@ -2,7 +2,7 @@
 
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { BookOpen, FileText, GraduationCap } from "lucide-react";
+import { FileText, GraduationCap } from "lucide-react";
 import Link from "next/link";
 
 export default function HomePage() {
