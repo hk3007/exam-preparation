@@ -6,7 +6,6 @@ import { usePathname } from "next/navigation";
 import {
   Menu,
   Shield,
-  User,
   ChevronDown,
   ChevronRight,
   X,
@@ -18,14 +17,6 @@ import {
   SheetTrigger,
   SheetClose,
 } from "@/components/ui/sheet";
-import { Badge } from "@/components/ui/badge";
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuSeparator,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
 import { ThemeToggle } from "@/components/theme-toggle";
 
 type ExamName = "UPSC" | "JEE" | "NEET";
@@ -84,8 +75,8 @@ export function Navbar() {
     <nav className="fixed top-0 w-full z-50 backdrop-blur-sm bg-background/70 border-b border-border/50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between h-16">
+          {/* Logo */}
           <div className="flex items-center">
-            {/* Logo */}
             <Link href="/" className="flex items-center space-x-2">
               <Shield className="h-8 w-8 text-blue-600" />
               <span className="font-bold text-xl bg-gradient-to-r from-blue-500 to-blue-700 bg-clip-text text-transparent">
@@ -97,18 +88,18 @@ export function Navbar() {
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center space-x-8">
             {navigation.map((item) => (
-  <Link
-    key={item.name}
-    href={item.href}
-    className={`px-3 py-2 rounded-md text-sm font-bold transition-colors ${
-      pathname === item.href
-        ? "text-blue-600 bg-blue-600/10"
-        : "text-foreground hover:text-foreground hover:bg-accent"
-    }`}
-  >
-    {item.name}
-  </Link>
-))}
+              <Link
+                key={item.name}
+                href={item.href}
+                className={`px-3 py-2 rounded-md text-sm font-bold transition-colors ${
+                  pathname === item.href
+                    ? "text-blue-600 bg-blue-600/10"
+                    : "text-foreground hover:text-foreground hover:bg-accent"
+                }`}
+              >
+                {item.name}
+              </Link>
+            ))}
 
             {/* Desktop Exams Dropdown */}
             {Object.keys(exams).map((exam) => {
@@ -122,11 +113,11 @@ export function Navbar() {
                   onMouseLeave={handleMouseLeaveExam}
                 >
                   <Button
-  variant="ghost"
-  className="flex items-center gap-1 rounded-md text-sm font-bold transition-colors h-full text-foreground"
->
-  {exam} <ChevronDown size={16} />
-</Button>
+                    variant="ghost"
+                    className="flex items-center gap-1 rounded-md text-sm font-bold transition-colors h-full text-foreground"
+                  >
+                    {exam} <ChevronDown size={16} />
+                  </Button>
 
                   {openExam === examKey && (
                     <div className="absolute left-0 top-full mt-2 bg-popover text-popover-foreground border rounded-md shadow-lg w-52 z-50 animate-fadeIn">
@@ -137,29 +128,30 @@ export function Navbar() {
                           onMouseEnter={() => handleMouseEnterSubject(subject)}
                         >
                           <Link
-                            href={`/exams/${examKey}/${subject}`}
+                            href={`/exam/${examKey}/${subject}`}
                             className="flex w-full items-center justify-between px-4 py-2 hover:bg-accent rounded-md transition"
                           >
                             {subject}
                             <ChevronRight size={14} />
                           </Link>
 
+                          {/* Third-level submenu */}
                           {openSubject === subject && (
                             <div className="absolute top-0 left-full ml-1 bg-popover text-popover-foreground border rounded-md shadow-lg min-w-[220px] z-50 animate-fadeIn">
                               <Link
-                                href={`/exams/${examKey}/${subject}/chapters`}
+                                href={`/exam/${examKey}/${subject}/chapters`}
                                 className="block px-4 py-2 hover:bg-accent rounded-md transition"
                               >
                                 Chapters
                               </Link>
                               <Link
-                                href={`/exams/${examKey}/${subject}/previous-year`}
+                                href={`/exam/${examKey}/${subject}/previous-year`}
                                 className="block px-4 py-2 hover:bg-accent rounded-md transition"
                               >
                                 Previous Year Questions
                               </Link>
                               <Link
-                                href={`/exams/${examKey}/${subject}/info`}
+                                href={`/exam/${examKey}/${subject}/info`}
                                 className="block px-4 py-2 hover:bg-accent rounded-md transition"
                               >
                                 Information
@@ -180,7 +172,7 @@ export function Navbar() {
             <ThemeToggle />
           </div>
 
-          {/* Mobile Menu & Actions */}
+          {/* Mobile Menu */}
           <div className="md:hidden flex items-center space-x-2">
             <ThemeToggle />
             <Sheet open={isOpen} onOpenChange={setIsOpen}>
@@ -191,11 +183,16 @@ export function Navbar() {
               </SheetTrigger>
               <SheetContent side="right" className="w-[300px] sm:w-[400px]">
                 <SheetClose asChild>
-                  <Button variant="ghost" size="icon" className="absolute top-4 right-4">
+                  <Button
+                    variant="ghost"
+                    size="icon"
+                    className="absolute top-4 right-4"
+                  >
                     <X className="h-6 w-6" />
                   </Button>
                 </SheetClose>
                 <div className="flex flex-col space-y-4 mt-8">
+                  {/* Primary Navigation */}
                   {navigation.map((item) => (
                     <SheetClose key={item.name} asChild>
                       <Link
@@ -211,6 +208,7 @@ export function Navbar() {
                     </SheetClose>
                   ))}
 
+                  {/* Mobile Exams Accordion */}
                   <div className="border-t pt-4 space-y-2">
                     <p className="text-sm font-bold text-foreground">Exams</p>
                     {Object.keys(exams).map((exam) => {
@@ -245,7 +243,9 @@ export function Navbar() {
                                     <button
                                       className="flex justify-between items-center w-full py-2 px-3 text-sm text-muted-foreground hover:text-foreground hover:bg-accent rounded-md transition"
                                       onClick={() =>
-                                        setOpenSubject(isSubjectOpen ? null : subject)
+                                        setOpenSubject(
+                                          isSubjectOpen ? null : subject
+                                        )
                                       }
                                     >
                                       {subject}
@@ -256,11 +256,12 @@ export function Navbar() {
                                         }`}
                                       />
                                     </button>
+
                                     {isSubjectOpen && (
                                       <div className="pl-4 space-y-1">
                                         <SheetClose asChild>
                                           <Link
-                                            href={`/exams/${examKey}/${subject}/chapters`}
+                                            href={`/exam/${examKey}/${subject}/chapters`}
                                             className="block px-3 py-1 text-sm text-muted-foreground hover:text-foreground hover:bg-accent rounded-md transition"
                                           >
                                             Chapters
@@ -268,7 +269,7 @@ export function Navbar() {
                                         </SheetClose>
                                         <SheetClose asChild>
                                           <Link
-                                            href={`/exams/${examKey}/${subject}/previous-year`}
+                                            href={`/exam/${examKey}/${subject}/previous-year`}
                                             className="block px-3 py-1 text-sm text-muted-foreground hover:text-foreground hover:bg-accent rounded-md transition"
                                           >
                                             Previous Year Questions
@@ -276,7 +277,7 @@ export function Navbar() {
                                         </SheetClose>
                                         <SheetClose asChild>
                                           <Link
-                                            href={`/exams/${examKey}/${subject}/info`}
+                                            href={`/exam/${examKey}/${subject}/info`}
                                             className="block px-3 py-1 text-sm text-muted-foreground hover:text-foreground hover:bg-accent rounded-md transition"
                                           >
                                             Information
@@ -292,17 +293,6 @@ export function Navbar() {
                         </div>
                       );
                     })}
-                  </div>
-
-                  <div className="border-t pt-4 space-y-2">
-                    <SheetClose asChild>
-                      <Link
-                        href="/settings"
-                        className="flex items-center px-3 py-2 rounded-md text-sm font-medium text-muted-foreground hover:text-foreground hover:bg-accent"
-                      >
-                        Settings
-                      </Link>
-                    </SheetClose>
                   </div>
                 </div>
               </SheetContent>
