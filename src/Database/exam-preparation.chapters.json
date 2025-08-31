@@ -1,0 +1,1617 @@
+[{
+  "_id": {
+    "$oid": "68b47bdf420478bcc8abafce"
+  },
+  "name": "Unit 1: Sets, Relations, and Functions",
+  "subjectIds": [
+    {
+      "$oid": "68b470f9420478bcc8abafac"
+    }
+  ],
+  "topics": [
+    "Sets and their representation.",
+    "Union, intersection, and complement of sets and their algebraic properties.",
+    "Powerset.",
+    "Relation, types of relations, equivalence relations.",
+    "Functions; one-one, into and onto functions, the composition of functions."
+  ],
+  "createdAt": {
+    "$date": "2025-08-31T16:44:15.770Z"
+  },
+  "updatedAt": {
+    "$date": "2025-08-31T16:44:15.770Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "68b47bdf420478bcc8abafcf"
+  },
+  "name": "Unit 2: Complex Numbers and Quadratic Equations",
+  "subjectIds": [
+    {
+      "$oid": "68b470f9420478bcc8abafac"
+    }
+  ],
+  "topics": [
+    "Complex numbers as ordered pairs of reals.",
+    "Representation of complex numbers in the form (a+ib) and their representation in a plane, Argand diagram.",
+    "Algebra of complex numbers, modulus and argument (or amplitude) of a complex number, square root of a complex number.",
+    "Triangle inequality.",
+    "Quadratic equations in real and complex number system and their solutions.",
+    "The relation between roots and coefficients, nature of roots, the formation of quadratic equations with given roots."
+  ],
+  "createdAt": {
+    "$date": "2025-08-31T16:44:15.770Z"
+  },
+  "updatedAt": {
+    "$date": "2025-08-31T16:44:15.770Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "68b47bdf420478bcc8abafd0"
+  },
+  "name": "Unit 3: Matrices and Determinants",
+  "subjectIds": [
+    {
+      "$oid": "68b470f9420478bcc8abafac"
+    }
+  ],
+  "topics": [
+    "Matrices: Algebra of matrices, types of matrices, and matrices of order two and three.",
+    "Determinants: Properties of determinants, evaluation of determinants, the area of triangles using determinants.",
+    "Adjoint and evaluation of inverse of a square matrix using determinants and elementary transformations.",
+    "Test of consistency and solution of simultaneous linear equations in two or three variables using determinants and matrices."
+  ],
+  "createdAt": {
+    "$date": "2025-08-31T16:44:15.770Z"
+  },
+  "updatedAt": {
+    "$date": "2025-08-31T16:44:15.770Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "68b47bdf420478bcc8abafd1"
+  },
+  "name": "Unit 4: Permutations and Combinations",
+  "subjectIds": [
+    {
+      "$oid": "68b470f9420478bcc8abafac"
+    }
+  ],
+  "topics": [
+    "The fundamental principle of counting.",
+    "Permutation as an arrangement and combination as a selection.",
+    "The meaning of P (n,r) and C (n,r), simple applications."
+  ],
+  "createdAt": {
+    "$date": "2025-08-31T16:44:15.770Z"
+  },
+  "updatedAt": {
+    "$date": "2025-08-31T16:44:15.770Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "68b47bdf420478bcc8abafd2"
+  },
+  "name": "Unit 5: Mathematical Induction",
+  "subjectIds": [
+    {
+      "$oid": "68b470f9420478bcc8abafac"
+    }
+  ],
+  "topics": [
+    "The principle of mathematical induction and its simple applications."
+  ],
+  "createdAt": {
+    "$date": "2025-08-31T16:44:15.770Z"
+  },
+  "updatedAt": {
+    "$date": "2025-08-31T16:44:15.770Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "68b47bdf420478bcc8abafd3"
+  },
+  "name": "Unit 6: Binomial Theorem and its Simple Applications",
+  "subjectIds": [
+    {
+      "$oid": "68b470f9420478bcc8abafac"
+    }
+  ],
+  "topics": [
+    "Binomial theorem for a positive integral index.",
+    "General term and middle term.",
+    "Properties of Binomial coefficients and simple applications."
+  ],
+  "createdAt": {
+    "$date": "2025-08-31T16:44:15.770Z"
+  },
+  "updatedAt": {
+    "$date": "2025-08-31T16:44:15.770Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "68b47bdf420478bcc8abafd4"
+  },
+  "name": "Unit 7: Sequence and Series",
+  "subjectIds": [
+    {
+      "$oid": "68b470f9420478bcc8abafac"
+    }
+  ],
+  "topics": [
+    "Arithmetic and geometric progressions, insertion of arithmetic, geometric means between two given numbers.",
+    "The relation between A.M. and G.M sum up to n terms of special series: Sn, Sn2, Sn3.",
+    "Arithmetico-Geometric progression."
+  ],
+  "createdAt": {
+    "$date": "2025-08-31T16:44:15.770Z"
+  },
+  "updatedAt": {
+    "$date": "2025-08-31T16:44:15.770Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "68b47bdf420478bcc8abafd5"
+  },
+  "name": "Unit 8: Limit, Continuity and Differentiability",
+  "subjectIds": [
+    {
+      "$oid": "68b470f9420478bcc8abafac"
+    }
+  ],
+  "topics": [
+    "Real-valued functions, algebra of functions, polynomials, rational, trigonometric, logarithmic and exponential functions, inverse functions.",
+    "Graphs of simple functions.",
+    "Limits, continuity, and differentiability.",
+    "Differentiation of the sum, difference, product, and quotient of two functions.",
+    "Differentiation of trigonometric, inverse trigonometric, logarithmic, exponential, composite and implicit functions; derivatives of order up to two.",
+    "Rolle’s and Lagrange’s mean value theorems.",
+    "Applications of derivatives: Rate of change of quantities, monotonic increasing and decreasing functions, Maxima, and minima of functions of one variable, tangents, and normal."
+  ],
+  "createdAt": {
+    "$date": "2025-08-31T16:44:15.770Z"
+  },
+  "updatedAt": {
+    "$date": "2025-08-31T16:44:15.770Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "68b47bdf420478bcc8abafd6"
+  },
+  "name": "Unit 9: Integral Calculus",
+  "subjectIds": [
+    {
+      "$oid": "68b470f9420478bcc8abafac"
+    }
+  ],
+  "topics": [
+    "Integral as an antiderivative.",
+    "Fundamental integrals involving algebraic, trigonometric, exponential and logarithmic functions.",
+    "Integration by substitution, by parts, and by partial fractions.",
+    "Integration using trigonometric identities.",
+    "Integral as limit of a sum.",
+    "Evaluation of simple integrals: Fundamental theorem of calculus.",
+    "Properties of definite integrals, evaluation of definite integrals, determining areas of the regions bounded by simple curves in standard form."
+  ],
+  "createdAt": {
+    "$date": "2025-08-31T16:44:15.770Z"
+  },
+  "updatedAt": {
+    "$date": "2025-08-31T16:44:15.770Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "68b47bdf420478bcc8abafd7"
+  },
+  "name": "Unit 10: Differential Equations",
+  "subjectIds": [
+    {
+      "$oid": "68b470f9420478bcc8abafac"
+    }
+  ],
+  "topics": [
+    "Ordinary differential equations, their order, and degree.",
+    "Formation of differential equations.",
+    "The solution of differential equations by the method of separation of variables.",
+    "The solution of a homogeneous and linear differential equation of the type."
+  ],
+  "createdAt": {
+    "$date": "2025-08-31T16:44:15.770Z"
+  },
+  "updatedAt": {
+    "$date": "2025-08-31T16:44:15.770Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "68b48160420478bcc8abafdb"
+  },
+  "name": "Unit 1: Some Basic Concepts of Chemistry",
+  "subjectIds": [
+    {
+      "$oid": "68b470f9420478bcc8abafae"
+    }
+  ],
+  "topics": [
+    "Matter and its nature, Dalton’s atomic theory, the concept of the atom, molecule, element, and compound.",
+    "Physical quantities and their measurements in Chemistry, precision, and accuracy, significant figures, S.I. Units, dimensional analysis.",
+    "Laws of chemical combination.",
+    "Atomic and molecular masses, mole concept, molar mass, percentage composition, empirical and molecular formulae.",
+    "Chemical equations and stoichiometry."
+  ],
+  "createdAt": {
+    "$date": "2025-08-31T17:07:44.737Z"
+  },
+  "updatedAt": {
+    "$date": "2025-08-31T17:07:44.737Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "68b48160420478bcc8abafdc"
+  },
+  "name": "Unit 2: States of Matter",
+  "subjectIds": [
+    {
+      "$oid": "68b470f9420478bcc8abafae"
+    }
+  ],
+  "topics": [
+    "Classification of matter into solid, liquid and gaseous states.",
+    "Gaseous State: Measurable properties of gases; Gas laws – Boyle’s law, Charles’s law, Graham’s law of diffusion, Avogadro’s law, Dalton’s law of partial pressure.",
+    "The concept of the absolute scale of temperature; Ideal gas equation, kinetic theory of gases (only postulates).",
+    "The concept of average, root mean square and most probable velocities.",
+    "Real gases, deviation from Ideal behaviour, compressibility factor, van der Waals equation, liquefaction of gases, critical constants.",
+    "Liquid State: Properties of liquids – vapour pressure, viscosity and surface tension and effect of temperature on them (qualitative treatment only).",
+    "Solid State: Classification of solids-molecular, ionic, covalent and metallic solids, amorphous and crystalline solids (elementary idea).",
+    "Bragg’s Law and its applications.",
+    "Unit cell and lattices, packing in solids (fcc, bcc and hcp lattices), voids, calculations involving unit cell parameters, imperfections in solids.",
+    "Electrical, magnetic and dielectric properties."
+  ],
+  "createdAt": {
+    "$date": "2025-08-31T17:07:44.737Z"
+  },
+  "updatedAt": {
+    "$date": "2025-08-31T17:07:44.737Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "68b48160420478bcc8abafdd"
+  },
+  "name": "Unit 3: Atomic Structure",
+  "subjectIds": [
+    {
+      "$oid": "68b470f9420478bcc8abafae"
+    }
+  ],
+  "topics": [
+    "Thomson and Rutherford atomic models and their limitations.",
+    "Nature of electromagnetic radiation, photoelectric effect.",
+    "The spectrum of the hydrogen atom, Bohr model of hydrogen atom – its postulates, derivation of the relations for the energy of the electron and radii of the different orbits, limitations of Bohr’s model.",
+    "Dual nature of matter, de-Broglie relationship, Heisenberg uncertainty principle.",
+    "Elementary ideas of quantum mechanics, the quantum mechanical model of an atom, its important features, the concept of atomic orbitals as one-electron wave functions.",
+    "Variation of Ψ1 and Ψ2 with r for 1s and 2s orbitals; various quantum numbers (principal, angular momentum, and magnetic quantum numbers), and their significance.",
+    "Shapes of s, p and d – orbitals, electron spin and spin quantum number.",
+    "Rules for filling electrons in orbitals – Aufbau principle, Pauli exclusion principle and Hund’s rule, electronic configuration of elements, the extra stability of half-filled and completely filled orbitals."
+  ],
+  "createdAt": {
+    "$date": "2025-08-31T17:07:44.737Z"
+  },
+  "updatedAt": {
+    "$date": "2025-08-31T17:07:44.737Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "68b48160420478bcc8abafde"
+  },
+  "name": "Unit 4: Chemical Bonding and Molecular Structure",
+  "subjectIds": [
+    {
+      "$oid": "68b470f9420478bcc8abafae"
+    }
+  ],
+  "topics": [
+    "Kossel – Lewis approach to chemical bond formation, the concept of ionic and covalent bonds.",
+    "Ionic Bonding: Formation of ionic bonds, factors affecting the formation of ionic bonds; calculation of lattice enthalpy.",
+    "Covalent Bonding: Concept of electronegativity, Fajan’s rule, dipole moment; Valence Shell Electron Pair Repulsion (VSEPR) theory and shapes of simple molecules.",
+    "Quantum mechanical approach to covalent bonding: Valence bond theory, Its important features, the concept of hybridization involving s, p, and d orbitals; Resonance.",
+    "Molecular Orbital Theory: Its important features, LCAOs, types of molecular orbitals (bonding, antibonding), sigma and pi-bonds, molecular orbital electronic configurations of homonuclear diatomic molecules, the concept of bond order, bond length and bond energy.",
+    "Elementary idea of metallic bonding, Hydrogen bonding, and its applications."
+  ],
+  "createdAt": {
+    "$date": "2025-08-31T17:07:44.737Z"
+  },
+  "updatedAt": {
+    "$date": "2025-08-31T17:07:44.737Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "68b48160420478bcc8abafdf"
+  },
+  "name": "Unit 5: Chemical Thermodynamics",
+  "subjectIds": [
+    {
+      "$oid": "68b470f9420478bcc8abafae"
+    }
+  ],
+  "topics": [
+    "Fundamentals of thermodynamics: System and surroundings, extensive and intensive properties, state functions, types of processes.",
+    "First law of thermodynamics: Concept of work, heat internal energy, and enthalpy, heat capacity, molar heat capacity",
+    "Hess’s law of constant heat summation.",
+    "Enthalpies of bond dissociation, combustion, formation, atomization, sublimation, phase transition, hydration, ionization, and solution.",
+    "The second law of thermodynamics: Spontaneity of processes; Delta S of the universe and Delta G of the system as criteria for spontaneity, Delta Go (Standard Gibbs energy change) and equilibrium constant."
+  ],
+  "createdAt": {
+    "$date": "2025-08-31T17:07:44.737Z"
+  },
+  "updatedAt": {
+    "$date": "2025-08-31T17:07:44.737Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "68b48160420478bcc8abafe0"
+  },
+  "name": "Unit 6: Solutions",
+  "subjectIds": [
+    {
+      "$oid": "68b470f9420478bcc8abafae"
+    }
+  ],
+  "topics": [
+    "Different methods for expressing the concentration of a solution: molality, molarity, mole fraction, percentage (by volume and mass both), the vapour pressure of solutions and Raoult’s Law.",
+    "Ideal and non-ideal solutions, vapour pressure – composition, plots for ideal and non-ideal solutions.",
+    "Colligative properties of dilute solutions, relative lowering of vapour pressure, depression of freezing point, elevation of boiling point and osmotic pressure.",
+    "Determination of molecular mass using colligative properties.",
+    "Abnormal value of molar mass, Hoff factor, and its significance."
+  ],
+  "createdAt": {
+    "$date": "2025-08-31T17:07:44.737Z"
+  },
+  "updatedAt": {
+    "$date": "2025-08-31T17:07:44.737Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "68b48160420478bcc8abafe1"
+  },
+  "name": "Unit 7: Equilibrium",
+  "subjectIds": [
+    {
+      "$oid": "68b470f9420478bcc8abafae"
+    }
+  ],
+  "topics": [
+    "Meaning of equilibrium, the concept of dynamic equilibrium.",
+    "Equilibria involving physical processes: Solid-liquid, liquid – gas and solid-gas equilibria, Henry’s law, a general characteristic of equilibrium involving physical processes.",
+    "Equilibria involving chemical processes: Law of chemical equilibrium, equilibrium constants (Kp and Kc) and their significance, the significance of Delta G and Delta Go in chemical equilibria, factors affecting equilibrium concentration, pressure, temperature, the effect of the catalyst.",
+    "Le Chatelier’s principle.",
+    "Ionic equilibrium: Weak and strong electrolytes, ionization of electrolytes, various concepts of acids and bases (Arrhenius, Bronsted-Lowry and Lewis) and their ionization, acid-base equilibria (including multistage ionization) and ionization constants, ionization of water, pH scale, common ion effect, hydrolysis of salts and pH of their solutions, solubility of sparingly soluble salts and solubility products, buffer solutions."
+  ],
+  "createdAt": {
+    "$date": "2025-08-31T17:07:44.737Z"
+  },
+  "updatedAt": {
+    "$date": "2025-08-31T17:07:44.737Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "68b48160420478bcc8abafe2"
+  },
+  "name": "Unit 8: Redox Reactions and Electrochemistry",
+  "subjectIds": [
+    {
+      "$oid": "68b470f9420478bcc8abafae"
+    }
+  ],
+  "topics": [
+    "Electronic concepts of oxidation and reduction, redox reactions, oxidation number, rules for assigning oxidation number, balancing of redox reactions.",
+    "Electrolytic and metallic conduction, conductance in electrolytic solutions, specific and molar conductivities and their variation with concentration.",
+    "Kohlrausch’s law and its applications.",
+    "Electrochemical cells: Electrolytic and Galvanic cells, different types of electrodes, electrode potentials including standard electrode potential, half-cell and cell reactions, emf of a Galvanic cell and its measurement.",
+    "Nernst equation and its applications; Relationship between cell potential and Gibbs’ energy change.",
+    "Dry cell and lead accumulator, fuel cells."
+  ],
+  "createdAt": {
+    "$date": "2025-08-31T17:07:44.737Z"
+  },
+  "updatedAt": {
+    "$date": "2025-08-31T17:07:44.737Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "68b481cd420478bcc8abafe3"
+  },
+  "name": "Unit 9: Chemical Kinetics",
+  "subjectIds": [
+    {
+      "$oid": "68b470f9420478bcc8abafae"
+    }
+  ],
+  "topics": [
+    "The rate of a chemical reaction, factors affecting the rate of reactions: concentration, temperature, pressure, and catalyst.",
+    "Elementary and complex reactions, order and molecularity of reactions, rate law, rate constant and its units, differential and integral forms of zero and first-order reactions, their characteristics and half-lives, the effect of temperature on the rate of reactions.",
+    "Arrhenius theory, activation energy and its calculation, collision theory of bimolecular gaseous reactions (no derivation)."
+  ],
+  "createdAt": {
+    "$date": "2025-08-31T17:09:33.463Z"
+  },
+  "updatedAt": {
+    "$date": "2025-08-31T17:09:33.463Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "68b481cd420478bcc8abafe4"
+  },
+  "name": "Unit 10: Surface Chemistry",
+  "subjectIds": [
+    {
+      "$oid": "68b470f9420478bcc8abafae"
+    }
+  ],
+  "topics": [
+    "Adsorption: Physisorption and chemisorption and their characteristics, factors affecting the adsorption of gases on solids: Freundlich and Langmuir adsorption isotherms, adsorption from solutions.",
+    "Catalysis: Homogeneous and heterogeneous, activity and selectivity of solid catalysts, enzyme catalysis, and its mechanism.",
+    "Colloidal state: Distinction among true solutions, colloids, and suspensions, classification of colloids: lyophilic, lyophobic.",
+    "Multimolecular, macromolecular and associated colloids (micelles), preparation and properties of colloids: Tyndall effect, Brownian movement, electrophoresis, dialysis, coagulation, and flocculation.",
+    "Emulsions and their characteristics."
+  ],
+  "createdAt": {
+    "$date": "2025-08-31T17:09:33.463Z"
+  },
+  "updatedAt": {
+    "$date": "2025-08-31T17:09:33.463Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "68b481cd420478bcc8abafe5"
+  },
+  "name": "Unit 11: Classification of Elements and Periodicity in Properties",
+  "subjectIds": [
+    {
+      "$oid": "68b470f9420478bcc8abafae"
+    }
+  ],
+  "topics": [
+    "Modern periodic law and present form of the periodic table.",
+    "s, p, d and f block elements.",
+    "Periodic trends in properties of elements atomic and ionic radii, ionization enthalpy.",
+    "Electron gain enthalpy, valence, oxidation states and chemical reactivity."
+  ],
+  "createdAt": {
+    "$date": "2025-08-31T17:09:33.463Z"
+  },
+  "updatedAt": {
+    "$date": "2025-08-31T17:09:33.463Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "68b481cd420478bcc8abafe6"
+  },
+  "name": "Unit 12: General Principles and Process of Isolation of Metals",
+  "subjectIds": [
+    {
+      "$oid": "68b470f9420478bcc8abafae"
+    }
+  ],
+  "topics": [
+    "Modes of occurrence of elements in nature, minerals, ores.",
+    "Steps involved in the extraction of metals: concentration, reduction (chemical and electrolytic methods) and refining with special reference to the extraction of Al, Cu, Zn, and Fe.",
+    "Thermodynamic and electrochemical principles involved in the extraction of metals."
+  ],
+  "createdAt": {
+    "$date": "2025-08-31T17:09:33.463Z"
+  },
+  "updatedAt": {
+    "$date": "2025-08-31T17:09:33.463Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "68b481cd420478bcc8abafe7"
+  },
+  "name": "Unit 13: Hydrogen",
+  "subjectIds": [
+    {
+      "$oid": "68b470f9420478bcc8abafae"
+    }
+  ],
+  "topics": [
+    "The position of hydrogen in periodic table, isotopes, preparation, properties, and uses of hydrogen.",
+    "Physical and chemical properties of water and heavy water.",
+    "Structure, preparation, reactions, and uses of hydrogen peroxide.",
+    "Classification of hydrides: ionic, covalent and interstitial.",
+    "Hydrogen as a fuel."
+  ],
+  "createdAt": {
+    "$date": "2025-08-31T17:09:33.463Z"
+  },
+  "updatedAt": {
+    "$date": "2025-08-31T17:09:33.463Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "68b481cd420478bcc8abafe8"
+  },
+  "name": "Unit 14: S Block Elements (Alkali and Alkaline Earth Metals)",
+  "subjectIds": [
+    {
+      "$oid": "68b470f9420478bcc8abafae"
+    }
+  ],
+  "topics": [
+    "Group 1 and Group 2 Elements: General introduction, electronic configuration and general trends in physical and chemical properties of elements, anomalous properties of the first element of each group, diagonal relationships.",
+    "Preparation and properties of some important compounds: Sodium carbonate, sodium chloride, sodium hydroxide and sodium hydrogen carbonate.",
+    "Industrial uses of lime, limestone, Plaster of Paris and cement.",
+    "The biological significance of Na, K, Mg and Ca."
+  ],
+  "createdAt": {
+    "$date": "2025-08-31T17:09:33.463Z"
+  },
+  "updatedAt": {
+    "$date": "2025-08-31T17:09:33.463Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "68b481f7420478bcc8abafe9"
+  },
+  "name": "Unit 15: P Block Elements",
+  "subjectIds": [
+    {
+      "$oid": "68b470f9420478bcc8abafae"
+    }
+  ],
+  "topics": [
+    "Group 13 to Group 18 Elements: General introduction, electronic configuration, and general trends in physical and chemical properties of elements across the periods and down the groups; unique behaviour of the first element in each group.",
+    "Group 13: Preparation, properties, and uses of boron and aluminium; Structure, properties and uses of borax, boric acid, diborane, boron trifluoride, aluminium chloride, and alums.",
+    "Group 14: Tendency for catenation; Structure, properties, and uses of allotropes and oxides of carbon, silicon tetrachloride, silicates, zeolites, and silicones.",
+    "Group 15: Properties and uses of nitrogen and phosphorus; Allotropic forms of phosphorus; Preparation, properties, structure, and uses of ammonia, nitric acid, phosphine and phosphorus halides, (PCl3, PCl5); Structures of oxides and oxoacids of nitrogen and phosphorus.",
+    "Group 16: Preparation, properties, structures and uses of dioxygen and ozone. Allotropic forms of sulphur; Preparation, properties, structures, and uses of sulphur dioxide, sulphuric acid (including its industrial preparation); Structures of oxoacids of sulphur.",
+    "Group 17: Preparation, properties, and uses of chlorine and hydrochloric acid; Trends in the acidic nature of hydrogen halides; Structures of Interhalogen compounds and oxides and oxyacids of halogens.",
+    "Group 18: Occurrence and uses of noble gases; Structures of fluorides and oxides of xenon."
+  ],
+  "createdAt": {
+    "$date": "2025-08-31T17:10:15.583Z"
+  },
+  "updatedAt": {
+    "$date": "2025-08-31T17:10:15.583Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "68b481f7420478bcc8abafea"
+  },
+  "name": "Unit 16: D and F Block Elements",
+  "subjectIds": [
+    {
+      "$oid": "68b470f9420478bcc8abafae"
+    }
+  ],
+  "topics": [
+    "Transition Elements: General introduction, electronic configuration, occurrence and characteristics, general trends in properties of the first-row transition elements: physical properties, ionization enthalpy, oxidation states, atomic radii, colour, catalytic behaviour, magnetic properties, complex formation, interstitial compounds, alloy formation.",
+    "Preparation, properties, and uses of K2Cr2O7 and KMnO4.",
+    "Inner Transition Elements: Lanthanides, Electronic configuration, oxidation states, chemical reactivity and lanthanoid contraction, and Actinoids: Electronic configuration and oxidation states."
+  ],
+  "createdAt": {
+    "$date": "2025-08-31T17:10:15.583Z"
+  },
+  "updatedAt": {
+    "$date": "2025-08-31T17:10:15.583Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "68b481f7420478bcc8abafeb"
+  },
+  "name": "Unit 17: Coordination Compounds",
+  "subjectIds": [
+    {
+      "$oid": "68b470f9420478bcc8abafae"
+    }
+  ],
+  "topics": [
+    "Introduction to coordination compounds, Werner’s theory.",
+    "Ligands, coordination number, denticity, chelation.",
+    "IUPAC nomenclature of mononuclear coordination compounds, isomerism.",
+    "Bonding-Valence bond approach and basic ideas of Crystal field theory, colour and magnetic properties.",
+    "Importance of coordination compounds (in qualitative analysis, extraction of metals and in biological systems)."
+  ],
+  "createdAt": {
+    "$date": "2025-08-31T17:10:15.583Z"
+  },
+  "updatedAt": {
+    "$date": "2025-08-31T17:10:15.583Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "68b481f7420478bcc8abafec"
+  },
+  "name": "Unit 18: Environmental Chemistry",
+  "subjectIds": [
+    {
+      "$oid": "68b470f9420478bcc8abafae"
+    }
+  ],
+  "topics": [
+    "Environmental pollution: Atmospheric, water, and soil.",
+    "Atmospheric pollution: Tropospheric and stratospheric.",
+    "Gaseous pollutants: Oxides of carbon, nitrogen, and sulphur, hydrocarbons; their sources, harmful effects, and prevention.",
+    "Greenhouse effect and Global warming, acid rain.",
+    "Particulate pollutants: Smoke, dust, smog, fumes, mist; their sources, harmful effects, and prevention.",
+    "Stratospheric pollution: Formation and breakdown of ozone, depletion of ozone layer its mechanism and effects.",
+    "Water Pollution: Major pollutants such as pathogens, organic wastes, and chemical pollutants; their harmful effects and prevention.",
+    "Soil pollution: Major pollutants such as pesticides (insecticides, herbicides and fungicides) their harmful effects and prevention.",
+    "Strategies to control environmental pollution."
+  ],
+  "createdAt": {
+    "$date": "2025-08-31T17:10:15.583Z"
+  },
+  "updatedAt": {
+    "$date": "2025-08-31T17:10:15.583Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "68b481f7420478bcc8abafed"
+  },
+  "name": "Unit 19: Purification and Characterisation of Organic Compounds",
+  "subjectIds": [
+    {
+      "$oid": "68b470f9420478bcc8abafae"
+    }
+  ],
+  "topics": [
+    "Purification: Crystallization, sublimation, distillation, differential extraction, and chromatography principles and their applications.",
+    "Qualitative analysis: Detection of nitrogen, sulphur, phosphorus, and halogens.",
+    "Quantitative analysis (basic principles only): Estimation of carbon, hydrogen, nitrogen, halogens, sulphur, phosphorus.",
+    "Calculations of empirical formula and molecular formulae; Numerical problems in organic quantitative analysis."
+  ],
+  "createdAt": {
+    "$date": "2025-08-31T17:10:15.583Z"
+  },
+  "updatedAt": {
+    "$date": "2025-08-31T17:10:15.583Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "68b48231420478bcc8abafee"
+  },
+  "name": "Unit 20: Some Basic Principles of Organic Chemistry",
+  "subjectIds": [
+    {
+      "$oid": "68b470f9420478bcc8abafae"
+    }
+  ],
+  "topics": [
+    "Tetravalency of carbon; Shapes of simple molecules – hybridization (s and p).",
+    "Classification of organic compounds based on functional groups: -C = C- and those containing halogens, oxygen, nitrogen, and sulphur; Homologous series.",
+    "Isomerism: structural and stereoisomerism.",
+    "Nomenclature (Trivial and IUPAC): Covalent bond fission Homolytic and heterolytic: free radicals, carbocations, and carbanions; stability of carbocations and free radicals, electrophiles and nucleophiles.",
+    "Electronic displacement in a covalent bond: Inductive effect, electromeric effect, resonance, and hyperconjugation.",
+    "Common types of organic reactions: Substitution, addition, elimination, and rearrangement."
+  ],
+  "createdAt": {
+    "$date": "2025-08-31T17:11:13.845Z"
+  },
+  "updatedAt": {
+    "$date": "2025-08-31T17:11:13.845Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "68b48231420478bcc8abafef"
+  },
+  "name": "Unit 21: Hydrocarbons",
+  "subjectIds": [
+    {
+      "$oid": "68b470f9420478bcc8abafae"
+    }
+  ],
+  "topics": [
+    "Classification, isomerism, IUPAC nomenclature, general methods of preparation, properties and reactions.",
+    "Alkanes: Conformations; Sawhorse and Newman projections (of ethane); Mechanism of halogenation of alkanes.",
+    "Alkenes: Geometrical isomerism. Mechanism of electrophilic addition: addition of hydrogen, halogens, water, hydrogen halides (Markownikoff’s and peroxide effect); Ozonolysis, oxidation, and polymerization.",
+    "Alkynes: Acidic character; Addition of hydrogen, halogens, water and hydrogen halides; Polymerization.",
+    "Aromatic hydrocarbons: Nomenclature, benzene structure and aromaticity. Mechanism of electrophilic substitution: halogenation, nitration, Friedel-Crafts alkylation and acylation, directive influence of the functional group in monosubstituted benzene."
+  ],
+  "createdAt": {
+    "$date": "2025-08-31T17:11:13.845Z"
+  },
+  "updatedAt": {
+    "$date": "2025-08-31T17:11:13.845Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "68b48231420478bcc8abaff0"
+  },
+  "name": "Unit 22: Organic Compounds Containing Halogens",
+  "subjectIds": [
+    {
+      "$oid": "68b470f9420478bcc8abafae"
+    }
+  ],
+  "topics": [
+    "General methods of preparation, properties, and reactions.",
+    "Nature of C-X bond.",
+    "Mechanisms of substitution reactions.",
+    "Uses, Environmental effects of chloroform, iodoform, freons, and DDT."
+  ],
+  "createdAt": {
+    "$date": "2025-08-31T17:11:13.845Z"
+  },
+  "updatedAt": {
+    "$date": "2025-08-31T17:11:13.845Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "68b48231420478bcc8abaff1"
+  },
+  "name": "Unit 23: Organic Compounds Containing Oxygen",
+  "subjectIds": [
+    {
+      "$oid": "68b470f9420478bcc8abafae"
+    }
+  ],
+  "topics": [
+    "General methods of preparation, properties, reactions, and uses.",
+    "Alcohols: Identification of primary, secondary and tertiary alcohols; mechanism of dehydration.",
+    "Phenols: Acidic nature, electrophilic substitution reactions: halogenation, nitration, and sulphonation, Reimer Tiemann reaction.",
+    "Ethers: Structure.",
+    "Aldehyde and Ketones: Nature of carbonyl group; Nucleophilic addition to >C=O group, relative reactivities of aldehydes and ketones.",
+    "Important reactions such as nucleophilic addition reactions (addition of HCN, NH3 and its derivatives), Grignard reagent; oxidation; reduction (Wolff Kishner and Clemmensen); the acidity of hydrogen, aldol condensation, Cannizzaro reaction, Haloform reaction.",
+    "Carboxylic Acids: Acidic strength and factors affecting it."
+  ],
+  "createdAt": {
+    "$date": "2025-08-31T17:11:13.845Z"
+  },
+  "updatedAt": {
+    "$date": "2025-08-31T17:11:13.845Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "68b48231420478bcc8abaff2"
+  },
+  "name": "Unit 24: Organic Compounds Containing Nitrogen",
+  "subjectIds": [
+    {
+      "$oid": "68b470f9420478bcc8abafae"
+    }
+  ],
+  "topics": [
+    "General methods of preparation, properties, reactions, and uses.",
+    "Amines: Nomenclature, classification, structure, basic character and identification of primary, secondary and tertiary amines and their basic character.",
+    "Diazonium Salts: Importance in synthetic organic chemistry."
+  ],
+  "createdAt": {
+    "$date": "2025-08-31T17:11:13.845Z"
+  },
+  "updatedAt": {
+    "$date": "2025-08-31T17:11:13.845Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "68b48231420478bcc8abaff3"
+  },
+  "name": "Unit 25: Polymers",
+  "subjectIds": [
+    {
+      "$oid": "68b470f9420478bcc8abafae"
+    }
+  ],
+  "topics": [
+    "General introduction and classification of polymers, general methods of polymerization addition and condensation, co-polymerization.",
+    "Natural and synthetic rubber and vulcanization.",
+    "Some important polymers with emphasis on their monomers and uses, polyethene, nylon, polyester, and bakelite."
+  ],
+  "createdAt": {
+    "$date": "2025-08-31T17:11:13.845Z"
+  },
+  "updatedAt": {
+    "$date": "2025-08-31T17:11:13.845Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "68b48231420478bcc8abaff4"
+  },
+  "name": "Unit 26: Biomolecules",
+  "subjectIds": [
+    {
+      "$oid": "68b470f9420478bcc8abafae"
+    }
+  ],
+  "topics": [
+    "General introduction and importance of biomolecules.",
+    "Carbohydrates: Classification: aldoses and ketoses; monosaccharides (glucose and fructose), constituent monosaccharides or oligosaccharides (sucrose, lactose, maltose) and polysaccharides (starch, cellulose, glycogen).",
+    "Proteins: Elementary Idea of amino acids, peptide bond, polypeptides; Proteins: primary, secondary, tertiary and quaternary structure (qualitative idea only), denaturation of proteins, enzymes.",
+    "Vitamins: Classification and functions.",
+    "Nucleic Acids – Chemical constitution of DNA and RNA. Biological functions of nucleic acids."
+  ],
+  "createdAt": {
+    "$date": "2025-08-31T17:11:13.845Z"
+  },
+  "updatedAt": {
+    "$date": "2025-08-31T17:11:13.845Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "68b48231420478bcc8abaff5"
+  },
+  "name": "Unit 27: Chemistry in Everyday Life",
+  "subjectIds": [
+    {
+      "$oid": "68b470f9420478bcc8abafae"
+    }
+  ],
+  "topics": [
+    "Chemicals in medicines: Analgesics, tranquillizers, antiseptics, disinfectants, antimicrobials, antifertility drugs, antibiotics, antacids, antihistamines their meaning and common examples.",
+    "Chemicals in food: Preservatives, artificial sweetening agents – common examples.",
+    "Cleansing agents: Soaps and detergents, cleansing action."
+  ],
+  "createdAt": {
+    "$date": "2025-08-31T17:11:13.845Z"
+  },
+  "updatedAt": {
+    "$date": "2025-08-31T17:11:13.845Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "68b48231420478bcc8abaff6"
+  },
+  "name": "Unit 28: Principles Related to Practical Chemistry",
+  "subjectIds": [
+    {
+      "$oid": "68b470f9420478bcc8abafae"
+    }
+  ],
+  "topics": [
+    "Detection of extra elements (Nitrogen, Sulphur, halogens) in organic compounds.",
+    "Detection of the following functional groups: hydroxyl (alcoholic and phenolic), carbonyl (aldehyde and ketone), carboxyl and amino groups in organic compounds.",
+    "The chemistry involved in the preparation of the following: Inorganic compounds: Mohr’s salt, potash alum, and organic compounds: Acetanilide, p-nitro acetanilide, aniline yellow, iodoform.",
+    "The chemistry involved in the titrimetric exercises: Acids bases and the use of indicators, oxalic-acid vs KMnO4, Mohr’s salt vs KMnO4.",
+    "Chemical principles involved in the qualitative salt analysis: Cations: Pb2+, Cu2+, Al3+, Fe3+, Zn2+, Ni2+, Ca2+, Ba2+, Mg2+, NH4+, and Anions: CO32-, S2-, SO42-, NO2-, NO3–, Cl–, Br–, I– (Insoluble salts excluded).",
+    "Chemical principles involved in the following experiments: Enthalpy of solution of CuSO4, Enthalpy of neutralisation of strong acid and strong base, Preparation of lyophilic and lyophobic sols, and Kinetic study of the reaction of iodide ion with hydrogen peroxide at room temperature."
+  ],
+  "createdAt": {
+    "$date": "2025-08-31T17:11:13.845Z"
+  },
+  "updatedAt": {
+    "$date": "2025-08-31T17:11:13.845Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "68b483e0420478bcc8abaff7"
+  },
+  "name": "Unit 1: Physics and Measurement",
+  "subjectIds": [
+    {
+      "$oid": "68b470f9420478bcc8abafad"
+    }
+  ],
+  "topics": [
+    "Physics, technology, and society, S I Units, fundamental and derived units, least count, accuracy and precision of measuring instruments, Errors in measurement, Dimensions of Physics quantities, dimensional analysis, and its applications."
+  ],
+  "createdAt": {
+    "$date": "2025-08-31T17:18:24.757Z"
+  },
+  "updatedAt": {
+    "$date": "2025-08-31T17:18:24.757Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "68b483e0420478bcc8abaff8"
+  },
+  "name": "Unit 2: Kinematics",
+  "subjectIds": [
+    {
+      "$oid": "68b470f9420478bcc8abafad"
+    }
+  ],
+  "topics": [
+    "The frame of reference, motion in a straight line, Position- time graph, speed and velocity; Uniform and non-uniform motion, average speed and instantaneous velocity, uniformly accelerated motion, velocity-time, position-time graph, relations for uniformly accelerated motion.",
+    "Scalars and Vectors, Vector addition and subtraction, zero vector, scalar and vector products, Unit Vector, Resolution of a Vector.",
+    "Relative Velocity, Motion in a plane, Projectile Motion, Uniform Circular Motion."
+  ],
+  "createdAt": {
+    "$date": "2025-08-31T17:18:24.757Z"
+  },
+  "updatedAt": {
+    "$date": "2025-08-31T17:18:24.757Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "68b483e0420478bcc8abaff9"
+  },
+  "name": "Unit 3: Laws of Motion",
+  "subjectIds": [
+    {
+      "$oid": "68b470f9420478bcc8abafad"
+    }
+  ],
+  "topics": [
+    "Force and inertia, Newton’s First law of motion; Momentum, Newton’s Second Law of motion, Impulses; Newton’s Third Law of motion.",
+    "Law of conservation of linear momentum and its applications.",
+    "Equilibrium of concurrent forces. Static and Kinetic friction, laws of friction, rolling friction.",
+    "Dynamics of uniform circular motion: centripetal force and its applications."
+  ],
+  "createdAt": {
+    "$date": "2025-08-31T17:18:24.757Z"
+  },
+  "updatedAt": {
+    "$date": "2025-08-31T17:18:24.757Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "68b483e0420478bcc8abaffa"
+  },
+  "name": "Unit 4: Work, Energy and Power",
+  "subjectIds": [
+    {
+      "$oid": "68b470f9420478bcc8abafad"
+    }
+  ],
+  "topics": [
+    "Work done by a constant force and a variable force; Kinetic and potential energies, Work-energy theorem, Power.",
+    "The potential energy of spring conservation of mechanical energy, conservative and non-conservative forces; Elastic and inelastic collisions in one and two dimensions."
+  ],
+  "createdAt": {
+    "$date": "2025-08-31T17:18:24.757Z"
+  },
+  "updatedAt": {
+    "$date": "2025-08-31T17:18:24.757Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "68b483e0420478bcc8abaffb"
+  },
+  "name": "Unit 5: Rotational Motion",
+  "subjectIds": [
+    {
+      "$oid": "68b470f9420478bcc8abafad"
+    }
+  ],
+  "topics": [
+    "Centre of mass of a two-particle system, Centre of mass of a rigid body; Basic concepts of rotational motion; Moment of a force; Torque, Angular momentum, Conservation of angular momentum and its applications; Moment of inertia, Radius of gyration.",
+    "Values of moments of inertia for simple geometrical objects, Parallel and perpendicular axes theorems and their applications.",
+    "Rigid body rotation equations of rotational motion."
+  ],
+  "createdAt": {
+    "$date": "2025-08-31T17:18:24.757Z"
+  },
+  "updatedAt": {
+    "$date": "2025-08-31T17:18:24.757Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "68b483e0420478bcc8abaffc"
+  },
+  "name": "Unit 6: Gravitation",
+  "subjectIds": [
+    {
+      "$oid": "68b470f9420478bcc8abafad"
+    }
+  ],
+  "topics": [
+    "Universal law of gravitation. Acceleration due to gravity and its variation with altitude and depth.",
+    "Kepler’s law of planetary motion. Gravitational potential energy; gravitational potential.",
+    "Escape velocity, Orbital velocity of a satellite. Geostationary satellites."
+  ],
+  "createdAt": {
+    "$date": "2025-08-31T17:18:24.757Z"
+  },
+  "updatedAt": {
+    "$date": "2025-08-31T17:18:24.757Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "68b483e0420478bcc8abaffd"
+  },
+  "name": "Unit 7: Properties of Solids and Liquids",
+  "subjectIds": [
+    {
+      "$oid": "68b470f9420478bcc8abafad"
+    }
+  ],
+  "topics": [
+    "Elastic behaviour, Stress-strain relationship, Hooke’s Law. Young’s modulus, bulk modulus, modulus of rigidity.",
+    "Pressure due to a fluid column; Pascal’s law and its applications. Viscosity. Stokes’ law. Terminal velocity, streamline and turbulent flow. Reynolds number.",
+    "Bernoulli’s principle and its applications. Surface energy and surface tension, angle of contact, application of surface tension – drops, bubbles and capillary rise.",
+    "Heat, temperature, thermal expansion; Specific heat capacity, calorimetry; Change of state, latent heat. Heat transfer-conduction, convection and radiation. Newton’s law of cooling."
+  ],
+  "createdAt": {
+    "$date": "2025-08-31T17:18:24.757Z"
+  },
+  "updatedAt": {
+    "$date": "2025-08-31T17:18:24.757Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "68b483e0420478bcc8abaffe"
+  },
+  "name": "Unit 8: Thermodynamics",
+  "subjectIds": [
+    {
+      "$oid": "68b470f9420478bcc8abafad"
+    }
+  ],
+  "topics": [
+    "Thermal equilibrium, Zeroth law of thermodynamics, The concept of temperature.",
+    "Heat, work and internal energy. The first law of thermodynamics.",
+    "The second law of thermodynamics: reversible and irreversible processes. Carnot engine and its efficiency."
+  ],
+  "createdAt": {
+    "$date": "2025-08-31T17:18:24.757Z"
+  },
+  "updatedAt": {
+    "$date": "2025-08-31T17:18:24.757Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "68b483e0420478bcc8abafff"
+  },
+  "name": "Unit 9: Kinetic Theory of Gases",
+  "subjectIds": [
+    {
+      "$oid": "68b470f9420478bcc8abafad"
+    }
+  ],
+  "topics": [
+    "Equation of state of a perfect gas, work done on compressing a gas.",
+    "Kinetic theory of gases – assumptions, the concept of pressure. Kinetic energy and temperature: RMS speed of gas molecules: Degrees of freedom.",
+    "Law of equipartition of energy, Applications to specific heat capacities of gases; Mean free path. Avogadro’s number."
+  ],
+  "createdAt": {
+    "$date": "2025-08-31T17:18:24.757Z"
+  },
+  "updatedAt": {
+    "$date": "2025-08-31T17:18:24.757Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "68b483e0420478bcc8abb000"
+  },
+  "name": "Unit 10: Oscillations and Waves",
+  "subjectIds": [
+    {
+      "$oid": "68b470f9420478bcc8abafad"
+    }
+  ],
+  "topics": [
+    "Periodic motion – period, frequency, displacement as a function of time. Periodic functions.",
+    "Simple harmonic motion (S.H.M.) and its equation; Phase: oscillations of a spring -restoring force and force constant: energy in S.H.M. – Kinetic and potential energies; Simple pendulum – derivation of expression for its time period: Free, forced and damped oscillations, resonance.",
+    "Wave motion. Longitudinal and transverse waves, speed of a wave. Displacement relation for a progressive wave.",
+    "Principle of superposition of waves, reflection of waves. Standing waves in strings and organ pipes, Fundamental mode and harmonics. Beats. Doppler Effect in sound."
+  ],
+  "createdAt": {
+    "$date": "2025-08-31T17:18:24.757Z"
+  },
+  "updatedAt": {
+    "$date": "2025-08-31T17:18:24.757Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "68b483e0420478bcc8abb001"
+  },
+  "name": "Unit 11: Electrostatics",
+  "subjectIds": [
+    {
+      "$oid": "68b470f9420478bcc8abafad"
+    }
+  ],
+  "topics": [
+    "Electric charges: Conservation of charge. Coulomb’s law-forces between two point charges, Forces between multiple charges: superposition principle and continuous charge distribution.",
+    "Electric field: Electric field due to a point charge, Electric field lines. Electric dipole, Electric field due to a dipole. Torque on a dipole in a uniform electric field.",
+    "Electric flux. Gauss’s law and its applications to find field due to infinitely long uniformly charged straight wire, uniformly charged infinite plane sheet and uniformly charged thin spherical shell.",
+    "Electric potential and its calculation for a point charge, electric dipole and system of charges; Equipotential surfaces, Electrical potential energy of a system of two point charges in an electrostatic field.",
+    "Conductors and insulators. Dielectrics and electric polarization, Capacitor, The combination of capacitors in series and parallel, Capacitance of a parallel plate capacitor with and without dielectric medium between the plates. Energy stored in a capacitor."
+  ],
+  "createdAt": {
+    "$date": "2025-08-31T17:18:24.757Z"
+  },
+  "updatedAt": {
+    "$date": "2025-08-31T17:18:24.757Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "68b483e0420478bcc8abb002"
+  },
+  "name": "Unit 12: Current Electricity",
+  "subjectIds": [
+    {
+      "$oid": "68b470f9420478bcc8abafad"
+    }
+  ],
+  "topics": [
+    "Electric current. Drift velocity. Ohm’s law. Electrical resistance. Resistances of different materials. V-I characteristics of Ohmic and non-ohmic conductors. Electrical energy and power. Electrical resistivity. Colour code for resistors; Series and parallel combinations of resistors; Temperature dependence of resistance.",
+    "Electric cell and its Internal resistance, Potential difference and emf of a cell, A combination of cells in series and parallel. Kirchhoff’s laws and their applications. Wheatstone bridge. Metre Bridge. Potentiometer – principle and its applications."
+  ],
+  "createdAt": {
+    "$date": "2025-08-31T17:18:24.757Z"
+  },
+  "updatedAt": {
+    "$date": "2025-08-31T17:18:24.757Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "68b483e0420478bcc8abb003"
+  },
+  "name": "Unit 13: Magnetic Effects of Current and Magnetism",
+  "subjectIds": [
+    {
+      "$oid": "68b470f9420478bcc8abafad"
+    }
+  ],
+  "topics": [
+    "Biot – Savart law and its application to current carrying circular loop. Ampere’s law and its applications to infinitely long current carrying straight wire and solenoid. Force on a moving charge in uniform magnetic and electric fields. Cyclotron.",
+    "Force on a current-carrying conductor in a uniform magnetic field. The force between two parallel current carrying conductors- definition of ampere. Torque experienced by a current loop in a uniform magnetic field: Moving coil galvanometer, its current sensitivity and conversion to ammeter and voltmeter.",
+    "Current loop as a magnetic dipole and its magnetic dipole moment. Bar magnet as an equivalent solenoid, Magnetic field lines; Earth’s magnetic field and magnetic elements. Para-, dia- and ferromagnetic substances. Magnetic susceptibility and permeability. Hysteresis. Electromagnets and permanent magnets."
+  ],
+  "createdAt": {
+    "$date": "2025-08-31T17:18:24.757Z"
+  },
+  "updatedAt": {
+    "$date": "2025-08-31T17:18:24.757Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "68b483e0420478bcc8abb004"
+  },
+  "name": "Unit 14: Electromagnetic Induction and Alternating Currents",
+  "subjectIds": [
+    {
+      "$oid": "68b470f9420478bcc8abafad"
+    }
+  ],
+  "topics": [
+    "Electromagnetic induction: Faraday’s law. Induced emf and current: Lenz’s Law, Eddy currents. Self and mutual inductance.",
+    "Alternating currents, peak and RMS value of alternating current/voltage: Reactance and impedance: LCR series circuit, resonance: Quality factor, power in AC circuits, wattless current.",
+    "AC generator and transformer."
+  ],
+  "createdAt": {
+    "$date": "2025-08-31T17:18:24.757Z"
+  },
+  "updatedAt": {
+    "$date": "2025-08-31T17:18:24.757Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "68b483e0420478bcc8abb005"
+  },
+  "name": "Unit 15: Electromagnetic Waves",
+  "subjectIds": [
+    {
+      "$oid": "68b470f9420478bcc8abafad"
+    }
+  ],
+  "topics": [
+    "Electromagnetic waves and their characteristics, Transverse nature of electromagnetic waves, Electromagnetic spectrum (radio waves, microwaves, infrared, visible, ultraviolet. X-rays. Gamma rays), Applications of e.m. waves."
+  ],
+  "createdAt": {
+    "$date": "2025-08-31T17:18:24.757Z"
+  },
+  "updatedAt": {
+    "$date": "2025-08-31T17:18:24.757Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "68b483e0420478bcc8abb006"
+  },
+  "name": "Unit 16: Optics",
+  "subjectIds": [
+    {
+      "$oid": "68b470f9420478bcc8abafad"
+    }
+  ],
+  "topics": [
+    "Reflection and refraction of light at plane and spherical surfaces, mirror formula. Total internal reflection and its applications. Deviation and dispersion of light by a prism; Lens formula. Magnification. Power of a lens. Combination of thin lenses in contact. Microscope and astronomical telescope (reflecting and refracting ) and their magnifying powers.",
+    "Wave optics: Wavefront and Huygens’ principle. Laws of reflection and refraction using Huygens principle. Interference, Young’s double-slit experiment and expression for fringe width, Coherent sources and sustained interference of light. Diffraction due to a single slit, width of central maximum. Resolving power of microscopes and astronomical telescopes. Polarisation, plane-polarised light: Brewster’s law, uses of plane-polarized light and polaroid."
+  ],
+  "createdAt": {
+    "$date": "2025-08-31T17:18:24.757Z"
+  },
+  "updatedAt": {
+    "$date": "2025-08-31T17:18:24.757Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "68b483e0420478bcc8abb007"
+  },
+  "name": "Unit 17: Dual Nature of Matter and Radiation",
+  "subjectIds": [
+    {
+      "$oid": "68b470f9420478bcc8abafad"
+    }
+  ],
+  "topics": [
+    "Dual nature of radiation. Photoelectric effect. Hertz and Lenard’s observations; Einstein’s photoelectric equation: particle nature of light.",
+    "Matter waves-wave nature of particle, de Broglie relation. Davisson-Germer experiment."
+  ],
+  "createdAt": {
+    "$date": "2025-08-31T17:18:24.757Z"
+  },
+  "updatedAt": {
+    "$date": "2025-08-31T17:18:24.757Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "68b483e0420478bcc8abb008"
+  },
+  "name": "Unit 18: Atoms and Nuclei",
+  "subjectIds": [
+    {
+      "$oid": "68b470f9420478bcc8abafad"
+    }
+  ],
+  "topics": [
+    "Alpha-particle scattering experiment; Rutherford’s model of atom; Bohr model, energy levels, hydrogen spectrum.",
+    "Composition and size of nucleus, atomic masses, isotopes, isobars: isotones.",
+    "Radioactivity- alpha beta and gamma particles/rays and their properties; Radioactive decay law. Mass-energy relation, mass defect; Binding energy per nucleon and its variation with mass number.",
+    "Nuclear fission and fusion."
+  ],
+  "createdAt": {
+    "$date": "2025-08-31T17:18:24.757Z"
+  },
+  "updatedAt": {
+    "$date": "2025-08-31T17:18:24.757Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "68b483e0420478bcc8abb009"
+  },
+  "name": "Unit 19: Electronic Devices",
+  "subjectIds": [
+    {
+      "$oid": "68b470f9420478bcc8abafad"
+    }
+  ],
+  "topics": [
+    "Semiconductors; semiconductor diode: V-I characteristics in forward and reverse bias; Diode as a rectifier; I-V characteristics of LED.",
+    "The photodiode, solar cell and Zener diode; Zener diode as a voltage regulator.",
+    "Junction transistor, transistor action, characteristics of a transistor: transistor as an amplifier (common emitter configuration) and oscillator.",
+    "Logic gates (OR, AND, NOT, NAND and NOR). Transistor as a switch."
+  ],
+  "createdAt": {
+    "$date": "2025-08-31T17:18:24.757Z"
+  },
+  "updatedAt": {
+    "$date": "2025-08-31T17:18:24.757Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "68b483e0420478bcc8abb00a"
+  },
+  "name": "Unit 20: Communication Systems",
+  "subjectIds": [
+    {
+      "$oid": "68b470f9420478bcc8abafad"
+    }
+  ],
+  "topics": [
+    "Propagation of electromagnetic waves in the atmosphere; Sky and space wave propagation.",
+    "Need for modulation. Amplitude and frequency modulation, Bandwidth of signals. The bandwidth of transmission medium, Basic elements of a communication system (Block diagram only)."
+  ],
+  "createdAt": {
+    "$date": "2025-08-31T17:18:24.757Z"
+  },
+  "updatedAt": {
+    "$date": "2025-08-31T17:18:24.757Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "68b483e0420478bcc8abb00b"
+  },
+  "name": "Unit 21: Experimental Skills",
+  "subjectIds": [
+    {
+      "$oid": "68b470f9420478bcc8abafad"
+    }
+  ],
+  "topics": [
+    "Familiarity with the basic approach and observations of the experiments and activities such as Vernier callipers, Screw gauge, Simple Pendulum, Metre Scale, Young’s modulus, Surface tension, Co-efficient of viscosity, Cooling curve, Speed of sound, Specific heat capacity, Metre bridge, Ohm’s law, Potentiometer, Galvanometer, Convex/Concave mirrors and lenses, Prism deviation, Refractive index, P-N junction, Zener diode, Transistor characteristics, Identification of electronic components, Multimeter usage."
+  ],
+  "createdAt": {
+    "$date": "2025-08-31T17:18:24.757Z"
+  },
+  "updatedAt": {
+    "$date": "2025-08-31T17:18:24.757Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "68b4935c420478bcc8abb00c"
+  },
+  "name": "Unit 1: Diversity in the Living World",
+  "subjectIds": [
+    {
+      "$oid": "68b47ce4420478bcc8abafd8"
+    }
+  ],
+  "topics": [
+    "What is living?",
+    "Biodiversity",
+    "Need for classification",
+    "Taxonomy & Systematics",
+    "Concept of species and taxonomical hierarchy",
+    "Binomial nomenclature",
+    "Five kingdom classifications - Monera, Protista, Fungi, Lichens, Viruses, Viroids",
+    "Classification of plants - Algae, Bryophytes, Pteridophytes, Gymnosperms",
+    "Classification of animals - Nonchordates (phyla) and Chordates (classes)"
+  ],
+  "createdAt": {
+    "$date": "2025-08-31T18:24:28.438Z"
+  },
+  "updatedAt": {
+    "$date": "2025-08-31T18:24:28.438Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "68b4935c420478bcc8abb00d"
+  },
+  "name": "Unit 2: Structural Organisation in Animals and Plants",
+  "subjectIds": [
+    {
+      "$oid": "68b47ce4420478bcc8abafd8"
+    }
+  ],
+  "topics": [
+    "Morphology and modifications of flowering plants",
+    "Anatomy of root, stem and leaf",
+    "Tissues in plants and animals",
+    "Animal tissues",
+    "Morphology, anatomy and functions of frog systems - digestive, circulatory, respiratory, nervous, reproductive"
+  ],
+  "createdAt": {
+    "$date": "2025-08-31T18:24:28.438Z"
+  },
+  "updatedAt": {
+    "$date": "2025-08-31T18:24:28.438Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "68b4935c420478bcc8abb00e"
+  },
+  "name": "Unit 3: Cell Structure and Function",
+  "subjectIds": [
+    {
+      "$oid": "68b47ce4420478bcc8abafd8"
+    }
+  ],
+  "topics": [
+    "Cell theory",
+    "Prokaryotic and eukaryotic cell",
+    "Cell organelles - ER, Golgi, Lysosome, Vacuole, Mitochondria, Ribosome, Plastids",
+    "Cytoskeleton, cilia, flagella, centrioles",
+    "Nucleus - membrane, chromatin, nucleolus",
+    "Biomolecules - carbohydrates, proteins, lipids, nucleic acids",
+    "Enzymes - properties, action, classification",
+    "Cell cycle and cell division - mitosis and meiosis"
+  ],
+  "createdAt": {
+    "$date": "2025-08-31T18:24:28.438Z"
+  },
+  "updatedAt": {
+    "$date": "2025-08-31T18:24:28.438Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "68b4935c420478bcc8abb00f"
+  },
+  "name": "Unit 4: Plant Physiology",
+  "subjectIds": [
+    {
+      "$oid": "68b47ce4420478bcc8abafd8"
+    }
+  ],
+  "topics": [
+    "Transport in plants - diffusion, osmosis, active transport",
+    "Plant-water relations",
+    "Mineral nutrition",
+    "Photosynthesis - light and dark reaction, C3, C4, CAM pathways",
+    "Respiration - aerobic and anaerobic, glycolysis, Krebs cycle, ETC",
+    "Plant growth and development",
+    "Plant hormones - auxins, gibberellins, cytokinins, abscisic acid, ethylene",
+    "Photoperiodism and vernalisation"
+  ],
+  "createdAt": {
+    "$date": "2025-08-31T18:24:28.438Z"
+  },
+  "updatedAt": {
+    "$date": "2025-08-31T18:24:28.438Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "68b4935c420478bcc8abb010"
+  },
+  "name": "Unit 5: Human Physiology",
+  "subjectIds": [
+    {
+      "$oid": "68b47ce4420478bcc8abafd8"
+    }
+  ],
+  "topics": [
+    "Digestion and absorption",
+    "Breathing and respiration",
+    "Body fluids and circulation",
+    "Excretory products and elimination",
+    "Locomotion and movement",
+    "Neural control and coordination",
+    "Chemical coordination and integration (endocrine glands, hormones)"
+  ],
+  "createdAt": {
+    "$date": "2025-08-31T18:24:28.438Z"
+  },
+  "updatedAt": {
+    "$date": "2025-08-31T18:24:28.438Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "68b4935c420478bcc8abb011"
+  },
+  "name": "Unit 6: Reproduction",
+  "subjectIds": [
+    {
+      "$oid": "68b47ce4420478bcc8abafd8"
+    }
+  ],
+  "topics": [
+    "Reproduction in organisms",
+    "Sexual reproduction in flowering plants",
+    "Human reproduction",
+    "Reproductive health"
+  ],
+  "createdAt": {
+    "$date": "2025-08-31T18:24:28.438Z"
+  },
+  "updatedAt": {
+    "$date": "2025-08-31T18:24:28.438Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "68b4935c420478bcc8abb012"
+  },
+  "name": "Unit 7: Genetics and Evolution",
+  "subjectIds": [
+    {
+      "$oid": "68b47ce4420478bcc8abafd8"
+    }
+  ],
+  "topics": [
+    "Mendelian inheritance",
+    "Deviation from Mendelism - incomplete dominance, codominance, multiple alleles, linkage and crossing over, polygenic inheritance",
+    "Chromosome theory of inheritance",
+    "Molecular basis of inheritance - DNA, RNA, replication, transcription, translation, genetic code",
+    "Human genome project",
+    "DNA fingerprinting",
+    "Evolution - theories, evidences, origin of life, Hardy-Weinberg principle"
+  ],
+  "createdAt": {
+    "$date": "2025-08-31T18:24:28.438Z"
+  },
+  "updatedAt": {
+    "$date": "2025-08-31T18:24:28.438Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "68b4935c420478bcc8abb013"
+  },
+  "name": "Unit 8: Biology and Human Welfare",
+  "subjectIds": [
+    {
+      "$oid": "68b47ce4420478bcc8abafd8"
+    }
+  ],
+  "topics": [
+    "Human health and disease - pathogens, parasites causing human diseases",
+    "Immunity - innate and acquired, vaccines",
+    "Drugs and alcohol abuse",
+    "Microbes in human welfare - household products, industrial products, antibiotics, sewage treatment, biogas production"
+  ],
+  "createdAt": {
+    "$date": "2025-08-31T18:24:28.438Z"
+  },
+  "updatedAt": {
+    "$date": "2025-08-31T18:24:28.438Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "68b4935c420478bcc8abb014"
+  },
+  "name": "Unit 9: Biotechnology and Its Applications",
+  "subjectIds": [
+    {
+      "$oid": "68b47ce4420478bcc8abafd8"
+    }
+  ],
+  "topics": [
+    "Principles and processes of biotechnology",
+    "Genetic engineering (recombinant DNA technology)",
+    "Applications of biotechnology in agriculture, health, industry",
+    "Transgenic organisms, bioethics, biosafety"
+  ],
+  "createdAt": {
+    "$date": "2025-08-31T18:24:28.438Z"
+  },
+  "updatedAt": {
+    "$date": "2025-08-31T18:24:28.438Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "68b4935c420478bcc8abb015"
+  },
+  "name": "Unit 10: Ecology and Environment",
+  "subjectIds": [
+    {
+      "$oid": "68b47ce4420478bcc8abafd8"
+    }
+  ],
+  "topics": [
+    "Organisms and environment",
+    "Ecosystem - structure and function, energy flow, ecological pyramids",
+    "Biodiversity and conservation",
+    "Environmental issues - pollution, global warming, ozone depletion, deforestation"
+  ],
+  "createdAt": {
+    "$date": "2025-08-31T18:24:28.438Z"
+  },
+  "updatedAt": {
+    "$date": "2025-08-31T18:24:28.438Z"
+  }
+}]

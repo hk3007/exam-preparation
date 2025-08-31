@@ -1,0 +1,18 @@
+[{
+  "_id": {
+    "$oid": "68b3e525b630dfb5f59029a0"
+  },
+  "exam": "JEE",
+  "year": 2022,
+  "description": "JEE Main 2022 Full Paper with Solutions",
+  "link": "/papers/jee-2022"
+},
+{
+  "_id": {
+    "$oid": "68b3e525b630dfb5f59029a1"
+  },
+  "exam": "UPSC",
+  "year": 2021,
+  "description": "UPSC Prelims 2021 Paper 1 & 2",
+  "link": "/papers/upsc-2021"
+}]

@@ -1,0 +1,27 @@
+[{
+  "_id": {
+    "$oid": "68b3e4ffb630dfb5f590299d"
+  },
+  "title": "Polity - Constitution of India",
+  "description": "Fundamental rights, DPSPs, Amendments, Important Articles",
+  "link": "/topic/polity-constitution",
+  "views": 1200
+},
+{
+  "_id": {
+    "$oid": "68b3e4ffb630dfb5f590299e"
+  },
+  "title": "Organic Chemistry Basics",
+  "description": "Nomenclature, Isomerism, Reaction Mechanisms",
+  "link": "/topic/organic-chemistry",
+  "views": 980
+},
+{
+  "_id": {
+    "$oid": "68b3e4ffb630dfb5f590299f"
+  },
+  "title": "Human Physiology - NEET",
+  "description": "Digestive, Respiratory, Circulatory & Nervous System",
+  "link": "/topic/human-physiology",
+  "views": 1500
+}]
