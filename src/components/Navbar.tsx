@@ -97,18 +97,18 @@ export function Navbar() {
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center space-x-8">
             {navigation.map((item) => (
-              <Link
-                key={item.name}
-                href={item.href}
-                className={`px-3 py-2 rounded-md text-sm font-bold transition-colors ${
-                  pathname === item.href
-                    ? "text-blue-600 bg-blue-600/10"
-                    : "text-muted-foreground hover:text-foreground hover:bg-accent"
-                }`}
-              >
-                {item.name}
-              </Link>
-            ))}
+  <Link
+    key={item.name}
+    href={item.href}
+    className={`px-3 py-2 rounded-md text-sm font-bold transition-colors ${
+      pathname === item.href
+        ? "text-blue-600 bg-blue-600/10"
+        : "text-foreground hover:text-foreground hover:bg-accent"
+    }`}
+  >
+    {item.name}
+  </Link>
+))}
 
             {/* Desktop Exams Dropdown */}
             {Object.keys(exams).map((exam) => {
@@ -122,11 +122,11 @@ export function Navbar() {
                   onMouseLeave={handleMouseLeaveExam}
                 >
                   <Button
-                    variant="ghost"
-                    className="flex items-center gap-1 rounded-md text-sm font-bold transition-colors h-full"
-                  >
-                    {exam} <ChevronDown size={16} />
-                  </Button>
+  variant="ghost"
+  className="flex items-center gap-1 rounded-md text-sm font-bold transition-colors h-full text-foreground"
+>
+  {exam} <ChevronDown size={16} />
+</Button>
 
                   {openExam === examKey && (
                     <div className="absolute left-0 top-full mt-2 bg-popover text-popover-foreground border rounded-md shadow-lg w-52 z-50 animate-fadeIn">
