@@ -12,7 +12,9 @@ export default async function ExamRoute({
 }: {
   params: Promise<{ examid: string }>;
 }) {
-  const { examid } = await params; // ✅ await params
+  // ✅ await params
+  const { examid } = await params;
+
   const upperId = examid.toUpperCase() as ExamId;
   const exam = exams[upperId];
 
@@ -20,5 +22,6 @@ export default async function ExamRoute({
     return <p className="text-center py-10">Exam not found.</p>;
   }
 
-  return <ExamPage examId={upperId} exam={exam} />;
+  // ✅ ExamPage fetches exam details from API
+  return <ExamPage examId={upperId} />;
 }

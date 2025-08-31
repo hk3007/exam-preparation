@@ -1,11 +1,20 @@
-"use client";
+import { connectDB } from "@/lib/mongodb";
+import Exam from "@/models/Exam";
+import Topic from "@/models/Topic";
+import Paper from "@/models/Paper";
 
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { FileText, GraduationCap } from "lucide-react";
 import Link from "next/link";
 
-export default function HomePage() {
+export default async function HomePage() {
+  await connectDB();
+
+  const exams = await Exam.find().lean();
+  const topics = await Topic.find().limit(3).lean();
+  const papers = await Paper.find().limit(2).lean();
+
   return (
     <div className="space-y-20">
       {/* Hero Section */}
@@ -20,157 +29,85 @@ export default function HomePage() {
         <Button className="mt-8">Start Exploring</Button>
       </section>
 
-      {/* Browse by Exam Category */}
+      {/* Browse by Exam */}
       <section className="container mx-auto px-6">
         <h2 className="text-2xl md:text-3xl font-bold text-center mb-12">
           Browse by Exam
         </h2>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          <Card className="hover:shadow-lg transition rounded-xl">
-            <CardHeader>
-              <CardTitle className="flex items-center gap-2">
-                <GraduationCap className="h-5 w-5 text-blue-500" /> UPSC
-              </CardTitle>
-            </CardHeader>
-            <CardContent className="space-y-4">
-              <p className="text-sm text-gray-600">
-                Polity, History, Geography, Current Affairs
-              </p>
-              <Button variant="outline" className="w-full">
-                Explore UPSC
-              </Button>
-            </CardContent>
-          </Card>
-
-          <Card className="hover:shadow-lg transition rounded-xl">
-            <CardHeader>
-              <CardTitle className="flex items-center gap-2">
-                <GraduationCap className="h-5 w-5 text-green-500" /> NEET
-              </CardTitle>
-            </CardHeader>
-            <CardContent className="space-y-4">
-              <p className="text-sm text-gray-600">
-                Biology, Physics, Chemistry
-              </p>
-              <Link href="/exam/NEET">
-              <Button variant="outline" className="w-full">
-                Explore NEET
-              </Button></Link>
-            </CardContent>
-          </Card>
-
-          <Card className="hover:shadow-lg transition rounded-xl">
-            <CardHeader>
-              <CardTitle className="flex items-center gap-2">
-                <GraduationCap className="h-5 w-5 text-orange-500" /> JEE
-              </CardTitle>
-            </CardHeader>
-            <CardContent className="space-y-4">
-              <p className="text-sm text-gray-600">
-                Maths, Physics, Chemistry
-              </p>
-              <Link href="/exam/JEE">
-              <Button variant="outline" className="w-full">
-                Explore JEE
-              </Button></Link>
-            </CardContent>
-          </Card>
+          {exams.map((exam: any) => (
+            <Card key={exam._id} className="hover:shadow-lg transition rounded-xl">
+              <CardHeader>
+                <CardTitle className="flex items-center gap-2">
+                  <GraduationCap className="h-5 w-5 text-blue-500" /> {exam.name}
+                </CardTitle>
+              </CardHeader>
+              <CardContent className="space-y-4">
+                <p className="text-sm text-gray-600">
+                  {exam.subjects.join(", ")}
+                </p>
+                <Link href={`/exam/${exam.name}`}>
+                  <Button variant="outline" className="w-full">
+                    Explore {exam.name}
+                  </Button>
+                </Link>
+              </CardContent>
+            </Card>
+          ))}
         </div>
       </section>
 
-      {/* Popular Topics Section */}
+      {/* Popular Topics */}
       <section className="container mx-auto px-6">
         <h2 className="text-2xl md:text-3xl font-bold text-center mb-12">
           Popular Topics & Chapters
         </h2>
         <div className="grid md:grid-cols-3 gap-8">
-          <Card className="rounded-xl">
-            <CardHeader>
-              <CardTitle>Physics - Mechanics</CardTitle>
-            </CardHeader>
-            <CardContent>
-              <p className="text-sm text-gray-600">
-                Includes concepts, solved examples & PYQs
-              </p>
-              <Link href='/topic/mechanics' passHref>
-                <Button asChild variant="ghost" className="mt-4">
-                    <span>View Topic →</span>
-                </Button>
-              </Link>
-            </CardContent>
-          </Card>
-
-          <Card className="rounded-xl">
-            <CardHeader>
-              <CardTitle>Chemistry - Organic Compounds</CardTitle>
-            </CardHeader>
-            <CardContent>
-              <p className="text-sm text-gray-600">
-                Detailed notes with previous year analysis
-              </p>
-              <Button variant="ghost" className="mt-4">
-                View Topic →
-              </Button>
-            </CardContent>
-          </Card>
-
-          <Card className="rounded-xl">
-            <CardHeader>
-              <CardTitle>Biology - Human Physiology</CardTitle>
-            </CardHeader>
-            <CardContent>
-              <p className="text-sm text-gray-600">
-                Chapter-wise breakdown & solved MCQs
-              </p>
-              <Button variant="ghost" className="mt-4">
-                View Topic →
-              </Button>
-            </CardContent>
-          </Card>
+          {topics.map((topic: any) => (
+            <Card key={topic._id} className="rounded-xl">
+              <CardHeader>
+                <CardTitle>{topic.title}</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <p className="text-sm text-gray-600">{topic.description}</p>
+                <Link href={topic.link || "#"}>
+                  <Button variant="ghost" className="mt-4">
+                    View Topic →
+                  </Button>
+                </Link>
+              </CardContent>
+            </Card>
+          ))}
         </div>
       </section>
 
-      {/* Previous Year Question Papers */}
+      {/* Previous Year Papers */}
       <section className="container mx-auto px-6">
         <h2 className="text-2xl md:text-3xl font-bold text-center mb-12">
           Previous Year Questions
         </h2>
         <div className="grid md:grid-cols-2 gap-8">
-          <Card className="rounded-xl">
-            <CardHeader>
-              <CardTitle className="flex items-center gap-2">
-                <FileText className="h-5 w-5 text-purple-500" /> NEET 2023
-              </CardTitle>
-            </CardHeader>
-            <CardContent>
-              <p className="text-sm text-gray-600">
-                Full question paper with detailed solutions
-              </p>
-              <Button variant="outline" className="mt-4">
-                View Paper
-              </Button>
-            </CardContent>
-          </Card>
-
-          <Card className="rounded-xl">
-            <CardHeader>
-              <CardTitle className="flex items-center gap-2">
-                <FileText className="h-5 w-5 text-red-500" /> JEE Mains 2023
-              </CardTitle>
-            </CardHeader>
-            <CardContent>
-              <p className="text-sm text-gray-600">
-                Chapter-wise solutions included
-              </p>
-              <Button variant="outline" className="mt-4">
-                View Paper
-              </Button>
-            </CardContent>
-          </Card>
+          {papers.map((paper: any) => (
+            <Card key={paper._id} className="rounded-xl">
+              <CardHeader>
+                <CardTitle className="flex items-center gap-2">
+                  <FileText className="h-5 w-5 text-purple-500" /> {paper.exam} {paper.year}
+                </CardTitle>
+              </CardHeader>
+              <CardContent>
+                <p className="text-sm text-gray-600">{paper.description}</p>
+                <Link href={paper.link || "#"}>
+                  <Button variant="outline" className="mt-4">
+                    View Paper
+                  </Button>
+                </Link>
+              </CardContent>
+            </Card>
+          ))}
         </div>
       </section>
 
-      {/* CTA Section */}
+      {/* CTA */}
       <section className="text-center py-16 bg-indigo-50 rounded-2xl shadow-md container mx-auto px-6">
         <h2 className="text-2xl md:text-3xl font-bold mb-6">
           Start Your Preparation Today
