@@ -27,7 +27,7 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          <div className="min-h-screen bg-gradient-to-br from-gray-300 via-gray-300 to-gray-400 dark:from-background dark:via-background dark:to-background/80">
+          <div className="min-h-screen bg-gradient-to-br from-white via-white to-white dark:from-background dark:via-background dark:to-background/80">
             <Navbar />
             <main className="relative pt-16">{children}</main>
             <Toaster />

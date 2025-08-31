@@ -43,16 +43,16 @@ export default async function HomePage() {
         <h2 className="text-2xl md:text-3xl font-bold text-center mb-12">
           Browse by Exam
         </h2>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mx-5">
           {exams.map((exam: any) => (
-            <Card key={exam._id} className="hover:shadow-lg transition rounded-xl">
-              <CardHeader>
+            <Card key={exam._id} className="hover:shadow-lg transition rounded-xl items-center justify-center" >
+              <CardHeader className="items-center justify-center">
                 <CardTitle className="flex items-center gap-2">
-                  <GraduationCap className="h-5 w-5 text-blue-500" /> {exam.name}
+                  <GraduationCap className="h-5 w-5  text-blue-500" /> {exam.name}
                 </CardTitle>
               </CardHeader>
-              <CardContent className="space-y-4">
-                <p className="text-sm text-gray-600">
+              <CardContent className="space-y-4 " >
+                <p className="text-sm text-gray-600 ">
                   {exam.subjects.join(", ")}
                 </p>
                 <Link href={`/exam/${exam.name}`}>
@@ -118,8 +118,7 @@ export default async function HomePage() {
 
       {/* footer */}
       <section className="text-center py-16 rounded-2xl shadow-md container mx-auto px-6">
-        <Card>footer</Card>
-        
+       footer
       </section>
     </div>
   );
