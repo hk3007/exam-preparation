@@ -29,7 +29,7 @@ export default function RootLayout({
         >
           <div className="min-h-screen bg-gradient-to-br from-gray-300 via-gray-300 to-gray-400 dark:from-background dark:via-background dark:to-background/80">
             <Navbar />
-            <main className="relative pt-25">{children}</main>
+            <main className="relative pt-16">{children}</main>
             <Toaster />
           </div>
         </ThemeProvider>

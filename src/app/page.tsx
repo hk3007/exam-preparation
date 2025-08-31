@@ -18,19 +18,28 @@ export default async function HomePage() {
   return (
     <div className="space-y-20">
       {/* Hero Section */}
-      <section className="text-center py-20 bg-gradient-to-r from-blue-50 to-indigo-50 rounded-2xl shadow-md container mx-auto px-6">
-        <h1 className="text-4xl md:text-5xl font-bold mb-6">
+      <section
+  className="text-center py-20 rounded-b-[50%] shadow-md container mx-auto px-6"
+  style={{
+    background: 'linear-gradient(to right, #F5F5DC, #F5F5DC)'
+  }}
+>
+        <h1 className="text-4xl text-black md:text-5xl font-bold mb-6">
           Welcome to ExamPrep Knowledge Hub
         </h1>
         <p className="text-lg text-gray-600 max-w-2xl mx-auto">
           Access detailed study material, topics, and previous year questions with
           solutions for UPSC, JEE, NEET, and School level exams.
         </p>
-        <Button className="mt-8">Start Exploring</Button>
+        <Link href="#exams-section">
+          <Button className="mt-8 bg-black text-white hover:bg-white hover:text-black">
+            Start Exploring
+          </Button>
+        </Link>
       </section>
 
       {/* Browse by Exam */}
-      <section className="container mx-auto px-6">
+      <section id="exams-section" className="container mx-auto scroll-mt-16">
         <h2 className="text-2xl md:text-3xl font-bold text-center mb-12">
           Browse by Exam
         </h2>
@@ -107,16 +116,10 @@ export default async function HomePage() {
         </div>
       </section>
 
-      {/* CTA */}
-      <section className="text-center py-16 bg-indigo-50 rounded-2xl shadow-md container mx-auto px-6">
-        <h2 className="text-2xl md:text-3xl font-bold mb-6">
-          Start Your Preparation Today
-        </h2>
-        <p className="text-gray-600 max-w-xl mx-auto mb-8">
-          Explore thousands of topics, solved examples, and previous year papers
-          at one place.
-        </p>
-        <Button size="lg">Explore Now</Button>
+      {/* footer */}
+      <section className="text-center py-16 rounded-2xl shadow-md container mx-auto px-6">
+        <Card>footer</Card>
+        
       </section>
     </div>
   );
