@@ -18,7 +18,6 @@ export async function connectDB() {
       dbName: "exam-preparation",
     });
     isConnected = true;
-    console.log("✅ MongoDB connected");
   } catch (error) {
     console.error("❌ MongoDB connection error", error);
     throw error;
