@@ -4,12 +4,31 @@ import Subject from "@/models/Subject";
 import Exam from "@/models/Exam";
 import mongoose, { Types } from "mongoose";
 
-// Define Chapter type (topics are strings)
+// ✅ Types
 interface ChapterType {
   _id: Types.ObjectId;
   name: string;
   topics?: string[];
   subjectIds?: Types.ObjectId[];
+}
+
+interface SubjectType {
+  _id: Types.ObjectId;
+  name: string;
+  examIds?: Types.ObjectId[];
+}
+
+interface ExamType {
+  _id: Types.ObjectId;
+  name: string;
+  upcomingDate?: string;
+  description?: string;
+  subjects?: string[];
+  questionPaperPattern?: string;
+  eligibility?: object;
+  examDates?: object;
+  examOverview?: object;
+  posts?: object[];
 }
 
 export default async function ChaptersPage({
@@ -21,8 +40,15 @@ export default async function ChaptersPage({
 
   await connectDB();
 
-  // 1. Find exam by name
-  const exam = await Exam.findOne({ name: examid }).lean<{ _id: Types.ObjectId }>();
+  // --- 1. Find exam (by ID if valid, else by name)
+  let examQuery: any = {};
+  if (mongoose.Types.ObjectId.isValid(examid)) {
+    examQuery._id = examid;
+  } else {
+    examQuery.name = examid;
+  }
+
+  const exam = await Exam.findOne(examQuery).lean<ExamType>();
   if (!exam) {
     return (
       <div className="flex items-center justify-center h-screen">
@@ -33,25 +59,28 @@ export default async function ChaptersPage({
     );
   }
 
-  // 2. Find subject by name + examId
-  const subjectDoc = await Subject.findOne({
-    name: subject,
-    examIds: exam._id,
-  }).lean<{ _id: Types.ObjectId }>();
+  // --- 2. Find subject (by ID if valid, else by name)
+  let subjectQuery: any = { examIds: exam._id };
+  if (mongoose.Types.ObjectId.isValid(subject)) {
+    subjectQuery._id = subject;
+  } else {
+    subjectQuery.name = subject;
+  }
 
+  const subjectDoc = await Subject.findOne(subjectQuery).lean<SubjectType>();
   if (!subjectDoc) {
     return (
       <div className="flex items-center justify-center h-screen">
         <p className="text-red-600 text-lg font-semibold">
-          ❌ Subject "{subject}" not found for exam "{examid}".
+          ❌ Subject "{subject}" not found for exam "{exam.name}".
         </p>
       </div>
     );
   }
 
-  // 3. Fetch chapters linked to this subject
+  // --- 3. Fetch chapters
   const chapters = await Chapter.find({
-    subjectIds: new mongoose.Types.ObjectId(subjectDoc._id),
+    subjectIds: subjectDoc._id,
   }).lean<ChapterType[]>();
 
   return (
@@ -59,7 +88,7 @@ export default async function ChaptersPage({
       {/* Header */}
       <div className="mb-10 text-center">
         <h1 className="text-4xl font-extrabold tracking-tight text-gray-900 mb-2">
-          {examid} – <span className="text-indigo-600">{subject}</span>
+          {exam.name} – <span className="text-indigo-600">{subjectDoc.name}</span>
         </h1>
         <p className="text-gray-600">
           Explore all chapters and topics for this subject.
@@ -88,7 +117,7 @@ export default async function ChaptersPage({
 
             {chapter.topics && chapter.topics.length > 0 ? (
               <div className="flex flex-wrap gap-2">
-                {chapter.topics.map((topic: string, i: number) => (
+                {chapter.topics.map((topic, i) => (
                   <span
                     key={i}
                     className="px-3 py-1 rounded-full bg-indigo-50 text-indigo-700 text-sm font-medium hover:bg-indigo-100 transition"
