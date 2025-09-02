@@ -1,10 +1,25 @@
-import mongoose, { Schema, model, models } from "mongoose";
+import mongoose, { Schema, Document, models, model, Types } from "mongoose";
 
-const TopicSchema = new Schema({
-  title: { type: String, required: true },
-  description: String,
-  exam: { type: String, required: true }, // e.g., "NEET", "JEE"
-  link: String,
-});
+export interface TopicDoc extends Document {
+  _id: Types.ObjectId;
+  title: string;
+  description?: string;
+  exam: string;
+  slug: string;
+  link: string;
+  views: number;
+}
 
-export default models.Topic || model("Topic", TopicSchema);
+const TopicSchema = new Schema<TopicDoc>(
+  {
+    title: { type: String, required: true },
+    description: { type: String },
+    exam: { type: String, required: true }, // UPSC, NEET, etc.
+    slug: { type: String, required: true, unique: true },
+    link: { type: String },
+    views: { type: Number, default: 0 },
+  },
+  { timestamps: true }
+);
+
+export default models.Topic || model<TopicDoc>("Topic", TopicSchema);

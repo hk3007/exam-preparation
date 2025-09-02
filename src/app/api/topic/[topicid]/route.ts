@@ -3,57 +3,69 @@ import { connectDB } from "@/lib/mongodb";
 import Topic from "@/models/Topic";
 import { Types } from "mongoose";
 
-// Type for the topic document returned by Mongoose
 interface TopicDoc {
-  _id: Types.ObjectId; // now TypeScript knows it's ObjectId
+  _id: Types.ObjectId;
   title: string;
-  description: string;
-  views: number;
+  description?: string;
+  exam: string;
+  slug: string;
   link: string;
+  views: number;
 }
 
-// Type for the API response
 export interface TopicType {
   id: string;
   name: string;
-  description: string;
-  questions: any[];
+  description?: string;
+  exam: string;
   views: number;
   link: string;
 }
 
 export async function GET(
   req: Request,
-  context: { params: Promise<{ topicid: string }> }
+  context: { params: Promise<{ topicid: string }> } // ✅ params is a Promise
 ) {
   try {
-    const { topicid } = await context.params;
+    const { topicid } = await context.params; // ✅ await it
 
     if (!topicid) {
-      return NextResponse.json({ error: "Topic ID not provided" }, { status: 400 });
+      return NextResponse.json(
+        { error: "Topic ID or slug not provided" },
+        { status: 400 }
+      );
     }
 
     await connectDB();
 
-    // Explicitly type the result with <TopicDoc | null>
-    const topicDoc = await Topic.findOne<TopicDoc>({ link: `/topic/${topicid}` }).lean<TopicDoc | null>();
+    const topicDoc = await Topic.findOne<TopicDoc>({
+      $or: [
+        { slug: topicid },
+        {
+          _id: Types.ObjectId.isValid(topicid)
+            ? new Types.ObjectId(topicid)
+            : undefined,
+        },
+      ],
+    }).lean<TopicDoc | null>();
 
     if (!topicDoc) {
       return NextResponse.json({ error: "Topic not found" }, { status: 404 });
     }
 
-    const topic: TopicType = {
-      id: topicDoc._id.toString(), // now TS knows _id is ObjectId
+    return NextResponse.json({
+      id: topicDoc._id.toString(),
       name: topicDoc.title,
       description: topicDoc.description,
-      questions: [],
-      views: topicDoc.views,
+      exam: topicDoc.exam,
+      views: topicDoc.views ?? 0,
       link: topicDoc.link,
-    };
-
-    return NextResponse.json(topic);
+    } as TopicType);
   } catch (err) {
-    console.error(err);
-    return NextResponse.json({ error: "Internal Server Error" }, { status: 500 });
+    console.error("❌ Error in GET /api/topic/[topicid]:", err);
+    return NextResponse.json(
+      { error: "Internal Server Error" },
+      { status: 500 }
+    );
   }
 }
