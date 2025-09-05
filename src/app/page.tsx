@@ -1,3 +1,4 @@
+import React from "react";
 import { connectDB } from "@/lib/mongodb";
 import Exam from "@/models/Exam";
 import Topic from "@/models/Topic";
@@ -7,6 +8,47 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { FileText, GraduationCap } from "lucide-react";
 import Link from "next/link";
+
+// Function to render description nodes
+function renderDescription(node: any, depth = 0): React.ReactNode {
+  if (typeof node === "string") {
+    return (
+      <div key={Math.random()} className={`pl-${depth * 4} py-1`}>
+        {node}
+      </div>
+    );
+  }
+
+  return (
+    <div key={Math.random()} className={`pl-${depth * 4} py-2`}>
+      {node.point && <div className="font-semibold">{node.point}</div>}
+
+      {node.expression && (
+        <div className="bg-gray-100 p-2 rounded-md my-2 font-mono text-sm text-center">
+          {node.expression}
+        </div>
+      )}
+
+      {node.example && (
+        <div className="italic text-sm text-gray-600 my-1">
+          Example: {node.example}
+        </div>
+      )}
+
+      {node.details &&
+        node.details.length > 0 &&
+        node.details.map((child: any, idx: number) => (
+          <React.Fragment key={idx}>{renderDescription(child, depth + 1)}</React.Fragment>
+        ))}
+
+      {node.properties &&
+        node.properties.length > 0 &&
+        node.properties.map((child: any, idx: number) => (
+          <React.Fragment key={idx}>{renderDescription(child, depth + 1)}</React.Fragment>
+        ))}
+    </div>
+  );
+}
 
 export default async function HomePage() {
   await connectDB();
@@ -20,7 +62,7 @@ export default async function HomePage() {
       {/* Hero Section */}
       <section
         className="text-center py-20 rounded-b-[50%] shadow-md container mx-auto px-6"
-        style={{ background: 'linear-gradient(to right, #F5F5DC, #F5F5DC)' }}
+        style={{ background: "linear-gradient(to right, #F5F5DC, #F5F5DC)" }}
       >
         <h1 className="text-4xl text-black md:text-5xl font-bold mb-6">
           Welcome to ExamPrep Knowledge Hub
@@ -53,7 +95,7 @@ export default async function HomePage() {
                 </CardTitle>
               </CardHeader>
               <CardContent className="space-y-4">
-                <p className="text-sm text-gray-600">{exam.subjects.join(", ")}</p>
+                <p className="text-sm text-gray-600">{exam.subjects?.join(", ")}</p>
                 {exam.name ? (
                   <Link href={`/exam/${exam.name}`}>
                     <Button variant="outline" className="w-full">
@@ -79,37 +121,26 @@ export default async function HomePage() {
 
         <div className="grid gap-8 sm:grid-cols-2 md:grid-cols-3">
           {topics.map((topic: any) => {
-  // Use topic._id to generate the link
-  const topicLink = `/topic/${topic._id}`;
+            const topicLink = `/topic/${topic._id}`;
+            return (
+              <Card key={topic._id} className="rounded-2xl shadow-md hover:shadow-lg transition-shadow p-4">
+                <CardHeader className="flex justify-between items-center">
+                  <CardTitle className="text-lg font-semibold text-indigo-700">
+                    {topic.name}
+                  </CardTitle>
+                  <span className="text-xs text-gray-500">👁 {topic.views ?? 0} Views</span>
+                </CardHeader>
 
-  return (
-    <Card key={topic._id} className="rounded-2xl shadow-md hover:shadow-lg transition-shadow">
-      <CardHeader>
-        <CardTitle className="text-lg font-semibold text-indigo-700">
-          {topic.title}
-        </CardTitle>
-      </CardHeader>
-
-      <CardContent>
-        <p className="text-sm text-gray-600 line-clamp-3">
-          {topic.description}
-        </p>
-
-        <div className="flex justify-between items-center mt-4 text-xs text-gray-500">
-          <span>📘 {topic.chapterIds?.length || 0} Chapters</span>
-          <span>👁 {topic.views ?? 0} Views</span>
-        </div>
-
-        <Link href={topicLink}>
-          <Button variant="ghost" className="mt-4">
-            View Topic →
-          </Button>
-        </Link>
-      </CardContent>
-    </Card>
-  );
-})}
-
+                <CardContent className="mt-4">
+                  <Link href={topicLink}>
+                    <Button variant="ghost" className="w-full">
+                      View Topic →
+                    </Button>
+                  </Link>
+                </CardContent>
+              </Card>
+            );
+          })}
         </div>
       </section>
 

@@ -6,17 +6,28 @@ import { Types } from "mongoose";
 interface TopicDoc {
   _id: Types.ObjectId;
   title: string;
-  description?: string;
+  description?: any; // ✅ can be string, array, or object
   exam: string;
   slug: string;
   link: string;
   views: number;
 }
 
+export type DescriptionNode =
+  | string
+  | {
+      point?: string;
+      expression?: string;
+      example?: string;
+      properties?: DescriptionNode[];
+      details?: DescriptionNode[];
+      [key: string]: any;
+    };
+
 export interface TopicType {
   id: string;
   name: string;
-  description?: string;
+  description?: DescriptionNode[]; // ✅ structured description
   exam: string;
   views: number;
   link: string;
@@ -24,10 +35,10 @@ export interface TopicType {
 
 export async function GET(
   req: Request,
-  context: { params: Promise<{ topicid: string }> } // ✅ params is a Promise
+  context: { params: Promise<{ topicid: string }> }
 ) {
   try {
-    const { topicid } = await context.params; // ✅ await it
+    const { topicid } = await context.params;
 
     if (!topicid) {
       return NextResponse.json(
