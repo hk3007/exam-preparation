@@ -58,25 +58,39 @@ export default async function HomePage() {
           {exams.map((exam: any) => (
             <Card
               key={exam._id}
-              className="hover:shadow-lg transition rounded-xl items-center justify-center"
+              className="rounded-2xl border border-indigo-100 shadow-md hover:shadow-xl hover:scale-[1.03] transition-all duration-300 bg-gradient-to-b from-indigo-50 to-white flex flex-col justify-between"
             >
-              <CardHeader className="items-center justify-center">
-                <CardTitle className="flex items-center gap-2">
-                  <GraduationCap className="h-5 w-5 text-blue-500" /> {exam.name}
+              <CardHeader className="flex flex-col items-center gap-3 text-center">
+                <div className="w-16 h-16 rounded-full bg-indigo-100 flex items-center justify-center shadow-inner">
+                  <GraduationCap className="h-8 w-8 text-indigo-600" />
+                </div>
+                <CardTitle className="text-xl font-bold text-indigo-800">
+                  {exam.name}
                 </CardTitle>
               </CardHeader>
-              <CardContent className="space-y-4">
-                <p className="text-sm text-gray-600">{exam.subjects?.join(", ")}</p>
+
+              <CardContent className="flex flex-col items-center gap-4">
+                <div className="flex flex-wrap gap-2 justify-center">
+                  {exam.subjects?.map((sub: string, idx: number) => (
+                    <span
+                      key={idx}
+                      className="px-3 py-1 text-xs font-medium text-indigo-700 bg-indigo-100 rounded-full"
+                    >
+                      {sub}
+                    </span>
+                  ))}
+                </div>
+
                 {exam.name ? (
-                  <Link href={`/exam/${exam.name}`}>
-                    <Button variant="outline" className="w-full">
-                      Explore {exam.name}
+                  <Link href={`/exam/${exam.name}`} className="w-full">
+                    <Button className="w-full rounded-xl bg-indigo-600 text-white hover:bg-indigo-700 transition-colors">
+                      Explore {exam.name} →
                     </Button>
                   </Link>
                 ) : (
                   <Button
                     variant="outline"
-                    className="w-full cursor-not-allowed opacity-50"
+                    className="w-full rounded-xl cursor-not-allowed opacity-50"
                   >
                     Exam Link Not Available
                   </Button>
@@ -85,6 +99,7 @@ export default async function HomePage() {
             </Card>
           ))}
         </div>
+
       </section>
 
       {/* Popular Topics & Chapters */}
@@ -99,21 +114,28 @@ export default async function HomePage() {
             return (
               <Card
                 key={topic._id}
-                className="rounded-2xl shadow-md hover:shadow-lg transition-shadow p-4"
+                className="rounded-2xl border border-indigo-100 shadow-md hover:shadow-xl hover:scale-[1.03] transition-all duration-300 bg-gradient-to-b from-indigo-50 to-white"
               >
-                <CardHeader className="flex justify-between items-center">
-                  <CardTitle className="text-lg font-semibold text-indigo-700">
+                <CardHeader className="flex justify-between items-start">
+                  <CardTitle className="text-xl font-bold text-indigo-800 leading-snug">
                     {topic.name}
                   </CardTitle>
-                  <span className="text-xs text-gray-500">
-                    👁 {topic.views ?? 0} Views
+                  <span className="flex items-center gap-1 text-xs font-medium text-gray-600 bg-gray-100 px-2 py-1 rounded-full">
+                    👁 {topic.views ?? 0}
                   </span>
                 </CardHeader>
 
-                <CardContent className="mt-4">
-                  <Link href={topicLink}>
-                    <Button variant="ghost" className="w-full">
-                      View Topic →
+                <CardContent className="mt-6 flex flex-col items-center gap-4">
+                  <div className="w-16 h-16 rounded-full bg-indigo-100 flex items-center justify-center text-indigo-700 text-2xl font-bold shadow-inner">
+                    {topic.name.charAt(0)}
+                  </div>
+
+                  <Link href={topicLink} className="w-full">
+                    <Button
+                      variant="default"
+                      className="w-full rounded-xl bg-indigo-600 text-white hover:bg-indigo-700 transition-colors"
+                    >
+                      Explore Topic →
                     </Button>
                   </Link>
                 </CardContent>
