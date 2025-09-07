@@ -9,45 +9,16 @@ import { Button } from "@/components/ui/button";
 import { FileText, GraduationCap } from "lucide-react";
 import Link from "next/link";
 
-// Function to render description nodes
-function renderDescription(node: any, depth = 0): React.ReactNode {
-  if (typeof node === "string") {
-    return (
-      <div key={Math.random()} className={`pl-${depth * 4} py-1`}>
-        {node}
-      </div>
-    );
-  }
-
-  return (
-    <div key={Math.random()} className={`pl-${depth * 4} py-2`}>
-      {node.point && <div className="font-semibold">{node.point}</div>}
-
-      {node.expression && (
-        <div className="bg-gray-100 p-2 rounded-md my-2 font-mono text-sm text-center">
-          {node.expression}
-        </div>
-      )}
-
-      {node.example && (
-        <div className="italic text-sm text-gray-600 my-1">
-          Example: {node.example}
-        </div>
-      )}
-
-      {node.details &&
-        node.details.length > 0 &&
-        node.details.map((child: any, idx: number) => (
-          <React.Fragment key={idx}>{renderDescription(child, depth + 1)}</React.Fragment>
-        ))}
-
-      {node.properties &&
-        node.properties.length > 0 &&
-        node.properties.map((child: any, idx: number) => (
-          <React.Fragment key={idx}>{renderDescription(child, depth + 1)}</React.Fragment>
-        ))}
-    </div>
-  );
+// helper to slugify topic name into url
+function slugify(text: string) {
+  return text
+    .toString()
+    .toLowerCase()
+    .trim()
+    .replace(/\s+/g, "-") // spaces → dashes
+    .replace(/&/g, "-and-") // & → 'and'
+    .replace(/[^\w\-]+/g, "") // remove non-word chars
+    .replace(/\-\-+/g, "-"); // collapse dashes
 }
 
 export default async function HomePage() {
@@ -103,7 +74,10 @@ export default async function HomePage() {
                     </Button>
                   </Link>
                 ) : (
-                  <Button variant="outline" className="w-full cursor-not-allowed opacity-50">
+                  <Button
+                    variant="outline"
+                    className="w-full cursor-not-allowed opacity-50"
+                  >
                     Exam Link Not Available
                   </Button>
                 )}
@@ -121,14 +95,19 @@ export default async function HomePage() {
 
         <div className="grid gap-8 sm:grid-cols-2 md:grid-cols-3">
           {topics.map((topic: any) => {
-            const topicLink = `/topic/${topic._id}`;
+            const topicLink = `/topic/${slugify(topic.name)}`;
             return (
-              <Card key={topic._id} className="rounded-2xl shadow-md hover:shadow-lg transition-shadow p-4">
+              <Card
+                key={topic._id}
+                className="rounded-2xl shadow-md hover:shadow-lg transition-shadow p-4"
+              >
                 <CardHeader className="flex justify-between items-center">
                   <CardTitle className="text-lg font-semibold text-indigo-700">
                     {topic.name}
                   </CardTitle>
-                  <span className="text-xs text-gray-500">👁 {topic.views ?? 0} Views</span>
+                  <span className="text-xs text-gray-500">
+                    👁 {topic.views ?? 0} Views
+                  </span>
                 </CardHeader>
 
                 <CardContent className="mt-4">
@@ -154,7 +133,8 @@ export default async function HomePage() {
             <Card key={paper._id} className="rounded-xl">
               <CardHeader>
                 <CardTitle className="flex items-center gap-2">
-                  <FileText className="h-5 w-5 text-purple-500" /> {paper.exam} {paper.year}
+                  <FileText className="h-5 w-5 text-purple-500" /> {paper.exam}{" "}
+                  {paper.year}
                 </CardTitle>
               </CardHeader>
               <CardContent>
@@ -166,7 +146,10 @@ export default async function HomePage() {
                     </Button>
                   </Link>
                 ) : (
-                  <Button variant="outline" className="mt-4 cursor-not-allowed opacity-50">
+                  <Button
+                    variant="outline"
+                    className="mt-4 cursor-not-allowed opacity-50"
+                  >
                     Paper Link Not Available
                   </Button>
                 )}
