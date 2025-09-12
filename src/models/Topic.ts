@@ -1,5 +1,11 @@
 import mongoose, { Schema, Document, models, model, Types } from "mongoose";
 
+// Table node type
+export interface TableNode {
+  headers: string[];
+  rows: string[][];
+}
+
 // Description node type for nested content
 export interface DescriptionNode {
   point?: string;
@@ -7,12 +13,13 @@ export interface DescriptionNode {
   example?: string;
   details?: DescriptionNode[];
   properties?: DescriptionNode[];
+  tables?: TableNode[]; // ✅ Add tables
 }
 
 // Topic document type (Mongoose Document)
 export interface TopicDoc extends Document {
   _id: Types.ObjectId;
-  title: string;
+  name: string;
   description?: DescriptionNode[];
   exam: string;
   slug: string;
@@ -27,6 +34,16 @@ export type TopicLean = Omit<TopicDoc, keyof Document> & {
   _id: string;
 };
 
+// Mongoose Schema for TableNode
+const TableNodeSchema = new Schema<TableNode>(
+  {
+    headers: { type: [String], required: true },
+    rows: { type: [[String]], required: true },
+  },
+  { _id: false }
+);
+
+// Mongoose Schema for DescriptionNode
 const DescriptionNodeSchema = new Schema<DescriptionNode>(
   {
     point: { type: String },
@@ -34,13 +51,15 @@ const DescriptionNodeSchema = new Schema<DescriptionNode>(
     example: { type: String },
     details: { type: [Object], default: [] },
     properties: { type: [Object], default: [] },
+    tables: { type: [TableNodeSchema], default: [] }, // ✅ Add tables
   },
   { _id: false }
 );
 
+// Mongoose Schema for Topic
 const TopicSchema = new Schema<TopicDoc>(
   {
-    title: { type: String, required: true },
+    name: { type: String, required: true },
     description: { type: [DescriptionNodeSchema], default: [] },
     exam: { type: String, required: true },
     slug: { type: String, required: true, unique: true },
@@ -50,5 +69,6 @@ const TopicSchema = new Schema<TopicDoc>(
   { timestamps: true }
 );
 
+// Export model
 const Topic = models.Topic || model<TopicDoc>("Topic", TopicSchema);
 export default Topic;
