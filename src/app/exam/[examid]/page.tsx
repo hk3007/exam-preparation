@@ -1,7 +1,9 @@
 import ExamPage from "@/components/ExamPage";
 
+export const dynamic = "force-dynamic"; // ✅ Force dynamic rendering
+
 export async function generateStaticParams() {
-  return []; // dynamic rendering
+  return []; // ✅ No static paths
 }
 
 export default async function ExamRoute({
@@ -9,7 +11,6 @@ export default async function ExamRoute({
 }: {
   params: Promise<{ examid: string }>;
 }) {
-  const { examid } = await params; // ✅ await the params object
-
+  const { examid } = await params;
   return <ExamPage examId={examid} />;
 }
