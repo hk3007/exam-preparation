@@ -1,4 +1,4 @@
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 import { connectDB } from "@/lib/mongodb";
 import Chapter from "@/models/Chapter";
 import Subject from "@/models/Subject";
@@ -17,26 +17,26 @@ interface SubjectQuery {
 }
 
 export async function GET(
-  req: Request,
-  { params }: { params: { examid: string; subject: string } }
+  req: NextRequest,
+  context: { params: Promise<{ examId: string; subject: string }> }
 ) {
   try {
     await connectDB();
 
-    const { examid, subject } = params;
+    const { examId, subject } = await context.params;
 
     // --- 1. Find Exam (by ID if valid, else by name)
     const examQuery: ExamQuery = {};
-    if (mongoose.Types.ObjectId.isValid(examid)) {
-      examQuery._id = examid;
+    if (mongoose.Types.ObjectId.isValid(examId)) {
+      examQuery._id = examId;
     } else {
-      examQuery.name = examid;
+      examQuery.name = examId;
     }
 
     const exam = await Exam.findOne(examQuery).lean<{ _id: mongoose.Types.ObjectId; name: string }>();
     if (!exam) {
       return NextResponse.json(
-        { success: false, message: `Exam &quot;${examid}&quot; not found` },
+        { success: false, message: `Exam "${examId}" not found` },
         { status: 404 }
       );
     }
@@ -52,7 +52,7 @@ export async function GET(
     const subjectDoc = await Subject.findOne(subjectQuery).lean<{ _id: mongoose.Types.ObjectId; name: string }>();
     if (!subjectDoc) {
       return NextResponse.json(
-        { success: false, message: `Subject &quot;${subject}&quot; not found for exam &quot;${exam.name}&quot;` },
+        { success: false, message: `Subject "${subject}" not found for exam "${exam.name}"` },
         { status: 404 }
       );
     }

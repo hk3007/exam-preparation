@@ -1,5 +1,22 @@
+// ./src/app/exam/[examid]/[subject]/previous-year/page.tsx
+
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 
+// Define a type for a single question
+interface Question {
+  question: string;
+  options: string[];
+  answer: string;
+}
+
+// Define a type for a previous year paper
+interface PreviousYearPaper {
+  _id: string;
+  year: number;
+  questions: Question[];
+}
+
+// Fetch previous year questions from API
 async function getPreviousYearQuestions(examid: string, subject: string) {
   const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || "http://localhost:3000";
   const res = await fetch(`${baseUrl}/api/previousyears/${examid}/${subject}`, {
@@ -10,19 +27,20 @@ async function getPreviousYearQuestions(examid: string, subject: string) {
   return res.json();
 }
 
+// Server Component
 export default async function PreviousYearPage({
   params,
 }: {
   params: Promise<{ examid: string; subject: string }>;
 }) {
-  // Await params before destructuring
   const { examid, subject } = await params;
 
-  let data: any[] = [];
+  let data: PreviousYearPaper[] = [];
+
   try {
     const res = await getPreviousYearQuestions(examid, subject);
     data = res.data || [];
-  } catch (err) {
+  } catch {
     return (
       <div className="flex items-center justify-center h-screen">
         <p className="text-red-600 text-lg font-semibold text-center">
@@ -38,20 +56,26 @@ export default async function PreviousYearPage({
         Previous Year Questions
       </h1>
 
-      {data.length === 0 && <p className="text-center">No questions found.</p>}
+      {data.length === 0 && (
+        <p className="text-center text-gray-600">No questions found.</p>
+      )}
 
-      {data.map((paper: any) => (
+      {data.map((paper) => (
         <Card key={paper._id} className="mb-6 shadow-lg">
           <CardHeader>
             <CardTitle>{paper.year} Question Paper</CardTitle>
           </CardHeader>
           <CardContent>
-            {paper.questions.map((q: any, idx: number) => (
+            {paper.questions.map((q, idx) => (
               <div key={idx} className="mb-4">
-                <p className="font-medium">{idx + 1}. {q.question}</p>
+                <p className="font-medium">
+                  {idx + 1}. {q.question}
+                </p>
                 <div className="pl-4 mt-2">
-                  {q.options.map((opt: string, i: number) => (
-                    <p key={i} className="text-gray-700">• {opt}</p>
+                  {q.options.map((opt, i) => (
+                    <p key={i} className="text-gray-700">
+                      • {opt}
+                    </p>
                   ))}
                   <p className="mt-1 text-green-600">
                     Correct Answer: {q.answer}

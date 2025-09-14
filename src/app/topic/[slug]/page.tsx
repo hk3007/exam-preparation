@@ -42,8 +42,8 @@ function renderDescription(node: DescriptionNode, depth = 0): React.ReactNode {
       {node.expression && (
         <div
           className="bg-gradient-to-r from-pink-100 via-purple-100 to-indigo-100 
-                        p-4 rounded-xl my-4 font-mono text-sm md:text-base 
-                        text-slate-900 border border-slate-300 shadow-inner whitespace-pre-line"
+						p-4 rounded-xl my-4 font-mono text-sm md:text-base 
+						text-slate-900 border border-slate-300 shadow-inner whitespace-pre-line"
         >
           <Hash className="inline-block w-4 h-4 mr-2 text-indigo-600" />
           {node.expression}
@@ -54,7 +54,7 @@ function renderDescription(node: DescriptionNode, depth = 0): React.ReactNode {
       {node.example && (
         <div
           className="flex items-start gap-3 bg-yellow-50 border border-yellow-200 
-                        rounded-xl p-4 my-4 shadow-sm"
+						rounded-xl p-4 my-4 shadow-sm"
         >
           <Lightbulb className="h-5 w-5 mt-1 flex-shrink-0 text-yellow-600" />
           <p className="text-gray-800 text-sm md:text-base leading-relaxed whitespace-pre-line">
@@ -125,7 +125,7 @@ export default async function TopicPage({
     return (
       <div className="flex items-center justify-center min-h-screen bg-gradient-to-br from-red-50 to-red-100">
         <p className="text-red-700 text-lg font-semibold text-center bg-red-50 px-8 py-4 rounded-xl shadow-lg border border-red-200">
-          ❌ Topic "{slug}" not found.
+          ❌ Topic &quot;{slug}&quot; not found.
         </p>
       </div>
     );

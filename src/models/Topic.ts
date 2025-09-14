@@ -1,4 +1,4 @@
-import mongoose, { Schema, Document, models, model, Types } from "mongoose";
+import mongoose, { Schema, Document, model, Types } from "mongoose";
 
 // Table node type
 export interface TableNode {
@@ -70,5 +70,5 @@ const TopicSchema = new Schema<TopicDoc>(
 );
 
 // Export model
-const Topic = models.Topic || model<TopicDoc>("Topic", TopicSchema);
+const Topic = (mongoose.models && mongoose.models.Topic) || model<TopicDoc>("Topic", TopicSchema);
 export default Topic;

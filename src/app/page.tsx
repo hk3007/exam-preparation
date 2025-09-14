@@ -1,4 +1,3 @@
-import React from "react";
 import { connectDB } from "@/lib/mongodb";
 import Exam from "@/models/Exam";
 import Topic from "@/models/Topic";
@@ -9,7 +8,28 @@ import { Button } from "@/components/ui/button";
 import { FileText, GraduationCap } from "lucide-react";
 import Link from "next/link";
 
-// helper to slugify topic name into url
+// Define interfaces for the data models (plain objects, not Mongoose Documents)
+interface ExamType {
+  _id: string;
+  name: string;
+  subjects: string[];
+}
+
+interface TopicType {
+  _id: string;
+  name: string;
+  views: number;
+}
+
+interface PaperType {
+  _id: string;
+  exam: string;
+  year: number;
+  description: string;
+  link: string;
+}
+
+// Helper to slugify topic name into URL
 function slugify(text: string) {
   return text
     .toString()
@@ -24,9 +44,9 @@ function slugify(text: string) {
 export default async function HomePage() {
   await connectDB();
 
-  const exams = await Exam.find().lean();
-  const topics = await Topic.find().limit(3).lean();
-  const papers = await Paper.find().limit(2).lean();
+  const exams = await Exam.find().lean<ExamType[]>();
+  const topics = await Topic.find().limit(3).lean<TopicType[]>();
+  const papers = await Paper.find().limit(2).lean<PaperType[]>();
 
   return (
     <div className="space-y-20">
@@ -55,7 +75,7 @@ export default async function HomePage() {
           Browse by Exam
         </h2>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mx-5">
-          {exams.map((exam: any) => (
+          {exams.map((exam) => (
             <Card
               key={exam._id}
               className="rounded-2xl border border-indigo-100 shadow-md hover:shadow-xl hover:scale-[1.03] transition-all duration-300 bg-gradient-to-b from-indigo-50 to-white flex flex-col justify-between"
@@ -71,9 +91,9 @@ export default async function HomePage() {
 
               <CardContent className="flex flex-col items-center gap-4">
                 <div className="flex flex-wrap gap-2 justify-center">
-                  {exam.subjects?.map((sub: string, idx: number) => (
+                  {exam.subjects?.map((sub, _) => (
                     <span
-                      key={idx}
+                      key={crypto.randomUUID()}
                       className="px-3 py-1 text-xs font-medium text-indigo-700 bg-indigo-100 rounded-full"
                     >
                       {sub}
@@ -99,7 +119,6 @@ export default async function HomePage() {
             </Card>
           ))}
         </div>
-
       </section>
 
       {/* Popular Topics & Chapters */}
@@ -109,7 +128,7 @@ export default async function HomePage() {
         </h2>
 
         <div className="grid gap-8 sm:grid-cols-2 md:grid-cols-3">
-          {topics.map((topic: any) => {
+          {topics.map((topic) => {
             const topicLink = `/topic/${slugify(topic.name)}`;
             return (
               <Card
@@ -151,7 +170,7 @@ export default async function HomePage() {
           Previous Year Questions
         </h2>
         <div className="grid md:grid-cols-2 gap-8">
-          {papers.map((paper: any) => (
+          {papers.map((paper) => (
             <Card key={paper._id} className="rounded-xl">
               <CardHeader>
                 <CardTitle className="flex items-center gap-2">
@@ -182,8 +201,10 @@ export default async function HomePage() {
       </section>
 
       {/* Footer */}
-      <section className="text-center py-16 rounded-2xl shadow-md container mx-auto px-6">
-        footer
+      <section className="text-center py-16 bg-gray-100 rounded-t-3xl shadow-inner">
+        <p className="text-gray-600">
+          © {new Date().getFullYear()} ExamPrep. All rights reserved.
+        </p>
       </section>
     </div>
   );

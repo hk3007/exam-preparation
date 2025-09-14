@@ -97,9 +97,9 @@ export default async function ChaptersPage({
 
       {/* Chapters grid */}
       <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
-        {chapters.map((chapter, _) => (
+        {chapters.map((chapter, index) => (
           <div
-            key={crypto.randomUUID()}
+            key={index}
             className="group p-6 rounded-2xl bg-gradient-to-br from-indigo-50 via-white to-purple-50 shadow-md hover:shadow-xl transition-all duration-300 border border-gray-100"
           >
             {/* Chapter Title */}

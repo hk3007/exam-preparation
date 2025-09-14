@@ -1,36 +1,17 @@
 import { NextResponse } from "next/server";
 import { connectDB } from "@/lib/mongodb";
-import Topic from "@/models/Topic";
+import Topic, { TopicDoc, DescriptionNode } from "@/models/Topic";
 import { Types } from "mongoose";
 
-interface TopicDoc {
-  _id: Types.ObjectId;
-  title: string;
-  description?: any; // ✅ can be string, array, or object
-  exam: string;
-  slug: string;
-  link: string;
-  views: number;
-}
-
-export type DescriptionNode =
-  | string
-  | {
-      point?: string;
-      expression?: string;
-      example?: string;
-      properties?: DescriptionNode[];
-      details?: DescriptionNode[];
-      [key: string]: any;
-    };
-
+// The TopicType interface is not strictly necessary if you use TopicDoc from the model,
+// but it's good for clarity on what you're returning.
 export interface TopicType {
   id: string;
   name: string;
-  description?: DescriptionNode[]; // ✅ structured description
+  description?: DescriptionNode[];
   exam: string;
   views: number;
-  link: string;
+  link?: string;
 }
 
 export async function GET(
@@ -66,7 +47,7 @@ export async function GET(
 
     return NextResponse.json({
       id: topicDoc._id.toString(),
-      name: topicDoc.title,
+      name: topicDoc.name, // Corrected to use 'name' to match the schema
       description: topicDoc.description,
       exam: topicDoc.exam,
       views: topicDoc.views ?? 0,

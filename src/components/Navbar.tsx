@@ -3,14 +3,8 @@
 import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Menu, Shield, ChevronDown, ChevronRight, X } from "lucide-react";
+import { Shield, ChevronDown, ChevronRight} from "lucide-react";
 import { Button } from "@/components/ui/button";
-import {
-  Sheet,
-  SheetContent,
-  SheetTrigger,
-  SheetClose,
-} from "@/components/ui/sheet";
 import { ThemeToggle } from "@/components/theme-toggle";
 
 interface Exam {
