@@ -8,7 +8,7 @@ import { Button } from "@/components/ui/button";
 import { FileText, GraduationCap } from "lucide-react";
 import Link from "next/link";
 
-// Define interfaces for the data models (plain objects, not Mongoose Documents)
+// Define interfaces for the data models
 interface ExamType {
   _id: string;
   name: string;
@@ -35,10 +35,10 @@ function slugify(text: string) {
     .toString()
     .toLowerCase()
     .trim()
-    .replace(/\s+/g, "-") // spaces → dashes
-    .replace(/&/g, "-and-") // & → 'and'
-    .replace(/[^\w\-]+/g, "") // remove non-word chars
-    .replace(/\-\-+/g, "-"); // collapse dashes
+    .replace(/\s+/g, "-")
+    .replace(/&/g, "-and-")
+    .replace(/[^\w\-]+/g, "")
+    .replace(/\-\-+/g, "-");
 }
 
 export default async function HomePage() {
@@ -91,9 +91,9 @@ export default async function HomePage() {
 
               <CardContent className="flex flex-col items-center gap-4">
                 <div className="flex flex-wrap gap-2 justify-center">
-                  {exam.subjects?.map((sub, _) => (
+                  {exam.subjects?.map((sub, index) => (
                     <span
-                      key={crypto.randomUUID()}
+                      key={`${exam._id}-${index}`}
                       className="px-3 py-1 text-xs font-medium text-indigo-700 bg-indigo-100 rounded-full"
                     >
                       {sub}

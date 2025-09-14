@@ -1,12 +1,13 @@
+// src/components/NewsFeed.tsx
 "use client";
 
-interface Article {
+export interface Article {
   title: string;
   date: string;
   link: string;
 }
 
-interface NewsItem {
+export interface NewsItem {
   exam: string;
   articles: Article[];
 }

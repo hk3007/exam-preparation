@@ -1,3 +1,6 @@
+// 👇 This tells Next.js to render the page dynamically
+export const dynamic = "force-dynamic";
+
 // Define interfaces for a more robust, type-safe approach
 interface Article {
   id: string;
@@ -18,11 +21,10 @@ interface ApiResponse {
 }
 
 export default async function NewsPage() {
-  // Get absolute URL dynamically
-  const baseUrl =
-    process.env.NEXT_PUBLIC_BASE_URL || "http://localhost:3000";
+  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || "http://localhost:3000";
 
   let data: ApiResponse;
+
   try {
     const res = await fetch(`${baseUrl}/api/news`, { cache: "no-store" });
     if (!res.ok) {
@@ -89,6 +91,7 @@ export default async function NewsPage() {
                       href={article.link}
                       className="text-blue-500 hover:underline"
                       target="_blank"
+                      rel="noopener noreferrer"
                     >
                       Read More
                     </a>

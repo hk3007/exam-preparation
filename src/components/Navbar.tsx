@@ -3,7 +3,7 @@
 import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Shield, ChevronDown, ChevronRight} from "lucide-react";
+import { Shield, ChevronDown, ChevronRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { ThemeToggle } from "@/components/theme-toggle";
 
@@ -26,42 +26,57 @@ interface PaginatedSubjects {
 
 export function Navbar() {
   const pathname = usePathname();
-  const [isOpen, setIsOpen] = useState(false);
   const [exams, setExams] = useState<Exam[]>([]);
-  const [subjectsMap, setSubjectsMap] = useState<
-    Record<string, PaginatedSubjects>
-  >({});
+  const [subjectsMap, setSubjectsMap] = useState<Record<string, PaginatedSubjects>>({});
   const [openExam, setOpenExam] = useState<string | null>(null);
   const [openSubject, setOpenSubject] = useState<string | null>(null);
 
   const hoverTimeoutRef = useRef<NodeJS.Timeout | null>(null);
-  const limit = 10; // subjects per page
+  const debounceRef = useRef<NodeJS.Timeout | null>(null);
+  const isMountedRef = useRef(true);
+  const limit = 10;
 
-  // ✅ Fetch exams on mount
   useEffect(() => {
+    isMountedRef.current = true;
     async function fetchExams() {
-      const res = await fetch("/api/exams");
-      const data = await res.json();
-      setExams(data);
+      try {
+        const res = await fetch("/api/exams");
+        const data = await res.json();
+        if (isMountedRef.current) setExams(data);
+      } catch (error) {
+        console.error("Failed to fetch exams:", error);
+      }
     }
     fetchExams();
+    return () => {
+      isMountedRef.current = false;
+    };
   }, []);
 
-  // ✅ Fetch subjects (with pagination)
   const fetchSubjects = async (examId: string, page = 1) => {
-    const res = await fetch(
-      `/api/exams/${examId}/subjects?page=${page}&limit=${limit}&sort=asc`
-    );
-    const data = await res.json();
-    setSubjectsMap((prev) => ({ ...prev, [examId]: data }));
+    try {
+      const res = await fetch(
+        `/api/exams/${examId}/subjects?page=${page}&limit=${limit}&sort=asc`
+      );
+      const data = await res.json();
+      if (isMountedRef.current) {
+        setSubjectsMap((prev) => ({ ...prev, [examId]: data }));
+      }
+    } catch (error) {
+      console.error("Failed to fetch subjects:", error);
+    }
   };
 
   const handleMouseEnterExam = (examId: string) => {
     if (hoverTimeoutRef.current) clearTimeout(hoverTimeoutRef.current);
-    setOpenExam(examId);
-    if (!subjectsMap[examId]) {
-      fetchSubjects(examId, 1); // load first page on hover
-    }
+    if (debounceRef.current) clearTimeout(debounceRef.current);
+
+    debounceRef.current = setTimeout(() => {
+      setOpenExam(examId);
+      if (!subjectsMap[examId]) {
+        fetchSubjects(examId, 1);
+      }
+    }, 100);
   };
 
   const handleMouseLeaveExam = () => {
@@ -174,9 +189,7 @@ export function Navbar() {
                       <div className="flex justify-between items-center px-3 py-2 border-t text-sm">
                         <button
                           disabled={subjectsData.page === 1}
-                          onClick={() =>
-                            fetchSubjects(exam._id, subjectsData.page - 1)
-                          }
+                          onClick={() => fetchSubjects(exam._id, subjectsData.page - 1)}
                           className="px-2 py-1 rounded bg-gray-200 disabled:opacity-50"
                         >
                           ⬅ Prev
@@ -186,9 +199,7 @@ export function Navbar() {
                         </span>
                         <button
                           disabled={subjectsData.page === subjectsData.totalPages}
-                          onClick={() =>
-                            fetchSubjects(exam._id, subjectsData.page + 1)
-                          }
+                          onClick={() => fetchSubjects(exam._id, subjectsData.page + 1)}
                           className="px-2 py-1 rounded bg-gray-200 disabled:opacity-50"
                         >
                           Next ➡
