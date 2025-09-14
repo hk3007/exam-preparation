@@ -5,6 +5,17 @@ import Subject from "@/models/Subject";
 import Exam from "@/models/Exam";
 import mongoose from "mongoose";
 
+interface ExamQuery {
+  _id?: string;
+  name?: string;
+}
+
+interface SubjectQuery {
+  examIds: mongoose.Types.ObjectId;
+  _id?: string;
+  name?: string;
+}
+
 export async function GET(
   req: Request,
   { params }: { params: { examid: string; subject: string } }
@@ -15,7 +26,7 @@ export async function GET(
     const { examid, subject } = params;
 
     // --- 1. Find Exam (by ID if valid, else by name)
-    let examQuery: any = {};
+    const examQuery: ExamQuery = {};
     if (mongoose.Types.ObjectId.isValid(examid)) {
       examQuery._id = examid;
     } else {
@@ -25,13 +36,13 @@ export async function GET(
     const exam = await Exam.findOne(examQuery).lean<{ _id: mongoose.Types.ObjectId; name: string }>();
     if (!exam) {
       return NextResponse.json(
-        { success: false, message: `Exam "${examid}" not found` },
+        { success: false, message: `Exam &quot;${examid}&quot; not found` },
         { status: 404 }
       );
     }
 
     // --- 2. Find Subject (by ID if valid, else by name) + examId reference
-    let subjectQuery: any = { examIds: exam._id };
+    const subjectQuery: SubjectQuery = { examIds: exam._id };
     if (mongoose.Types.ObjectId.isValid(subject)) {
       subjectQuery._id = subject;
     } else {
@@ -41,7 +52,7 @@ export async function GET(
     const subjectDoc = await Subject.findOne(subjectQuery).lean<{ _id: mongoose.Types.ObjectId; name: string }>();
     if (!subjectDoc) {
       return NextResponse.json(
-        { success: false, message: `Subject "${subject}" not found for exam "${exam.name}"` },
+        { success: false, message: `Subject &quot;${subject}&quot; not found for exam &quot;${exam.name}&quot;` },
         { status: 404 }
       );
     }

@@ -17,6 +17,17 @@ interface ExamType {
   name: string;
 }
 
+interface ExamQuery {
+  _id?: string;
+  name?: string;
+}
+
+interface SubjectQuery {
+  examIds: Types.ObjectId;
+  _id?: string;
+  name?: string;
+}
+
 export default async function ChaptersPage({
   params,
 }: {
@@ -27,7 +38,7 @@ export default async function ChaptersPage({
   await connectDB();
 
   // --- Find exam
-  const examQuery = mongoose.Types.ObjectId.isValid(examid)
+  const examQuery: ExamQuery = mongoose.Types.ObjectId.isValid(examid)
     ? { _id: examid }
     : { name: examid };
 
@@ -36,14 +47,14 @@ export default async function ChaptersPage({
     return (
       <div className="flex items-center justify-center h-screen">
         <p className="text-red-600 text-lg font-semibold">
-          ❌ Exam "{examid}" not found.
+          ❌ Exam &quot;{examid}&quot; not found.
         </p>
       </div>
     );
   }
 
   // --- Find subject
-  const subjectQuery = mongoose.Types.ObjectId.isValid(subject)
+  const subjectQuery: SubjectQuery = mongoose.Types.ObjectId.isValid(subject)
     ? { _id: subject, examIds: exam._id }
     : { name: subject, examIds: exam._id };
 
@@ -52,7 +63,7 @@ export default async function ChaptersPage({
     return (
       <div className="flex items-center justify-center h-screen">
         <p className="text-red-600 text-lg font-semibold">
-          ❌ Subject "{subject}" not found for exam "{exam.name}".
+          ❌ Subject &quot;{subject}&quot; not found for exam &quot;{exam.name}&quot;.
         </p>
       </div>
     );
@@ -86,9 +97,9 @@ export default async function ChaptersPage({
 
       {/* Chapters grid */}
       <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
-        {chapters.map((chapter, idx) => (
+        {chapters.map((chapter, _) => (
           <div
-            key={chapter._id.toString()}
+            key={crypto.randomUUID()}
             className="group p-6 rounded-2xl bg-gradient-to-br from-indigo-50 via-white to-purple-50 shadow-md hover:shadow-xl transition-all duration-300 border border-gray-100"
           >
             {/* Chapter Title */}

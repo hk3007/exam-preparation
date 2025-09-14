@@ -64,7 +64,7 @@ export default function ExamPage({ examId }: { examId: string }) {
     icon: Icon,
     title,
   }: {
-    icon: any;
+    icon: React.ComponentType<{ className?: string }>;
     title: string;
   }) => (
     <h2 className="text-2xl font-bold text-gray-900 mb-6 flex items-center gap-3">
