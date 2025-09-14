@@ -1,17 +1,17 @@
 import ExamPage from "@/components/ExamPage";
 
 export async function generateStaticParams() {
-  // leave empty, we’ll fetch dynamically at runtime
+  // Optional: leave empty to fetch dynamically at runtime
   return [];
 }
 
-export default async function ExamRoute({
+export default function ExamRoute({
   params,
 }: {
-  params: Promise<{ examid: string }>;
+  params: { examid: string };
 }) {
-  const { examid } = await params;
+  const { examid } = params;
 
-  // ✅ pass MongoDB examId directly
+  // ✅ Pass MongoDB examId directly to the component
   return <ExamPage examId={examid} />;
 }
