@@ -1,0 +1,45 @@
+{
+  "type": "Compass Connections",
+  "version": {
+    "$numberInt": "1"
+  },
+  "connections": [
+    {
+      "id": "041ddb37-057c-4a79-8918-c25ab095d0ec",
+      "lastUsed": {
+        "$date": {
+          "$numberLong": "1757855620849"
+        }
+      },
+      "favorite": {
+        "name": "krutiharshil"
+      },
+      "savedConnectionType": "recent",
+      "connectionOptions": {
+        "connectionString": "mongodb+srv://krutiharshil:Ilg%402003@exam.lhb2fds.mongodb.net/",
+        "oidc": {
+          "serializedState": "eyJvaWRjUGx1Z2luU3RhdGVWZXJzaW9uIjoxLCJzdGF0ZSI6W119"
+        }
+      }
+    },
+    {
+      "id": "0d33ce5f-2f9a-4749-ac63-ef2c49f4b9b0",
+      "lastUsed": {
+        "$date": {
+          "$numberLong": "1757855513104"
+        }
+      },
+      "favorite": {
+        "name": "exam-preparation",
+        "color": "no-color"
+      },
+      "savedConnectionType": "recent",
+      "connectionOptions": {
+        "connectionString": "mongodb://127.0.0.1:27017/",
+        "oidc": {
+          "serializedState": "eyJvaWRjUGx1Z2luU3RhdGVWZXJzaW9uIjoxLCJzdGF0ZSI6W119"
+        }
+      }
+    }
+  ]
+}

@@ -92,25 +92,138 @@
   },
   "name": "JEE",
   "upcomingDate": "2025-04-15",
-  "description": "Joint Entrance Examination (JEE) is an engineering entrance assessment for admission to various engineering colleges in India.",
+  "description": "Joint Entrance Examination (JEE) is a national-level engineering entrance assessment conducted for admission into IITs, NITs, IIITs, and other prestigious institutes. It is one of the toughest exams globally, conducted in two phases – JEE Main and JEE Advanced. More than 12 lakh candidates appear every year for around 11,000 seats in 23 IITs.",
   "subjects": [
     "Physics",
     "Chemistry",
     "Mathematics"
   ],
-  "questionPaperPattern": "The exam is objective-based with negative marking."
+  "questionPaperPattern": "The exam is objective-based (MCQs and numerical questions) with negative marking. JEE Main is computer-based (online), while JEE Advanced is held in a combination of formats as decided by IITs.",
+  "eligibility": {
+    "nationality": "Indian citizens (or eligible foreign candidates as per guidelines)",
+    "age": {
+      "min": 17,
+      "max": 25,
+      "relaxations": "Reserved categories (SC/ST/OBC-NCL, PwD) have age relaxations as per rules"
+    },
+    "education": "Candidates must have passed Class 12 (10+2) or equivalent with Physics, Chemistry, and Mathematics.",
+    "attemptLimit": {
+      "jeeMain": "3 consecutive years",
+      "jeeAdvanced": "2 consecutive years"
+    }
+  },
+  "examDates": {
+    "notificationDate": "2024-11-01",
+    "applicationStart": "2024-11-01",
+    "applicationEnd": "2024-12-01",
+    "jeeMain": "2025-01-24",
+    "jeeAdvanced": "2025-04-15",
+    "admitCard": null,
+    "result": null
+  },
+  "examOverview": {
+    "conductingBody": "National Testing Agency (JEE Main), IITs (JEE Advanced)",
+    "officialWebsite": [
+      "https://jeemain.nta.ac.in",
+      "https://jeeadv.ac.in"
+    ],
+    "vacancies": "Around 11,000 seats in 23 IITs, along with NITs, IIITs, and GFTIs",
+    "examLevel": "National",
+    "examMode": "Computer-Based Test (CBT)",
+    "applicationFee": "Varies by category and gender (₹650 for General Male candidates, reduced for females and reserved categories)",
+    "languages": [
+      "English",
+      "Hindi",
+      "Regional Languages (as notified)"
+    ],
+    "numberOfPapers": {
+      "jeeMain": 2,
+      "jeeAdvanced": 2
+    },
+    "stages": [
+      "JEE Main",
+      "JEE Advanced",
+      "Counselling (JoSAA)"
+    ]
+  },
+  "posts": [
+    "Admission to IITs (23 Institutes)",
+    "Admission to NITs",
+    "Admission to IIITs",
+    "Admission to GFTIs",
+    "Engineering seats in other top institutes through JEE Main rank"
+  ]
 },
 {
   "_id": {
     "$oid": "68b34e96b630dfb5f590299c"
   },
   "name": "NEET",
-  "upcomingDate": "2025-05-10",
-  "description": "NEET is a medical entrance exam for admission to MBBS, BDS, and other courses in India.",
+  "upcomingDate": "2025-05-04",
+  "description": "The National Eligibility cum Entrance Test (NEET) is the sole medical entrance exam in India for admission to MBBS, BDS, BAMS, BHMS, BSMS, BUMS, BVSc & AH, and other undergraduate medical courses in government and private institutions. It is one of the largest exams in the world, with more than 20 lakh candidates appearing every year.",
   "subjects": [
     "Physics",
     "Chemistry",
     "Biology"
   ],
-  "questionPaperPattern": "The exam is objective-based with 180 questions from PCB."
+  "questionPaperPattern": "The exam consists of 200 objective-type questions (MCQs), of which 180 need to be attempted. Each correct answer carries 4 marks, and 1 mark is deducted for every wrong answer.",
+  "eligibility": {
+    "nationality": "Indian citizens, OCI, NRI, and foreign nationals (as per official guidelines)",
+    "age": {
+      "min": 17,
+      "max": 25,
+      "relaxations": "Reserved categories (SC/ST/OBC-NCL, PwD) have age relaxations as per rules"
+    },
+    "education": "Candidates must have passed Class 12 (10+2) or equivalent with Physics, Chemistry, Biology/Biotechnology, and English as core subjects.",
+    "attemptLimit": "No limit on the number of attempts (as per latest guidelines)"
+  },
+  "examDates": {
+    "notificationDate": "2025-01-01",
+    "applicationStart": "2025-01-01",
+    "applicationEnd": "2025-02-15",
+    "examDate": "2025-05-04",
+    "admitCard": null,
+    "result": null,
+    "counselling": null
+  },
+  "examOverview": {
+    "conductingBody": "National Testing Agency (NTA)",
+    "officialWebsite": [
+      "https://neet.nta.nic.in",
+      "https://nta.ac.in"
+    ],
+    "vacancies": "Approx. 1,00,000+ seats across MBBS, BDS, AYUSH, and Veterinary courses",
+    "examLevel": "National",
+    "examMode": "Offline (Pen-and-Paper based)",
+    "applicationFee": "₹1700 (General), ₹1600 (EWS/OBC), ₹1000 (SC/ST/PwD), additional charges may apply",
+    "languages": [
+      "English",
+      "Hindi",
+      "Assamese",
+      "Bengali",
+      "Gujarati",
+      "Kannada",
+      "Marathi",
+      "Odia",
+      "Punjabi",
+      "Tamil",
+      "Telugu",
+      "Urdu"
+    ],
+    "numberOfPapers": {
+      "singlePaper": 1
+    },
+    "stages": [
+      "NEET Exam",
+      "Result Declaration",
+      "Counselling (AIQ + State Quota)"
+    ]
+  },
+  "posts": [
+    "MBBS Admission",
+    "BDS Admission",
+    "AYUSH Courses (BAMS, BHMS, BSMS, BUMS)",
+    "BVSc & AH",
+    "Nursing and Allied Health Sciences (selected institutes)"
+  ]
 }]

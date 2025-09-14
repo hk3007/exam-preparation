@@ -41,8 +41,12 @@ export function Navbar() {
     async function fetchExams() {
       try {
         const res = await fetch("/api/exams");
-        const data = await res.json();
-        if (isMountedRef.current) setExams(data);
+        if (!res.ok) {
+          console.error("API responded with status:", res.status);
+          return;
+        }
+        const { exams } = await res.json(); // ✅ expects wrapped response
+        if (isMountedRef.current) setExams(exams);
       } catch (error) {
         console.error("Failed to fetch exams:", error);
       }
@@ -58,6 +62,10 @@ export function Navbar() {
       const res = await fetch(
         `/api/exams/${examId}/subjects?page=${page}&limit=${limit}&sort=asc`
       );
+      if (!res.ok) {
+        console.error("Failed to fetch subjects for exam:", examId);
+        return;
+      }
       const data = await res.json();
       if (isMountedRef.current) {
         setSubjectsMap((prev) => ({ ...prev, [examId]: data }));
