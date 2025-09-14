@@ -2,7 +2,9 @@
 import "./globals.css";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
-import Navbar from "@/components/Navbar";
+import { Navbar } from "@/components/Navbar";
+import { ThemeProvider } from "next-themes";
+import { Toaster } from "@/components/ui/sonner";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -17,10 +19,20 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <body className={inter.className}>
-        <Navbar />
-        <main className="min-h-screen">{children}</main>
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="light"
+          enableSystem
+          disableTransitionOnChange
+        >
+          <div className="min-h-screen bg-gradient-to-br from-white via-white to-white dark:from-background dark:via-background dark:to-background/80">
+            <Navbar />
+            <main className="relative pt-16">{children}</main>
+            <Toaster />
+          </div>
+        </ThemeProvider>
       </body>
     </html>
   );

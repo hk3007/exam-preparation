@@ -1,0 +1,601 @@
+[{
+  "_id": {
+    "$oid": "68b470f9420478bcc8abafac"
+  },
+  "name": "Mathematics",
+  "examIds": [
+    {
+      "$oid": "68b34e96b630dfb5f590299b"
+    }
+  ],
+  "createdAt": {
+    "$date": "2025-08-31T15:57:45.342Z"
+  },
+  "updatedAt": {
+    "$date": "2025-08-31T15:57:45.342Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "68b470f9420478bcc8abafad"
+  },
+  "name": "Physics",
+  "examIds": [
+    {
+      "$oid": "68b34e96b630dfb5f590299b"
+    },
+    {
+      "$oid": "68b34e96b630dfb5f590299c"
+    }
+  ],
+  "createdAt": {
+    "$date": "2025-08-31T15:57:45.342Z"
+  },
+  "updatedAt": {
+    "$date": "2025-08-31T16:48:53.062Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "68b470f9420478bcc8abafae"
+  },
+  "name": "Chemistry",
+  "examIds": [
+    {
+      "$oid": "68b34e96b630dfb5f590299b"
+    },
+    {
+      "$oid": "68b34e96b630dfb5f590299c"
+    }
+  ],
+  "createdAt": {
+    "$date": "2025-08-31T15:57:45.342Z"
+  },
+  "updatedAt": {
+    "$date": "2025-08-31T16:48:53.062Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "68b4723a420478bcc8abafaf"
+  },
+  "name": "Latest Current Affairs",
+  "examIds": [
+    {
+      "$oid": "68b34e96b630dfb5f590299a"
+    }
+  ],
+  "createdAt": {
+    "$date": "2025-08-31T16:03:06.484Z"
+  },
+  "updatedAt": {
+    "$date": "2025-08-31T16:03:06.484Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "68b4723a420478bcc8abafb0"
+  },
+  "name": "Static GK",
+  "examIds": [
+    {
+      "$oid": "68b34e96b630dfb5f590299a"
+    }
+  ],
+  "createdAt": {
+    "$date": "2025-08-31T16:03:06.484Z"
+  },
+  "updatedAt": {
+    "$date": "2025-08-31T16:03:06.484Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "68b4723a420478bcc8abafb1"
+  },
+  "name": "History of India and Indian National Movement",
+  "examIds": [
+    {
+      "$oid": "68b34e96b630dfb5f590299a"
+    }
+  ],
+  "createdAt": {
+    "$date": "2025-08-31T16:03:06.484Z"
+  },
+  "updatedAt": {
+    "$date": "2025-08-31T16:03:06.484Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "68b4723a420478bcc8abafb2"
+  },
+  "name": "Indian and World Geography",
+  "examIds": [
+    {
+      "$oid": "68b34e96b630dfb5f590299a"
+    }
+  ],
+  "createdAt": {
+    "$date": "2025-08-31T16:03:06.484Z"
+  },
+  "updatedAt": {
+    "$date": "2025-08-31T16:03:06.484Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "68b4723a420478bcc8abafb3"
+  },
+  "name": "Physical Geography",
+  "examIds": [
+    {
+      "$oid": "68b34e96b630dfb5f590299a"
+    }
+  ],
+  "createdAt": {
+    "$date": "2025-08-31T16:03:06.484Z"
+  },
+  "updatedAt": {
+    "$date": "2025-08-31T16:03:06.484Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "68b4723a420478bcc8abafb4"
+  },
+  "name": "Social Geography",
+  "examIds": [
+    {
+      "$oid": "68b34e96b630dfb5f590299a"
+    }
+  ],
+  "createdAt": {
+    "$date": "2025-08-31T16:03:06.484Z"
+  },
+  "updatedAt": {
+    "$date": "2025-08-31T16:03:06.484Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "68b4723a420478bcc8abafb5"
+  },
+  "name": "Economic Geography",
+  "examIds": [
+    {
+      "$oid": "68b34e96b630dfb5f590299a"
+    }
+  ],
+  "createdAt": {
+    "$date": "2025-08-31T16:03:06.484Z"
+  },
+  "updatedAt": {
+    "$date": "2025-08-31T16:03:06.484Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "68b4723a420478bcc8abafb6"
+  },
+  "name": "Indian Polity and Governance",
+  "examIds": [
+    {
+      "$oid": "68b34e96b630dfb5f590299a"
+    }
+  ],
+  "createdAt": {
+    "$date": "2025-08-31T16:03:06.484Z"
+  },
+  "updatedAt": {
+    "$date": "2025-08-31T16:03:06.484Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "68b4723a420478bcc8abafb7"
+  },
+  "name": "Constitution",
+  "examIds": [
+    {
+      "$oid": "68b34e96b630dfb5f590299a"
+    }
+  ],
+  "createdAt": {
+    "$date": "2025-08-31T16:03:06.484Z"
+  },
+  "updatedAt": {
+    "$date": "2025-08-31T16:03:06.484Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "68b4723a420478bcc8abafb8"
+  },
+  "name": "Public Policy Rights",
+  "examIds": [
+    {
+      "$oid": "68b34e96b630dfb5f590299a"
+    }
+  ],
+  "createdAt": {
+    "$date": "2025-08-31T16:03:06.484Z"
+  },
+  "updatedAt": {
+    "$date": "2025-08-31T16:03:06.484Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "68b4723a420478bcc8abafb9"
+  },
+  "name": "Political System",
+  "examIds": [
+    {
+      "$oid": "68b34e96b630dfb5f590299a"
+    }
+  ],
+  "createdAt": {
+    "$date": "2025-08-31T16:03:06.484Z"
+  },
+  "updatedAt": {
+    "$date": "2025-08-31T16:03:06.484Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "68b4723a420478bcc8abafba"
+  },
+  "name": "Rights Issues",
+  "examIds": [
+    {
+      "$oid": "68b34e96b630dfb5f590299a"
+    }
+  ],
+  "createdAt": {
+    "$date": "2025-08-31T16:03:06.484Z"
+  },
+  "updatedAt": {
+    "$date": "2025-08-31T16:03:06.484Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "68b4723a420478bcc8abafbb"
+  },
+  "name": "Panchayati Raj",
+  "examIds": [
+    {
+      "$oid": "68b34e96b630dfb5f590299a"
+    }
+  ],
+  "createdAt": {
+    "$date": "2025-08-31T16:03:06.484Z"
+  },
+  "updatedAt": {
+    "$date": "2025-08-31T16:03:06.484Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "68b4723a420478bcc8abafbc"
+  },
+  "name": "Economic and Social Development",
+  "examIds": [
+    {
+      "$oid": "68b34e96b630dfb5f590299a"
+    }
+  ],
+  "createdAt": {
+    "$date": "2025-08-31T16:03:06.484Z"
+  },
+  "updatedAt": {
+    "$date": "2025-08-31T16:03:06.484Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "68b4723a420478bcc8abafbd"
+  },
+  "name": "Sustainable Development",
+  "examIds": [
+    {
+      "$oid": "68b34e96b630dfb5f590299a"
+    }
+  ],
+  "createdAt": {
+    "$date": "2025-08-31T16:03:06.484Z"
+  },
+  "updatedAt": {
+    "$date": "2025-08-31T16:03:06.484Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "68b4723a420478bcc8abafbe"
+  },
+  "name": "Poverty",
+  "examIds": [
+    {
+      "$oid": "68b34e96b630dfb5f590299a"
+    }
+  ],
+  "createdAt": {
+    "$date": "2025-08-31T16:03:06.484Z"
+  },
+  "updatedAt": {
+    "$date": "2025-08-31T16:03:06.484Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "68b4723a420478bcc8abafbf"
+  },
+  "name": "Inclusion",
+  "examIds": [
+    {
+      "$oid": "68b34e96b630dfb5f590299a"
+    }
+  ],
+  "createdAt": {
+    "$date": "2025-08-31T16:03:06.484Z"
+  },
+  "updatedAt": {
+    "$date": "2025-08-31T16:03:06.484Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "68b4723a420478bcc8abafc0"
+  },
+  "name": "Demographics",
+  "examIds": [
+    {
+      "$oid": "68b34e96b630dfb5f590299a"
+    }
+  ],
+  "createdAt": {
+    "$date": "2025-08-31T16:03:06.484Z"
+  },
+  "updatedAt": {
+    "$date": "2025-08-31T16:03:06.484Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "68b4723a420478bcc8abafc1"
+  },
+  "name": "Social Sector Initiatives",
+  "examIds": [
+    {
+      "$oid": "68b34e96b630dfb5f590299a"
+    }
+  ],
+  "createdAt": {
+    "$date": "2025-08-31T16:03:06.484Z"
+  },
+  "updatedAt": {
+    "$date": "2025-08-31T16:03:06.484Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "68b4723a420478bcc8abafc2"
+  },
+  "name": "Environment and Ecology",
+  "examIds": [
+    {
+      "$oid": "68b34e96b630dfb5f590299a"
+    }
+  ],
+  "createdAt": {
+    "$date": "2025-08-31T16:03:06.484Z"
+  },
+  "updatedAt": {
+    "$date": "2025-08-31T16:03:06.484Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "68b4723a420478bcc8abafc3"
+  },
+  "name": "Biodiversity",
+  "examIds": [
+    {
+      "$oid": "68b34e96b630dfb5f590299a"
+    }
+  ],
+  "createdAt": {
+    "$date": "2025-08-31T16:03:06.484Z"
+  },
+  "updatedAt": {
+    "$date": "2025-08-31T16:03:06.484Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "68b4723a420478bcc8abafc4"
+  },
+  "name": "Climate Change",
+  "examIds": [
+    {
+      "$oid": "68b34e96b630dfb5f590299a"
+    }
+  ],
+  "createdAt": {
+    "$date": "2025-08-31T16:03:06.484Z"
+  },
+  "updatedAt": {
+    "$date": "2025-08-31T16:03:06.484Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "68b4723a420478bcc8abafc5"
+  },
+  "name": "Science and Technology",
+  "examIds": [
+    {
+      "$oid": "68b34e96b630dfb5f590299a"
+    }
+  ],
+  "createdAt": {
+    "$date": "2025-08-31T16:03:06.484Z"
+  },
+  "updatedAt": {
+    "$date": "2025-08-31T16:03:06.484Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "68b4723a420478bcc8abafc6"
+  },
+  "name": "Comprehension",
+  "examIds": [
+    {
+      "$oid": "68b34e96b630dfb5f590299a"
+    }
+  ],
+  "createdAt": {
+    "$date": "2025-08-31T16:03:06.484Z"
+  },
+  "updatedAt": {
+    "$date": "2025-08-31T16:03:06.484Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "68b4723a420478bcc8abafc7"
+  },
+  "name": "Interpersonal Skills Including Communication Skills",
+  "examIds": [
+    {
+      "$oid": "68b34e96b630dfb5f590299a"
+    }
+  ],
+  "createdAt": {
+    "$date": "2025-08-31T16:03:06.484Z"
+  },
+  "updatedAt": {
+    "$date": "2025-08-31T16:03:06.484Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "68b4723a420478bcc8abafc8"
+  },
+  "name": "Logical Reasoning and Analytical Ability",
+  "examIds": [
+    {
+      "$oid": "68b34e96b630dfb5f590299a"
+    }
+  ],
+  "createdAt": {
+    "$date": "2025-08-31T16:03:06.484Z"
+  },
+  "updatedAt": {
+    "$date": "2025-08-31T16:03:06.484Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "68b4723a420478bcc8abafc9"
+  },
+  "name": "Decision Making and Problem Solving",
+  "examIds": [
+    {
+      "$oid": "68b34e96b630dfb5f590299a"
+    }
+  ],
+  "createdAt": {
+    "$date": "2025-08-31T16:03:06.484Z"
+  },
+  "updatedAt": {
+    "$date": "2025-08-31T16:03:06.484Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "68b4723a420478bcc8abafca"
+  },
+  "name": "General Mental Ability",
+  "examIds": [
+    {
+      "$oid": "68b34e96b630dfb5f590299a"
+    }
+  ],
+  "createdAt": {
+    "$date": "2025-08-31T16:03:06.484Z"
+  },
+  "updatedAt": {
+    "$date": "2025-08-31T16:03:06.484Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "68b4723a420478bcc8abafcb"
+  },
+  "name": "Basic Numeracy",
+  "examIds": [
+    {
+      "$oid": "68b34e96b630dfb5f590299a"
+    }
+  ],
+  "createdAt": {
+    "$date": "2025-08-31T16:03:06.484Z"
+  },
+  "updatedAt": {
+    "$date": "2025-08-31T16:03:06.484Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "68b4723a420478bcc8abafcc"
+  },
+  "name": "Data Interpretation",
+  "examIds": [
+    {
+      "$oid": "68b34e96b630dfb5f590299a"
+    }
+  ],
+  "createdAt": {
+    "$date": "2025-08-31T16:03:06.484Z"
+  },
+  "updatedAt": {
+    "$date": "2025-08-31T16:03:06.484Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "68b4723a420478bcc8abafcd"
+  },
+  "name": "English Language Comprehension Skills",
+  "examIds": [
+    {
+      "$oid": "68b34e96b630dfb5f590299a"
+    }
+  ],
+  "createdAt": {
+    "$date": "2025-08-31T16:03:06.484Z"
+  },
+  "updatedAt": {
+    "$date": "2025-08-31T16:03:06.484Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "68b47ce4420478bcc8abafd8"
+  },
+  "name": "Biology",
+  "examIds": [
+    {
+      "$oid": "68b34e96b630dfb5f590299c"
+    }
+  ],
+  "createdAt": {
+    "$date": "2025-08-31T16:48:36.738Z"
+  },
+  "updatedAt": {
+    "$date": "2025-08-31T16:48:36.738Z"
+  }
+}]
