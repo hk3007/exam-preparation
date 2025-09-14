@@ -1,4 +1,3 @@
-// src/lib/mongodb.ts
 import mongoose from "mongoose";
 
 const MONGODB_URI =
@@ -8,16 +7,15 @@ if (!MONGODB_URI) {
   throw new Error("Please add your Mongo URI to .env.local or .env");
 }
 
-let isConnected = false;
-
 export async function connectDB() {
-  if (isConnected) return;
+  if (mongoose.connection.readyState >= 1) {
+    // 1 = connected, 2 = connecting
+    return;
+  }
 
   try {
-    await mongoose.connect(MONGODB_URI, {
-      dbName: "exam-preparation",
-    });
-    isConnected = true;
+    await mongoose.connect(MONGODB_URI);
+    console.log("✅ Connected to MongoDB");
   } catch (error) {
     console.error("❌ MongoDB connection error", error);
     throw error;
