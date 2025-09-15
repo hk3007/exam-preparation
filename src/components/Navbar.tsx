@@ -78,6 +78,10 @@ export function Navbar() {
         }
       );
 
+      const text = await res.text();
+      console.log("Raw response:", text);
+
+
       if (!res.ok) {
         console.error("Failed to fetch subjects for exam:", examId);
         return;
