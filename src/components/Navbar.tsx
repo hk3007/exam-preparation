@@ -40,7 +40,15 @@ export function Navbar() {
     isMountedRef.current = true;
     async function fetchExams() {
       try {
-        const res = await fetch("/api/exams");
+        const res = await fetch("/api/exams",
+          {
+          method: "GET",
+          headers: {
+            "Cache-Control": "no-cache",
+            "Pragma": "no-cache",
+          },
+        }
+        );
         if (!res.ok) {
           console.error("API responded with status:", res.status);
           return;
@@ -60,8 +68,16 @@ export function Navbar() {
   const fetchSubjects = async (examId: string, page = 1) => {
     try {
       const res = await fetch(
-        `/api/exams/${examId}/subjects?page=${page}&limit=${limit}&sort=asc`
+        `/api/exams/${examId}/subjects?page=${page}&limit=${limit}&sort=asc`,
+        {
+          method: "GET",
+          headers: {
+            "Cache-Control": "no-cache",
+            "Pragma": "no-cache",
+          },
+        }
       );
+
       if (!res.ok) {
         console.error("Failed to fetch subjects for exam:", examId);
         return;
