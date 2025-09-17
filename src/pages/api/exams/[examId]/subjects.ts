@@ -5,12 +5,9 @@ import { connectDB } from "@/lib/mongodb";
 import Subject from "@/models/Subject";
 import { Types } from "mongoose";
 
-export default async function handler(
-  req: NextApiRequest,
-  res: NextApiResponse
-) {
-  if (req.method !== "GET") {
-    res.setHeader("Allow", ["GET"]);
+export default async function handler(req: NextApiRequest, res: NextApiResponse) {
+  if (req.method !== "POST") {
+    res.setHeader("Allow", ["POST"]);
     return res.status(405).end(`Method ${req.method} Not Allowed`);
   }
 
@@ -24,9 +21,8 @@ export default async function handler(
       return res.status(400).json({ error: "Invalid examId" });
     }
 
-    const page = parseInt((req.query.page as string) || "1", 10);
-    const limit = parseInt((req.query.limit as string) || "10", 10);
-    const sort = (req.query.sort as string) || "asc";
+    // Read values from body instead of query
+    const { page = 1, limit = 10, sort = "asc" } = req.body;
 
     const query = { examIds: { $in: [examId] } };
 

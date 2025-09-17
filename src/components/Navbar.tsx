@@ -39,7 +39,7 @@ export function Navbar() {
   // ✅ Fetch exams on mount
   useEffect(() => {
     isMountedRef.current = true;
-    
+
     async function fetchExams() {
       try {
         const res = await fetch("/api/exams", {
@@ -71,36 +71,34 @@ export function Navbar() {
     };
   }, []);
 
-
-  // ✅ Fetch subjects per exam
-  const fetchSubjects = async (examId: string, page = 1) => {
-    const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || window.location.origin;
+  // ✅ Fetch subjects and update state automatically
+  const fetchSubjects = async (examId: string, page = 1, limit = 10, sort = "asc") => {
     try {
-      const res = await fetch(
-        `${baseUrl}/api/exams/${examId}/subjects?page=${page}&limit=${limit}&sort=asc`,
-        {
-          method: "GET",
-          headers: {
-            "Accept": "application/json",
-            "Cache-Control": "no-cache",
-            "Pragma": "no-cache",
-          },
-        }
-      );
+      const res = await fetch(`/api/exams/${examId}/subjects`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "Accept": "application/json",
+        },
+        body: JSON.stringify({ page, limit, sort }),
+      });
 
       if (!res.ok) {
-        console.error("Failed to fetch subjects for exam:", examId, res.status);
-        return;
+        console.error("❌ Failed to fetch subjects:", res.status);
+        return null;
       }
 
-      const data = await res.json();
-      console.log("Subjects response:", data);
+      const data: PaginatedSubjects = await res.json();
 
-      if (isMountedRef.current) {
-        setSubjectsMap((prev) => ({ ...prev, [examId]: data }));
-      }
-    } catch (error) {
-      console.error("Failed to fetch subjects:", error);
+      setSubjectsMap((prev) => ({
+        ...prev,
+        [examId]: data,
+      }));
+
+      return data;
+    } catch (err) {
+      console.error("❌ Error fetching subjects:", err);
+      return null;
     }
   };
 
