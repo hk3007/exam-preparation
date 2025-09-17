@@ -39,7 +39,7 @@ export function Navbar() {
   // ✅ Fetch exams on mount
   useEffect(() => {
     isMountedRef.current = true;
-
+    
     async function fetchExams() {
       try {
         const res = await fetch("/api/exams", {
@@ -71,11 +71,13 @@ export function Navbar() {
     };
   }, []);
 
+
   // ✅ Fetch subjects per exam
   const fetchSubjects = async (examId: string, page = 1) => {
+    const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || window.location.origin;
     try {
       const res = await fetch(
-        `/api/exams/${examId}/subjects?page=${page}&limit=${limit}&sort=asc`,
+        `${baseUrl}/api/exams/${examId}/subjects?page=${page}&limit=${limit}&sort=asc`,
         {
           method: "GET",
           headers: {
