@@ -79,6 +79,7 @@ export function Navbar() {
         {
           method: "GET",
           headers: {
+            "Accept": "application/json",
             "Cache-Control": "no-cache",
             "Pragma": "no-cache",
           },
