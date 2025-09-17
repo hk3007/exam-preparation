@@ -36,35 +36,42 @@ export function Navbar() {
   const isMountedRef = useRef(true);
   const limit = 10;
 
+  // ✅ Fetch exams on mount
   useEffect(() => {
     isMountedRef.current = true;
+
     async function fetchExams() {
       try {
-        const res = await fetch("/api/exams",
-          {
+        const res = await fetch("/api/exams", {
           method: "GET",
           headers: {
             "Cache-Control": "no-cache",
             "Pragma": "no-cache",
           },
-        }
-        );
+        });
+
         if (!res.ok) {
           console.error("API responded with status:", res.status);
           return;
         }
-        const { exams } = await res.json(); // ✅ expects wrapped response
-        if (isMountedRef.current) setExams(exams);
+
+        const data = await res.json();
+        console.log("Exams response:", data);
+
+        if (isMountedRef.current) setExams(data.exams ?? data); // support both wrapped/raw
       } catch (error) {
         console.error("Failed to fetch exams:", error);
       }
     }
+
     fetchExams();
+
     return () => {
       isMountedRef.current = false;
     };
   }, []);
 
+  // ✅ Fetch subjects per exam
   const fetchSubjects = async (examId: string, page = 1) => {
     try {
       const res = await fetch(
@@ -78,15 +85,14 @@ export function Navbar() {
         }
       );
 
-      const text = await res.text();
-      console.log("Raw response:", text);
-
-
       if (!res.ok) {
-        console.error("Failed to fetch subjects for exam:", examId);
+        console.error("Failed to fetch subjects for exam:", examId, res.status);
         return;
       }
+
       const data = await res.json();
+      console.log("Subjects response:", data);
+
       if (isMountedRef.current) {
         setSubjectsMap((prev) => ({ ...prev, [examId]: data }));
       }
