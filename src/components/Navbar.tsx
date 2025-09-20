@@ -1,44 +1,43 @@
-"use client";
+"use client"
 
-import { useState, useEffect, useRef } from "react";
-import Link from "next/link";
-import { usePathname } from "next/navigation";
-import { Shield, ChevronDown, ChevronRight } from "lucide-react";
-import { Button } from "@/components/ui/button";
-import { ThemeToggle } from "@/components/theme-toggle";
+import { useState, useEffect, useRef } from "react"
+import Link from "next/link"
+import { usePathname } from "next/navigation"
+import { Shield, ChevronDown, ChevronRight } from "lucide-react"
+import { ThemeToggle } from "@/components/theme-toggle"
 
 interface Exam {
-  _id: string;
-  name: string;
+  _id: string
+  name: string
 }
 
 interface Subject {
-  _id: string;
-  name: string;
+  _id: string
+  name: string
 }
 
 interface PaginatedSubjects {
-  subjects: Subject[];
-  total: number;
-  page: number;
-  totalPages: number;
+  subjects: Subject[]
+  total: number
+  page: number
+  totalPages: number
 }
 
 export function Navbar() {
-  const pathname = usePathname();
-  const [exams, setExams] = useState<Exam[]>([]);
-  const [subjectsMap, setSubjectsMap] = useState<Record<string, PaginatedSubjects>>({});
-  const [openExam, setOpenExam] = useState<string | null>(null);
-  const [openSubject, setOpenSubject] = useState<string | null>(null);
+  const pathname = usePathname()
+  const [exams, setExams] = useState<Exam[]>([])
+  const [subjectsMap, setSubjectsMap] = useState<Record<string, PaginatedSubjects>>({}) // support both wrapped/raw
+  const [openExam, setOpenExam] = useState<string | null>(null)
+  const [openSubject, setOpenSubject] = useState<string | null>(null)
 
-  const hoverTimeoutRef = useRef<NodeJS.Timeout | null>(null);
-  const debounceRef = useRef<NodeJS.Timeout | null>(null);
-  const isMountedRef = useRef(true);
-  const limit = 10;
+  const hoverTimeoutRef = useRef<NodeJS.Timeout | null>(null)
+  const debounceRef = useRef<NodeJS.Timeout | null>(null)
+  const isMountedRef = useRef(true)
+  const limit = 10
 
   // ✅ Fetch exams on mount
   useEffect(() => {
-    isMountedRef.current = true;
+    isMountedRef.current = true
 
     async function fetchExams() {
       try {
@@ -46,30 +45,30 @@ export function Navbar() {
           method: "GET",
           headers: {
             "Cache-Control": "no-cache",
-            "Pragma": "no-cache",
+            Pragma: "no-cache",
           },
-        });
+        })
 
         if (!res.ok) {
-          console.error("API responded with status:", res.status);
-          return;
+          console.error("API responded with status:", res.status)
+          return
         }
 
-        const data = await res.json();
-        console.log("Exams response:", data);
+        const data = await res.json()
+        console.log("Exams response:", data)
 
-        if (isMountedRef.current) setExams(data.exams ?? data); // support both wrapped/raw
+        if (isMountedRef.current) setExams(data.exams ?? data) // support both wrapped/raw
       } catch (error) {
-        console.error("Failed to fetch exams:", error);
+        console.error("Failed to fetch exams:", error)
       }
     }
 
-    fetchExams();
+    fetchExams()
 
     return () => {
-      isMountedRef.current = false;
-    };
-  }, []);
+      isMountedRef.current = false
+    }
+  }, [])
 
   // ✅ Fetch subjects and update state automatically
   const fetchSubjects = async (examId: string, page = 1, limit = 10, sort = "asc") => {
@@ -78,58 +77,58 @@ export function Navbar() {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          "Accept": "application/json",
+          Accept: "application/json",
         },
         body: JSON.stringify({ page, limit, sort }),
-      });
+      })
 
       if (!res.ok) {
-        console.error("❌ Failed to fetch subjects:", res.status);
-        return null;
+        console.error("❌ Failed to fetch subjects:", res.status)
+        return null
       }
 
-      const data: PaginatedSubjects = await res.json();
+      const data: PaginatedSubjects = await res.json()
 
       setSubjectsMap((prev) => ({
         ...prev,
         [examId]: data,
-      }));
+      }))
 
-      return data;
+      return data
     } catch (err) {
-      console.error("❌ Error fetching subjects:", err);
-      return null;
+      console.error("❌ Error fetching subjects:", err)
+      return null
     }
-  };
+  }
 
   const handleMouseEnterExam = (examId: string) => {
-    if (hoverTimeoutRef.current) clearTimeout(hoverTimeoutRef.current);
-    if (debounceRef.current) clearTimeout(debounceRef.current);
+    if (hoverTimeoutRef.current) clearTimeout(hoverTimeoutRef.current)
+    if (debounceRef.current) clearTimeout(debounceRef.current)
 
     debounceRef.current = setTimeout(() => {
-      setOpenExam(examId);
+      setOpenExam(examId)
       if (!subjectsMap[examId]) {
-        fetchSubjects(examId, 1);
+        fetchSubjects(examId, 1)
       }
-    }, 100);
-  };
+    }, 100)
+  }
 
   const handleMouseLeaveExam = () => {
     hoverTimeoutRef.current = setTimeout(() => {
-      setOpenExam(null);
-      setOpenSubject(null);
-    }, 150);
-  };
+      setOpenExam(null)
+      setOpenSubject(null)
+    }, 150)
+  }
 
   const handleMouseEnterSubject = (subjectId: string) => {
-    if (hoverTimeoutRef.current) clearTimeout(hoverTimeoutRef.current);
-    setOpenSubject(subjectId);
-  };
+    if (hoverTimeoutRef.current) clearTimeout(hoverTimeoutRef.current)
+    setOpenSubject(subjectId)
+  }
 
   const navigation = [
     { name: "Home", href: "/" },
     { name: "Latest News", href: "/news" },
-  ];
+  ]
 
   return (
     <nav className="fixed top-0 w-full z-50 backdrop-blur-sm bg-background/70 border-b border-border/50">
@@ -163,7 +162,7 @@ export function Navbar() {
 
             {/* Exams Dropdown */}
             {exams.map((exam) => {
-              const subjectsData = subjectsMap[exam._id];
+              const subjectsData = subjectsMap[exam._id]
               return (
                 <div
                   key={exam._id}
@@ -171,12 +170,9 @@ export function Navbar() {
                   onMouseEnter={() => handleMouseEnterExam(exam._id)}
                   onMouseLeave={handleMouseLeaveExam}
                 >
-                  <Button
-                    variant="ghost"
-                    className="flex items-center gap-1 rounded-md text-sm font-bold transition-colors h-full text-foreground"
-                  >
+                  <div className="flex items-center gap-1 rounded-md text-sm font-bold transition-colors h-full text-foreground px-3 py-2 cursor-default hover:bg-accent">
                     {exam.name} <ChevronDown size={16} />
-                  </Button>
+                  </div>
 
                   {openExam === exam._id && subjectsData && (
                     <div className="absolute left-0 top-full mt-2 bg-popover text-popover-foreground border rounded-md shadow-lg w-60 z-50 animate-fadeIn">
@@ -186,15 +182,12 @@ export function Navbar() {
                           className="relative"
                           onMouseEnter={() => handleMouseEnterSubject(subject._id)}
                         >
-                          <Link
-                            href={`/exam/${exam._id}/${subject._id}`}
-                            className="flex w-full items-center justify-between px-4 py-2 hover:bg-accent rounded-md transition"
-                          >
+                          <div className="flex w-full items-center justify-between px-4 py-2 hover:bg-accent rounded-md transition cursor-default">
                             {subject.name}
                             <ChevronRight size={14} />
-                          </Link>
+                          </div>
 
-                          {/* Third-level submenu */}
+                          {/* Third-level submenu - remains clickable */}
                           {openSubject === subject._id && (
                             <div className="absolute top-0 left-full ml-1 bg-popover text-popover-foreground border rounded-md shadow-lg min-w-[220px] z-50 animate-fadeIn">
                               <Link
@@ -243,7 +236,7 @@ export function Navbar() {
                     </div>
                   )}
                 </div>
-              );
+              )
             })}
           </div>
 
@@ -256,5 +249,5 @@ export function Navbar() {
         </div>
       </div>
     </nav>
-  );
+  )
 }
