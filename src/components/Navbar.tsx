@@ -25,6 +25,14 @@ interface PaginatedSubjects {
 
 export function Navbar() {
   const pathname = usePathname()
+// for mobile navigation stack
+  type MobileLevel = "root" | "exam" | "subject"
+
+  const [mobileOpen, setMobileOpen] = useState(false)
+  const [mobileLevel, setMobileLevel] = useState<MobileLevel>("root")
+  const [selectedExam, setSelectedExam] = useState<Exam | null>(null)
+  const [selectedSubject, setSelectedSubject] = useState<Subject | null>(null)
+
   const [exams, setExams] = useState<Exam[]>([])
   const [subjectsMap, setSubjectsMap] = useState<Record<string, PaginatedSubjects>>({}) // support both wrapped/raw
   const [openExam, setOpenExam] = useState<string | null>(null)
@@ -34,6 +42,18 @@ export function Navbar() {
   const debounceRef = useRef<NodeJS.Timeout | null>(null)
   const isMountedRef = useRef(true)
   const limit = 10
+
+    useEffect(() => {
+    if (mobileOpen) {
+      document.body.classList.add("overflow-hidden")
+    } else {
+      document.body.classList.remove("overflow-hidden")
+    }
+
+    return () => {
+      document.body.classList.remove("overflow-hidden") // cleanup
+    }
+  }, [mobileOpen])
 
   // ✅ Fetch exams on mount
   useEffect(() => {
@@ -245,7 +265,167 @@ export function Navbar() {
             <ThemeToggle />
           </div>
 
-          {/* Mobile Menu ... (unchanged for now) */}
+          {/* Mobile Menu (Hamburger) */}
+          <div className="flex md:hidden items-center">
+            <button
+              onClick={() => {
+                setMobileOpen((prev) => !prev)
+                setMobileLevel("root")
+                setSelectedExam(null)
+                setSelectedSubject(null)
+              }}
+              className="p-2 rounded-md hover:bg-accent"
+              aria-label="Toggle menu"
+            >
+              {mobileOpen ? <ChevronDown /> : <ChevronRight />}
+            </button>
+          </div>
+
+          {/* Mobile Drawer */}
+          {mobileOpen && (
+            <div className="absolute top-16 left-0 w-full h-[calc(100vh-4rem)] bg-background border-t shadow-md z-40 md:hidden overflow-y-auto">
+              <div className="flex flex-col h-full">
+                {/* Header with back button */}
+                {mobileLevel !== "root" && (
+                  <div className="flex items-center px-4 py-3 border-b">
+                    <button
+                      onClick={() => {
+                        if (mobileLevel === "subject") {
+                          setMobileLevel("exam")
+                          setSelectedSubject(null)
+                        } else if (mobileLevel === "exam") {
+                          setMobileLevel("root")
+                          setSelectedExam(null)
+                        }
+                      }}
+                      className="mr-3 text-blue-600 font-bold"
+                    >
+                      ← 
+                    </button>
+                    <span className="font-bold text-lg">
+                      {mobileLevel === "exam" && selectedExam?.name}
+                      {mobileLevel === "subject" && selectedSubject?.name}
+                    </span>
+                  </div>
+                )}
+
+                {/* Root level */}
+                {mobileLevel === "root" && (
+                  <div className="flex flex-col space-y-2 p-4">
+                    {navigation.map((item) => (
+                      <Link
+                        key={item.name}
+                        href={item.href}
+                        className={`px-3 py-2 rounded-md text-sm font-bold transition-colors ${
+                          pathname === item.href
+                            ? "text-blue-600 bg-blue-600/10"
+                            : "text-foreground hover:text-foreground hover:bg-accent"
+                        }`}
+                        onClick={() => setMobileOpen(false)}
+                      >
+                        {item.name}
+                      </Link>
+                    ))}
+
+                    {exams.map((exam) => (
+                      <button
+                        key={exam._id}
+                        onClick={() => {
+                          setSelectedExam(exam)
+                          setMobileLevel("exam")
+                          if (!subjectsMap[exam._id]) fetchSubjects(exam._id, 1)
+                        }}
+                        className="w-full text-left px-3 py-2 rounded-md text-sm font-bold hover:bg-accent"
+                      >
+                        {exam.name}
+                      </button>
+                    ))}
+
+                    <div className="pt-2 border-t">
+                      <ThemeToggle />
+                    </div>
+                  </div>
+                )}
+
+                {/* Exam level → show subjects */}
+                {mobileLevel === "exam" && selectedExam && (
+                  <div className="flex flex-col space-y-2 p-4">
+                    {subjectsMap[selectedExam._id]?.subjects.map((subject) => (
+                      <button
+                        key={subject._id}
+                        onClick={() => {
+                          setSelectedSubject(subject)
+                          setMobileLevel("subject")
+                        }}
+                        className="w-full text-left px-3 py-2 rounded-md text-sm hover:bg-accent"
+                      >
+                        {subject.name}
+                      </button>
+                    ))}
+
+                    {/* Pagination controls */}
+                    {subjectsMap[selectedExam._id] && (
+                      <div className="flex justify-between items-center px-3 py-2 border-t text-sm">
+                        <button
+                          disabled={subjectsMap[selectedExam._id].page === 1}
+                          onClick={() =>
+                            fetchSubjects(selectedExam._id, subjectsMap[selectedExam._id].page - 1)
+                          }
+                          className="px-2 py-1 rounded bg-gray-200 disabled:opacity-50"
+                        >
+                          ⬅ Prev
+                        </button>
+                        <span>
+                          {subjectsMap[selectedExam._id].page}/
+                          {subjectsMap[selectedExam._id].totalPages}
+                        </span>
+                        <button
+                          disabled={
+                            subjectsMap[selectedExam._id].page ===
+                            subjectsMap[selectedExam._id].totalPages
+                          }
+                          onClick={() =>
+                            fetchSubjects(selectedExam._id, subjectsMap[selectedExam._id].page + 1)
+                          }
+                          className="px-2 py-1 rounded bg-gray-200 disabled:opacity-50"
+                        >
+                          Next ➡
+                        </button>
+                      </div>
+                    )}
+                  </div>
+                )}
+
+                {/* Subject level → show links */}
+                {mobileLevel === "subject" && selectedExam && selectedSubject && (
+                  <div className="flex flex-col space-y-2 p-4">
+                    <Link
+                      href={`/exam/${selectedExam._id}/${selectedSubject._id}/chapters`}
+                      onClick={() => setMobileOpen(false)}
+                      className="px-3 py-2 hover:bg-accent rounded-md"
+                    >
+                      Chapters
+                    </Link>
+                    <Link
+                      href={`/exam/${selectedExam._id}/${selectedSubject._id}/previous-year`}
+                      onClick={() => setMobileOpen(false)}
+                      className="px-3 py-2 hover:bg-accent rounded-md"
+                    >
+                      Previous Year Questions
+                    </Link>
+                    <Link
+                      href={`/exam/${selectedExam._id}/${selectedSubject._id}/info`}
+                      onClick={() => setMobileOpen(false)}
+                      className="px-3 py-2 hover:bg-accent rounded-md"
+                    >
+                      Information
+                    </Link>
+                  </div>
+                )}
+              </div>
+            </div>
+          )}
+
         </div>
       </div>
     </nav>
