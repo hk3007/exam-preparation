@@ -6,14 +6,23 @@ export interface TableNode {
   rows: string[][];
 }
 
+// Example node type
+export interface ExampleNode {
+  title: string;
+  given?: Record<string, any>;
+  steps?: Record<string, any>;
+  answer?: Record<string, any>;
+}
+
 // Description node type for nested content
 export interface DescriptionNode {
   point?: string;
   expression?: string;
   example?: string;
-  details?: DescriptionNode[];
+  details?: string[]; // ✅ store list of details as strings
   properties?: DescriptionNode[];
-  tables?: TableNode[]; // ✅ Add tables
+  tables?: TableNode[];
+  examples?: ExampleNode[];
 }
 
 // Topic document type (Mongoose Document)
@@ -43,15 +52,27 @@ const TableNodeSchema = new Schema<TableNode>(
   { _id: false }
 );
 
+// Schema for ExampleNode
+const ExampleNodeSchema = new Schema<ExampleNode>(
+  {
+    title: { type: String, required: true },
+    given: { type: Schema.Types.Mixed, default: {} },
+    steps: { type: Schema.Types.Mixed, default: {} },
+    answer: { type: Schema.Types.Mixed, default: {} },
+  },
+  { _id: false }
+);
+
 // Mongoose Schema for DescriptionNode
 const DescriptionNodeSchema = new Schema<DescriptionNode>(
   {
     point: { type: String },
     expression: { type: String },
     example: { type: String },
-    details: { type: [Object], default: [] },
+    details: { type: [String], default: [] },
     properties: { type: [Object], default: [] },
-    tables: { type: [TableNodeSchema], default: [] }, // ✅ Add tables
+    tables: { type: [TableNodeSchema], default: [] },
+    examples: { type: [ExampleNodeSchema], default: [] },
   },
   { _id: false }
 );
@@ -70,5 +91,9 @@ const TopicSchema = new Schema<TopicDoc>(
 );
 
 // Export model
-const Topic = (mongoose.models && mongoose.models.Topic) || model<TopicDoc>("Topic", TopicSchema);
+const Topic =
+  (mongoose.models && mongoose.models.Topic) ||
+  model<TopicDoc>("Topic", TopicSchema);
+
 export default Topic;
+  

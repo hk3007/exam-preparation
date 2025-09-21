@@ -113,7 +113,9 @@ export default async function ChaptersPage({
               <div className="flex flex-wrap gap-2">
                 {chapter.topics.map((topic, i) => {
                   if (typeof topic === "string") {
-                    const slug = topic.toLowerCase().replace(/\s+/g, "-");
+                    const slug = encodeURIComponent(
+                      topic.toLowerCase().replace(/\s+/g, "-")
+                    );
                     return (
                       <Link key={i} href={`/topic/${slug}`}>
                         <span className="px-3 py-1 rounded-full text-sm font-medium bg-indigo-100 text-indigo-700 hover:bg-indigo-200 hover:scale-105 transition transform cursor-pointer shadow-sm flex items-center gap-1">
@@ -122,8 +124,9 @@ export default async function ChaptersPage({
                       </Link>
                     );
                   } else {
+                    const slug = encodeURIComponent(topic.slug);
                     return (
-                      <Link key={i} href={`/topic/${topic.slug}`}>
+                      <Link key={i} href={`/topic/${slug}`}>
                         <span className="px-3 py-1 rounded-full text-sm font-medium bg-pink-100 text-pink-700 hover:bg-pink-200 hover:scale-105 transition transform cursor-pointer shadow-sm flex items-center gap-1">
                           <Bookmark className="w-3 h-3" /> {topic.name}
                         </span>
