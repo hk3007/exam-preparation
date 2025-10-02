@@ -1,7 +1,9 @@
 import React from "react";
 import { connectDB } from "@/lib/mongodb";
 import Topic, { DescriptionNode, TopicLean } from "@/models/Topic";
-import { BookOpen, Eye, Lightbulb, Hash } from "lucide-react";
+import Question, { QuestionLean } from "@/models/Question";
+import { BookOpen, Eye, Lightbulb, Hash, HelpCircle } from "lucide-react";
+import Link from "next/link";
 
 //
 // 🎨 Recursive Renderer
@@ -40,7 +42,7 @@ function renderDescription(node: DescriptionNode, depth = 0): React.ReactNode {
           </p>
         </div>
       )}
-
+      
       {/* Rich Examples */}
       {node.examples?.map((ex, idx) => (
         <div
@@ -114,16 +116,16 @@ function renderDescription(node: DescriptionNode, depth = 0): React.ReactNode {
       {/* Nested Details / Bullets */}
       {node.details?.length && (
         <div className="mt-3 ml-4 space-y-1 text-sm md:text-base text-gray-600">
-          {node.details.map((detail, idx) => {
-            if (typeof detail === "string") {
-              return <li key={idx} className="list-disc list-inside">{detail}</li>;
-            } else {
-              // Render objects/components directly without <li>
-              return <div key={idx}>{renderDescription(detail, depth + 1)}</div>;
-            }
-          })}
+          {node.details.map((detail, idx) =>
+            typeof detail === "string" ? (
+              <li key={idx} className="list-disc list-inside">{detail}</li>
+            ) : (
+              <div key={idx}>{renderDescription(detail, depth + 1)}</div>
+            )
+          )}
         </div>
       )}
+
       {/* Nested Properties */}
       {node.properties?.map((child, idx) => (
         <React.Fragment key={`prop-${idx}`}>
@@ -143,7 +145,13 @@ export default async function TopicPage({ params }: { params: { slug: string } }
   // Remove 'await' from params
   const { slug } = await params;
 
+  // Fetch topic
   const topic: TopicLean | null = await Topic.findOne({ slug }).lean<TopicLean>();
+
+  // Fetch questions
+  const questions: (QuestionLean & { _id: string })[] = await Question.find({ topicSlug: slug })
+    .sort({ year: -1, createdAt: -1 })
+    .lean<(QuestionLean & { _id: string })[]>(); // ✅ Type-safe array
 
   if (!topic) {
     return (
@@ -157,32 +165,43 @@ export default async function TopicPage({ params }: { params: { slug: string } }
 
   return (
     <div className="bg-gray-50 min-h-screen py-12 md:py-16">
-      <div className="container mx-auto px-6 max-w-7xl">
-        {/* Header */}
-        <div className="text-center mb-12">
-          <h1 className="text-3xl md:text-5xl font-extrabold text-teal-900 leading-tight">
-            {topic.name}
-          </h1>
-          <p className="text-teal-700 mt-4 text-base md:text-lg font-medium">
-            📘 Learn concepts quickly with examples, formulas & notes
-          </p>
-          <div className="w-24 h-1 bg-teal-500 mx-auto mt-4 rounded-full"></div>
-        </div>
-
+      <div className="container mx-auto px-6 max-w-7xl grid grid-cols-1 lg:grid-cols-3 gap-8">
         {/* Topic Content */}
-        <div className="flex flex-col space-y-6">
-          {topic.description && Array.isArray(topic.description) && topic.description.map((node, idx) => (
-            <React.Fragment key={`desc-${idx}`}>
-              {renderDescription(node)}
-            </React.Fragment>
+        <div className="lg:col-span-2 flex flex-col space-y-6">
+          <div className="text-center mb-6">
+            <h1 className="text-3xl md:text-5xl font-extrabold text-teal-900 leading-tight">{topic.name}</h1>
+          </div>
+
+          {topic.description?.map((node, idx) => (
+            <React.Fragment key={idx}>{renderDescription(node)}</React.Fragment>
           ))}
+
         </div>
 
-        {/* Footer / Views */}
-        <div className="flex items-center justify-center text-gray-600 text-sm md:text-base mt-12">
-          <Eye className="h-5 w-5 mr-2 text-teal-500" />
-          <span className="font-medium">{topic.views ?? 0} Students viewed this</span>
+        {/* Sidebar Buttons */}
+        <div className="bg-white shadow-xl rounded-2xl p-6 sticky top-24 h-fit">
+          <h2 className="text-xl font-bold text-gray-800 mb-4">Questions</h2>
+          <div className="flex flex-col gap-4">
+            <Link
+              href={`/topic/${slug}/questions/previous`}
+              className="block py-3 px-4 rounded-lg bg-teal-600 text-white text-center font-medium hover:bg-teal-700 transition"
+            >
+              Previous Year Questions
+            </Link>
+            <Link
+              href={`/topic/${slug}/questions/practice`}
+              className="block py-3 px-4 rounded-lg bg-amber-500 text-white text-center font-medium hover:bg-amber-600 transition"
+            >
+              Practice Questions
+            </Link>
+          </div>
         </div>
+      </div>
+
+      {/* Footer / Views */}
+      <div className="flex items-center justify-center text-gray-600 text-sm md:text-base mt-12">
+        <Eye className="h-5 w-5 mr-2 text-teal-500" />
+        <span className="font-medium">{topic.views ?? 0} Students viewed this</span>
       </div>
     </div>
   );
