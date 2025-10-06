@@ -2,7 +2,7 @@ import React from "react";
 import { connectDB } from "@/lib/mongodb";
 import Topic, { DescriptionNode, TopicLean } from "@/models/Topic";
 import Question, { QuestionLean } from "@/models/Question";
-import { BookOpen, Eye, Lightbulb, Hash, HelpCircle } from "lucide-react";
+import { BookOpen, Eye, Lightbulb, Hash } from "lucide-react";
 import Link from "next/link";
 
 //
@@ -42,7 +42,7 @@ function renderDescription(node: DescriptionNode, depth = 0): React.ReactNode {
           </p>
         </div>
       )}
-      
+
       {/* Rich Examples */}
       {node.examples?.map((ex, idx) => (
         <div
@@ -57,7 +57,7 @@ function renderDescription(node: DescriptionNode, depth = 0): React.ReactNode {
               <strong>Given:</strong>
               <ul className="list-disc list-inside ml-5">
                 {Object.entries(ex.given).map(([key, value]) => (
-                  <li key={`given-${key}`}>{key}: {JSON.stringify(value)}</li>
+                  <li key={`given-${key}`}>{key}: {typeof value === 'object' ? JSON.stringify(value) : value}</li>
                 ))}
               </ul>
             </div>
@@ -77,7 +77,7 @@ function renderDescription(node: DescriptionNode, depth = 0): React.ReactNode {
               <strong>Answer:</strong>
               <ul className="list-disc list-inside ml-5">
                 {Object.entries(ex.answer).map(([key, value]) => (
-                  <li key={`answer-${key}`}>{key}: {JSON.stringify(value)}</li>
+                  <li key={`answer-${key}`}>{key}: {typeof value === 'object' ? JSON.stringify(value) : value}</li>
                 ))}
               </ul>
             </div>
@@ -87,12 +87,15 @@ function renderDescription(node: DescriptionNode, depth = 0): React.ReactNode {
 
       {/* Tables */}
       {node.tables?.map((table, idx) => (
-        <div key={idx} className="overflow-x-auto my-4">
-          <table className="min-w-full border border-gray-200 rounded-xl text-sm md:text-base">
+        <div key={idx} className="overflow-x-auto my-4 rounded-xl border border-gray-200">
+          <table className="min-w-full border-collapse">
             <thead className="bg-teal-100">
               <tr>
                 {table.headers.map((header, hIdx) => (
-                  <th key={hIdx} className="px-4 py-2 text-left font-semibold text-teal-800 border-b border-gray-300">
+                  <th
+                    key={hIdx}
+                    className="px-4 py-2 text-left font-semibold text-teal-800 border-b border-gray-300"
+                  >
                     {header}
                   </th>
                 ))}
@@ -102,7 +105,10 @@ function renderDescription(node: DescriptionNode, depth = 0): React.ReactNode {
               {table.rows.map((row, rIdx) => (
                 <tr key={rIdx} className={rIdx % 2 === 0 ? "bg-white" : "bg-gray-50"}>
                   {row.map((cell, cIdx) => (
-                    <td key={cIdx} className="px-4 py-2 border-b border-gray-200 text-gray-700">
+                    <td
+                      key={cIdx}
+                      className="px-4 py-2 border-b border-gray-200 text-gray-700"
+                    >
                       {cell}
                     </td>
                   ))}
@@ -142,16 +148,12 @@ function renderDescription(node: DescriptionNode, depth = 0): React.ReactNode {
 export default async function TopicPage({ params }: { params: { slug: string } }) {
   await connectDB();
 
-  // Remove 'await' from params
   const { slug } = await params;
 
-  // Fetch topic
   const topic: TopicLean | null = await Topic.findOne({ slug }).lean<TopicLean>();
-
-  // Fetch questions
   const questions: (QuestionLean & { _id: string })[] = await Question.find({ topicSlug: slug })
     .sort({ year: -1, createdAt: -1 })
-    .lean<(QuestionLean & { _id: string })[]>(); // ✅ Type-safe array
+    .lean<(QuestionLean & { _id: string })[]>();
 
   if (!topic) {
     return (
@@ -175,7 +177,6 @@ export default async function TopicPage({ params }: { params: { slug: string } }
           {topic.description?.map((node, idx) => (
             <React.Fragment key={idx}>{renderDescription(node)}</React.Fragment>
           ))}
-
         </div>
 
         {/* Sidebar Buttons */}

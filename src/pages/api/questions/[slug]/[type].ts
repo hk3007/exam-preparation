@@ -1,3 +1,4 @@
+// pages/api/questions/[slug]/[type].ts
 import { NextApiRequest, NextApiResponse } from "next";
 import { connectDB } from "@/lib/mongodb";
 import Question from "@/models/Question";

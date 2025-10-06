@@ -2,7 +2,7 @@
 
 import React, { useEffect, useState } from "react";
 import { useParams } from "next/navigation";
-import { HelpCircle } from "lucide-react";
+import { HelpCircle, CheckCircle2, XCircle, FileText } from "lucide-react";
 
 interface Question {
   _id: string;
@@ -12,7 +12,9 @@ interface Question {
   question: string;
   options?: string[];
   answer?: string | string[];
+  steps?: string[];
   year?: number;
+  examIds?: string[];
 }
 
 export default function QuestionsPage() {
@@ -25,6 +27,9 @@ export default function QuestionsPage() {
   const [topicName, setTopicName] = useState<string>("");
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const [revealed, setRevealed] = useState<Record<string, boolean>>({});
+  const [selected, setSelected] = useState<Record<string, number | null>>({});
+  const [showSteps, setShowSteps] = useState<Record<string, boolean>>({});
 
   useEffect(() => {
     if (!slug || !type) return;
@@ -45,7 +50,6 @@ export default function QuestionsPage() {
         const qArray: Question[] = Array.isArray(data.data) ? data.data : [];
         setQuestions(qArray);
 
-        // Use topicName from first question if available
         if (qArray.length > 0 && qArray[0].topicName) {
           setTopicName(qArray[0].topicName);
         }
@@ -60,8 +64,21 @@ export default function QuestionsPage() {
     fetchQuestions();
   }, [slug, type]);
 
+  const handleOptionClick = (qId: string, idx: number) => {
+    setSelected((prev) => ({ ...prev, [qId]: idx }));
+    setRevealed((prev) => ({ ...prev, [qId]: true }));
+  };
+
+  const handleRevealAnswer = (qId: string) => {
+    setRevealed((prev) => ({ ...prev, [qId]: true }));
+  };
+
+  const toggleSteps = (qId: string) => {
+    setShowSteps((prev) => ({ ...prev, [qId]: !prev[qId] }));
+  };
+
   return (
-    <div className="bg-gray-50 min-h-screen py-12 md:py-16">
+    <div className="bg-gradient-to-b from-teal-50 to-gray-50 min-h-screen py-12 md:py-16">
       <div className="container mx-auto px-6 max-w-5xl">
         {/* Header */}
         <div className="text-center mb-12">
@@ -94,56 +111,132 @@ export default function QuestionsPage() {
         {/* Questions List */}
         {!loading && !error && questions.length > 0 ? (
           <ul className="space-y-8">
-            {questions.map((q, idx) => (
-              <li
-                key={q._id}
-                className="bg-white p-6 rounded-2xl shadow hover:shadow-lg border border-gray-200 transition"
-              >
-                {/* Question */}
-                <p className="text-gray-800 font-semibold text-lg mb-4">
-                  <span className="text-teal-600 font-bold mr-2">{idx + 1}.</span>
-                  {q.question}
-                </p>
+            {questions.map((q, idx) => {
+              const isRevealed = revealed[q._id];
+              const selectedOpt = selected[q._id];
+              const correct =
+                typeof q.answer === "string"
+                  ? q.answer
+                  : Array.isArray(q.answer)
+                  ? q.answer[0]
+                  : null;
 
-                {/* Options */}
-                {q.options && (
-                  <div className="mb-4">
-                    <h4 className="font-medium text-teal-700 mb-2">Options:</h4>
-                    <ul className="list-disc list-inside text-gray-700 ml-5 space-y-1">
-                      {q.options.map((opt, i) => (
-                        <li key={i}>{opt}</li>
-                      ))}
-                    </ul>
-                  </div>
-                )}
+              return (
+                <li
+                  key={q._id}
+                  className="bg-white p-6 rounded-2xl shadow hover:shadow-lg border border-gray-200 transition"
+                >
+                  {/* Question */}
+                  <p className="text-gray-800 font-semibold text-lg mb-4">
+                    <span className="text-teal-600 font-bold mr-2">{idx + 1}.</span>
+                    {q.question}
+                  </p>
 
-                {/* Answer */}
-                {q.answer && (
-                  <div className="mb-4 bg-teal-50 p-4 rounded-lg border-l-4 border-teal-400">
-                    <h4 className="font-medium text-teal-800 mb-1">Answer:</h4>
-                    {Array.isArray(q.answer) ? (
-                      <ul className="list-disc list-inside text-teal-800 ml-5 space-y-1">
-                        {q.answer.map((ans, i) => (
-                          <li key={i}>{ans}</li>
-                        ))}
-                      </ul>
-                    ) : (
-                      <p className="text-teal-800">{q.answer}</p>
-                    )}
-                  </div>
-                )}
+                  {/* Options OR Subjective */}
+                  {q.options ? (
+                    <div className="space-y-3">
+                      {q.options.map((opt, i) => {
+                        const isSelected = selectedOpt === i;
+                        const isCorrect = correct === opt;
 
-                {/* Year */}
-                {q.year && type === "previous" && (
-                  <span className="text-xs text-gray-500 mt-1 block text-right">
-                    Year: {q.year}
-                  </span>
-                )}
-              </li>
-            ))}
+                        return (
+                          <button
+                            key={i}
+                            onClick={() => handleOptionClick(q._id, i)}
+                            className={`w-full text-left px-4 py-2 rounded-lg border transition ${
+                              isSelected
+                                ? isCorrect
+                                  ? "bg-green-100 border-green-400 text-green-800"
+                                  : "bg-red-100 border-red-400 text-red-800"
+                                : "bg-gray-50 border-gray-200 hover:bg-gray-100"
+                            }`}
+                          >
+                            {opt}
+                          </button>
+                        );
+                      })}
+                    </div>
+                  ) : (
+                    <div className="text-gray-600 italic">
+                      Subjective question. Think & reveal answer.
+                      {!isRevealed && (
+                        <button
+                          onClick={() => handleRevealAnswer(q._id)}
+                          className="ml-4 px-4 py-1 bg-teal-600 text-white rounded-lg text-sm hover:bg-teal-700"
+                        >
+                          Reveal Answer
+                        </button>
+                      )}
+                    </div>
+                  )}
+
+                  {/* Answer */}
+                  {isRevealed && (
+                    <div className="mt-4 bg-teal-50 p-4 rounded-lg border-l-4 border-teal-400">
+                      <h4 className="font-medium text-teal-800 mb-1 flex items-center gap-2">
+                        {q.options ? (
+                          correct === q.options[selectedOpt || 0] ? (
+                            <CheckCircle2 className="text-green-600 h-5 w-5" />
+                          ) : (
+                            <XCircle className="text-red-600 h-5 w-5" />
+                          )
+                        ) : (
+                          <CheckCircle2 className="text-teal-600 h-5 w-5" />
+                        )}
+                        Answer:
+                      </h4>
+                      {q.answer ? (
+                        Array.isArray(q.answer) ? (
+                          <ul className="list-disc list-inside text-teal-800 ml-5 space-y-1">
+                            {q.answer.map((ans, i) => (
+                              <li key={i}>{ans}</li>
+                            ))}
+                          </ul>
+                        ) : (
+                          <p className="text-teal-800">{q.answer}</p>
+                        )
+                      ) : (
+                        <p className="text-gray-500 italic">Coming soon...</p>
+                      )}
+
+                      {/* Steps (button only for objective) */}
+                      {q.steps && q.steps.length > 0 ? (
+                        <div className="mt-3">
+                          {!showSteps[q._id] ? (
+                            <button
+                              onClick={() => toggleSteps(q._id)}
+                              className="flex items-center gap-2 px-3 py-1 bg-amber-500 text-white rounded-lg text-sm hover:bg-amber-600"
+                            >
+                              <FileText className="h-4 w-4" /> Show Steps
+                            </button>
+                          ) : (
+                            <div>
+                              <h5 className="font-semibold text-teal-700">Steps:</h5>
+                              <ul className="list-decimal list-inside text-gray-700 ml-5 space-y-1">
+                                {q.steps.map((s, i) => (
+                                  <li key={i}>{s}</li>
+                                ))}
+                              </ul>
+                            </div>
+                          )}
+                        </div>
+                      ) : (
+                        isRevealed && <p className="text-gray-500 italic mt-2">Steps coming soon...</p>
+                      )}
+                    </div>
+                  )}
+
+                  {/* Year */}
+                  {q.year && type === "previous" && (
+                    <span className="text-xs text-gray-500 mt-1 block text-right">
+                      Year: {q.year}
+                    </span>
+                  )}
+                </li>
+              );
+            })}
           </ul>
         ) : (
-          // Empty State
           !loading &&
           !error && (
             <div className="text-center p-12 bg-white rounded-xl shadow-lg">

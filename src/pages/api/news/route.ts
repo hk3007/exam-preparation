@@ -1,11 +1,11 @@
 import { NextResponse } from "next/server";
-import { fetchExamNews } from "@/lib/news";
+import { fetchExamNews } from "@/lib/news"; // Make sure this path is correct
 
 export async function GET() {
   try {
     const queries = ["JEE MAIN", "NEET", "UPSC"];
     const results = await Promise.all(
-      queries.map(async q => ({
+      queries.map(async (q) => ({
         exam: q,
         articles: await fetchExamNews(q),
       }))
