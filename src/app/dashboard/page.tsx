@@ -248,7 +248,7 @@ export default async function DashboardPage() {
             <a href="/dashboard/questions" style={styles.navLink}>Questions</a>
           </li>
           <li style={styles.navItem}>
-            <a href="/dashboard/questions" style={styles.navLink}>Chapters</a>
+            <a href="/dashboard/chapters" style={styles.navLink}>Chapters</a>
           </li>
           <li style={styles.navItem}>
             <a href="/dashboard/exams" style={styles.navLink}>Exams</a>

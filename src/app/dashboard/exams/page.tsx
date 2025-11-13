@@ -100,7 +100,7 @@ export default function ExamsDashboard() {
 
     try {
       // REAL API DELETE: Deleting the exam record
-      const res = await fetch(`/api/exam/${id}`, { method: "DELETE" });
+      const res = await fetch(`/api/exams/${id}`, { method: "DELETE" });
       if (!res.ok) throw new Error("Failed to delete exam");
       
       toast.success("Exam deleted successfully!", { id: 'deleteToast' });
@@ -155,7 +155,7 @@ export default function ExamsDashboard() {
           <p className="text-gray-600">Quickly view, update, and delete competitive examination records.</p>
         </div>
         <a
-          href="/dashboard/admin/create-exam"
+          href="/dashboard/exams/create-exam"
           className="inline-flex items-center bg-sky-600 text-white px-5 py-2.5 rounded-xl shadow-md hover:bg-sky-700 transition transform hover:scale-[1.05] font-semibold"
         >
           <Plus className="w-5 h-5 mr-2" />

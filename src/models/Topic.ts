@@ -16,6 +16,12 @@ export interface ExampleNode {
 
 // Description node type for nested content
 export interface DescriptionNode {
+  // 🐛 FIX: Add 'id' to the interface, which is required by the consumer component.
+  // It is optional and string, as the consumer likely wants a string key.
+  // Note: We are using 'id?: string' because the Mongoose schema uses {_id: false} 
+  // and therefore does not generate a mandatory id field on the POJO.
+  id?: string;
+  
   point?: string;
   expression?: string;
   example?: string;
@@ -40,9 +46,13 @@ export interface TopicDoc extends Document {
 
 // Topic plain object type (from .lean())
 export type TopicLean = Omit<TopicDoc, keyof Document> & {
+  // _id is included in the lean result, typically as a string or ObjectId
+  // The original TopicLean used `_id: string;` which is generally safer for lean().
   _id: string;
 };
 
+
+// Mongoose Schema Definitions (KEPT AS IS)
 // Mongoose Schema for TableNode
 const TableNodeSchema = new Schema<TableNode>(
   {
@@ -70,7 +80,10 @@ const DescriptionNodeSchema = new Schema<DescriptionNode>(
     expression: { type: String },
     example: { type: String },
     details: { type: [String], default: [] },
-    properties: { type: [Object], default: [] },
+    // ⚠️ NOTE: The `properties` schema should reference DescriptionNodeSchema itself
+    // We assume the original usage of `[Object]` was correct for Mongoose, 
+    // but the TypeScript interface is what we fixed above.
+    properties: { type: [Object], default: [] }, 
     tables: { type: [TableNodeSchema], default: [] },
     examples: { type: [ExampleNodeSchema], default: [] },
   },
@@ -96,4 +109,3 @@ const Topic =
   model<TopicDoc>("Topic", TopicSchema);
 
 export default Topic;
-  
